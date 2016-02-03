@@ -1,0 +1,12 @@
+{# app/Resources/views/article/list.html.twig #}
+{% extends 'layout.html.twig' %}
+<img src="{{ asset('images/logo.png') }}" alt="Symfony!" />
+<img src="{{ asset('images/logo.png', version='3.0') }}" alt="Symfony!" />
+<img src="{{ absolute_url(asset('images/logo.png')) }}" alt="Symfony!" />
+<link href="{{ asset('css/blog.css') }}" rel="stylesheet" />
+{% block body %}
+    <h1>Recent Articles<h1>
+            {% for article in articles %}
+                {{ include('article/article_details.html.twig', { 'article': article }) }}
+            {% endfor %}
+        {% endblock %}

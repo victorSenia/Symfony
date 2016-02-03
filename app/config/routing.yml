@@ -1,3 +1,50 @@
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
+    
+#acme:
+#    resource: "@AcmeTestBundle/Controller/"
+#    type:     annotation
+    
+#app_example:
+#    resource: '@AcmeOtherBundle/Resources/config/routing.yml'
+#    adding other routign
+lucky_number:
+    path: /lucky/number
+    defaults: { _controller: AppBundle:Lucky:number }
+#    adding prefix
+    prefix: /site
+
+lucky_number_с:
+    path: /lucky/number/{count}
+    defaults: { _controller: AppBundle:Lucky:numberC }
+    
+api_lucky_number:
+    path: /api/lucky/number
+    defaults: { _controller: AppBundle:Lucky:apiNumber }
+    
+index:
+    path: /index
+    defaults: { _controller: AppBundle:Hello:index }
+    
+    
+blog:
+    path:      /blog/{page}/{_locale}
+    defaults:  { _controller: AppBundle:Blog:index, page: 1, _locale: en }
+#    default value
+    requirements:
+        page:  \d+
+#        limitation
+        _locale:  en|fr
+#      method quirement  
+    methods:  [GET, HEAD]
+#    condition
+    condition: "context.getMethod() in ['GET', 'HEAD'] and request.headers.get('User-Agent') matches '/firefox/i'"
+    
+article_show:
+  path:     /articles/{_locale}/{year}/{title}.{_format}
+  defaults: { _controller: AppBundle:Article:show, _format: html }
+  requirements:
+      _locale:  en|fr
+      _format:  html|rss
+      year:     \d+

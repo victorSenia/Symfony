@@ -1,3 +1,8 @@
+Change in .htaccess
+RewriteRule .? %{ENV:BASE}/app_dev.php [L]
+to
+RewriteRule .? %{ENV:BASE}/app.php [L]
+
 Symfony Standard Edition
 ========================
 
