@@ -1,0 +1,11 @@
+{# app/Resources/views/author/validation.html.twig #}
+
+{% extends "base.html.twig"%}
+{% block body %}
+    <h3>The author has the following errors</h3>
+    <ul>
+        {% for error in errors %}
+            <li>{{ error.message }}</li>
+            {% endfor %}
+    </ul>
+{%endblock%}
