@@ -1,0 +1,23 @@
+{% extends "base.html.twig" %}
+{% form_theme form 'AppBundle:form:fields.html.twig' %}
+{% block body %}
+    {{ form_start(form) }}
+    {#{ form_start(form, {'action': path('homepage'), 'method': 'GET'}) }#}
+    <div>
+        {{ form_label(form.task, 'Task Description') }}
+        {{ form_widget(form.task, {'attr': {'class': 'task_field'}}) }}
+        {#{ form.task.vars.id }#}
+        {#{ form.task.vars.full_name }#}
+        {{ form_errors(form.task) }}
+    </div>
+    <div>
+        {{ form_label(form.dueDate) }}
+        {{ form_widget(form.dueDate) }}
+        {{ form_errors(form.dueDate) }}
+    </div>
+    <div>
+        {{ form_widget(form.save) }}
+    {{ form_errors(form) }}
+    </div>
+    {{ form_end(form) }}
+{%endblock%}

@@ -1,0 +1,9 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    {% form_theme form 'AppBundle:form:fields.html.twig' %}
+    {#{ dump(form)}#}
+    {#{ form(form, {'attr': {'novalidate': 'novalidate'}}) }#}
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+{%endblock%}
