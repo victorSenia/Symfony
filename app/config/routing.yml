@@ -42,9 +42,12 @@ blog:
     condition: "context.getMethod() in ['GET', 'HEAD'] and request.headers.get('User-Agent') matches '/firefox/i'"
     
 article_show:
-  path:     /articles/{_locale}/{year}/{title}.{_format}
-  defaults: { _controller: AppBundle:Article:show, _format: html }
-  requirements:
-      _locale:  en|fr
-      _format:  html|rss
-      year:     \d+
+    path:     /articles/{_locale}/{year}/{title}.{_format}
+    defaults: { _controller: AppBundle:Article:show, _format: html }
+    requirements:
+        _locale:  en|fr
+        _format:  html|rss
+        year:     \d+
+        
+logout:
+    path: /logout
