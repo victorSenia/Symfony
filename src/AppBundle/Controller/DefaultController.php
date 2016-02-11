@@ -38,7 +38,7 @@ class DefaultController extends Controller {
      * @Route("/", name="homepage")
      */
     public function indexAction(Request $request) {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Unable to access this page!');
+//        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Unable to access this page!');
         // Old way :
 // if (false ===$this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
 // throw $this->createAccessDeniedException('Unable to access this page!');

@@ -51,3 +51,11 @@ article_show:
         
 logout:
     path: /logout
+    
+transl:
+    path: /transl
+#    /{_locale}
+    defaults:  { _controller: AppBundle:Translete:index} 
+    #, _locale: en }
+#    requirements:
+#        _locale:  en|fr|ru

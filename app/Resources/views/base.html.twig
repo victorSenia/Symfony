@@ -14,7 +14,7 @@
             <script src="{{ asset('js/main.js') }}"></script>
         {% endblock %}
         {#% if is_granted('ROLE_ADMIN') %#}
-        {% if app.user and is_granted('ROLE_ADMIN') %}
+        {#% if app.user and is_granted('ROLE_ADMIN') %}
             <a href="...">Delete</a>
         {% endif %}
 
@@ -24,7 +24,7 @@
         
         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
         <a href="/logout">Logout</a>
-        {% endif %}
+        {% endif %#}
         
         </body>
     </html>
