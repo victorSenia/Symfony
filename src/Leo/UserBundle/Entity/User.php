@@ -3,6 +3,7 @@
 namespace Leo\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use \Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
 /**
  * User
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="Leo\UserBundle\Repository\UserRepository")
  */
-class User {
+class User implements AdvancedUserInterface {
 
     /**
      * @var int
@@ -26,7 +27,7 @@ class User {
      *
      * @ORM\Column(name="name", type="string", length=25, unique=true)
      */
-    private $name;
+    private $username;
 
     /**
      * @var string
@@ -43,9 +44,21 @@ class User {
     private $password;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Role")
+     * @var boolean
+     *
+     * @ORM\Column(name="is_active", type="boolean", options={"default"=true})
+     */
+    private $isActive;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Role", inversedBy="users")
+     * @ORM\JoinColumn(name="role_id", referencedColumnName="id", nullable=false)
      */
     private $role;
+
+    public function __construct() {
+        $this->setIsActive(TRUE);
+    }
 
     /**
      * Get id
@@ -59,11 +72,11 @@ class User {
     /**
      * Set name
      *
-     * @param string $name
+     * @param string $username
      * @return User
      */
-    public function setName($name) {
-        $this->name = $name;
+    public function setUsername($username) {
+        $this->username = $username;
 
         return $this;
     }
@@ -73,8 +86,8 @@ class User {
      *
      * @return string
      */
-    public function getName() {
-        return $this->name;
+    public function getUsername() {
+        return $this->username;
     }
 
     /**
@@ -138,6 +151,57 @@ class User {
      */
     public function getRole() {
         return $this->role;
+    }
+
+    public function eraseCredentials() {
+//TODO
+    }
+
+    public function getRoles() {
+        return array($this->getRole());
+    }
+
+    public function getSalt() {
+        return NULL;
+    }
+
+    public function isAccountNonExpired() {
+
+//TODO
+    }
+
+    public function isAccountNonLocked() {
+        return $this->getIsActive();
+    }
+
+    public function isCredentialsNonExpired() {
+
+//TODO
+    }
+
+    public function isEnabled() {
+        return $this->getIsActive();
+    }
+
+    /**
+     * Set isActive
+     *
+     * @param boolean $isActive
+     * @return User
+     */
+    public function setIsActive($isActive) {
+        $this->isActive = $isActive;
+
+        return $this;
+    }
+
+    /**
+     * Get isActive
+     *
+     * @return boolean
+     */
+    public function getIsActive() {
+        return $this->isActive;
     }
 
 }

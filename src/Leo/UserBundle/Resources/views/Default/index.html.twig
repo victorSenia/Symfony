@@ -1,1 +1,6 @@
-Hello World!
+{% extends 'base.html.twig' %}
+{% block body %}
+    Hello user!<br>
+    <a href="{{path("user_index")}}">Users</a>
+    <a href="{{path("role_index")}}">Roles</a>
+{% endblock %}

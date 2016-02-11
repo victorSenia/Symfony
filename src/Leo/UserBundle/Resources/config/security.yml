@@ -1,0 +1,16 @@
+# To get started with security, check out the documentation:
+# http://symfony.com/doc/current/book/security.html
+
+security:
+    encoders:
+        Leo\UserBundle\Entity\User:
+            algorithm: bcrypt
+            cost: 12
+
+    providers:
+        in_memory:
+            memory: ~
+
+    role_hierarchy:
+        ROLE_ADMIN: ROLE_USER
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN]

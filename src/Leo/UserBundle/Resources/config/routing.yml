@@ -1,3 +1,11 @@
+leo_user_user:
+    resource: "@LeoUserBundle/Resources/config/routing/user.yml"
+    prefix:   /user
+
+leo_user_role:
+    resource: "@LeoUserBundle/Resources/config/routing/role.yml"
+    prefix:   /role
+
 leo_user_homepage:
     path:     /
     defaults: { _controller: LeoUserBundle:Default:index }

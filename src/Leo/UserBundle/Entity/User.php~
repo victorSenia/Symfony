@@ -3,6 +3,7 @@
 namespace Leo\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use \Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
 /**
  * User
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="Leo\UserBundle\Repository\UserRepository")
  */
-class User {
+class User implements AdvancedUserInterface {
 
     /**
      * @var int
@@ -43,7 +44,14 @@ class User {
     private $password;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Role")
+     * @var boolean
+     *
+     * @ORM\Column(name="is_active", type="boolean", options={"default"=true})
+     */
+    private $isActive;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Role", inversedBy="users")
      */
     private $role;
 
@@ -138,6 +146,38 @@ class User {
      */
     public function getRole() {
         return $this->role;
+    }
+
+    public function eraseCredentials() {
+
+    }
+
+    public function getRoles() {
+        return array($this->getRole());
+    }
+
+    public function getSalt() {
+        return NULL;
+    }
+
+    public function getUsername() {
+
+    }
+
+    public function isAccountNonExpired() {
+
+    }
+
+    public function isAccountNonLocked() {
+
+    }
+
+    public function isCredentialsNonExpired() {
+
+    }
+
+    public function isEnabled() {
+
     }
 
 }

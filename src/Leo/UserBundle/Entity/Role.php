@@ -31,7 +31,7 @@ class Role {
     /**
      * @var User
      *
-     * @ORM\OneToMany(targetEntity="User", mappedBy="id")
+     * @ORM\OneToMany(targetEntity="User", mappedBy="role")
      */
     private $users;
 
@@ -68,8 +68,7 @@ class Role {
     /**
      * Constructor
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->users = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -79,8 +78,7 @@ class Role {
      * @param \Leo\UserBundle\Entity\User $users
      * @return Role
      */
-    public function addUser(\Leo\UserBundle\Entity\User $users)
-    {
+    public function addUser(\Leo\UserBundle\Entity\User $users) {
         $this->users[] = $users;
 
         return $this;
@@ -91,18 +89,21 @@ class Role {
      *
      * @param \Leo\UserBundle\Entity\User $users
      */
-    public function removeUser(\Leo\UserBundle\Entity\User $users)
-    {
+    public function removeUser(\Leo\UserBundle\Entity\User $users) {
         $this->users->removeElement($users);
     }
 
     /**
      * Get users
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
-    public function getUsers()
-    {
+    public function getUsers() {
         return $this->users;
     }
+
+    public function __toString() {
+        return $this->getRole();
+    }
+
 }
