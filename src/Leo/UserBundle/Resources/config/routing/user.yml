@@ -22,3 +22,9 @@ user_delete:
     path:     /{id}/delete
     defaults: { _controller: "LeoUserBundle:User:delete" }
     methods:  DELETE
+
+
+#user_login:
+#    path:     /login
+#    defaults: { _controller: "LeoUserBundle:Default:login" }
+#    methods:  DELETE

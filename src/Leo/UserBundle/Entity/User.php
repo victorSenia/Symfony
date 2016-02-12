@@ -11,7 +11,7 @@ use \Symfony\Component\Security\Core\User\AdvancedUserInterface;
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="Leo\UserBundle\Repository\UserRepository")
  */
-class User implements AdvancedUserInterface {
+class User implements AdvancedUserInterface, \Serializable {
 
     /**
      * @var int
@@ -158,7 +158,7 @@ class User implements AdvancedUserInterface {
     }
 
     public function getRoles() {
-        return array($this->getRole());
+        return array($this->getRole()->getRole(),);
     }
 
     public function getSalt() {
@@ -166,7 +166,7 @@ class User implements AdvancedUserInterface {
     }
 
     public function isAccountNonExpired() {
-
+        return true;
 //TODO
     }
 
@@ -175,7 +175,7 @@ class User implements AdvancedUserInterface {
     }
 
     public function isCredentialsNonExpired() {
-
+        return true;
 //TODO
     }
 
@@ -202,6 +202,14 @@ class User implements AdvancedUserInterface {
      */
     public function getIsActive() {
         return $this->isActive;
+    }
+
+    public function serialize() {
+        return serialize(array($this->id, $this->username, $this->password));
+    }
+
+    public function unserialize($serialized) {
+        list($this->id, $this->username, $this->password) = unserialize($serialized);
     }
 
 }

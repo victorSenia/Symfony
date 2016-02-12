@@ -9,3 +9,6 @@ leo_user_role:
 leo_user_homepage:
     path:     /
     defaults: { _controller: LeoUserBundle:Default:index }
+
+leo_user_logout:
+    path: /logout
