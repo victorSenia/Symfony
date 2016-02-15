@@ -1,6 +1,6 @@
 leo_user:
     resource: "@LeoUserBundle/Resources/config/routing.yml"
-    prefix:   /user
+    prefix:   /admin
 
 app:
     resource: "@AppBundle/Controller/"

@@ -12,3 +12,10 @@ leo_user_homepage:
 
 leo_user_logout:
     path: /logout
+
+leo_user_login:
+    path:     /login
+    defaults: { _controller: "LeoUserBundle:Default:login" }
+
+#leo_user_check:
+#    path:     /check
