@@ -11,7 +11,7 @@ use \Symfony\Component\Security\Core\User\AdvancedUserInterface;
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="Leo\UserBundle\Repository\UserRepository")
  */
-class User implements AdvancedUserInterface {
+class User implements AdvancedUserInterface, \Serializable {
 
     /**
      * @var int
@@ -27,7 +27,7 @@ class User implements AdvancedUserInterface {
      *
      * @ORM\Column(name="name", type="string", length=25, unique=true)
      */
-    private $name;
+    private $username;
 
     /**
      * @var string
@@ -52,8 +52,13 @@ class User implements AdvancedUserInterface {
 
     /**
      * @ORM\ManyToOne(targetEntity="Role", inversedBy="users")
+     * @ORM\JoinColumn(name="role_id", referencedColumnName="id", nullable=false)
      */
     private $role;
+
+    public function __construct() {
+        $this->setIsActive(TRUE);
+    }
 
     /**
      * Get id
@@ -67,11 +72,11 @@ class User implements AdvancedUserInterface {
     /**
      * Set name
      *
-     * @param string $name
+     * @param string $username
      * @return User
      */
-    public function setName($name) {
-        $this->name = $name;
+    public function setUsername($username) {
+        $this->username = $username;
 
         return $this;
     }
@@ -81,8 +86,8 @@ class User implements AdvancedUserInterface {
      *
      * @return string
      */
-    public function getName() {
-        return $this->name;
+    public function getUsername() {
+        return $this->username;
     }
 
     /**
@@ -149,35 +154,62 @@ class User implements AdvancedUserInterface {
     }
 
     public function eraseCredentials() {
-
+//TODO
     }
 
     public function getRoles() {
-        return array($this->getRole());
+        return array($this->getRole()->getRole(),);
     }
 
     public function getSalt() {
         return NULL;
     }
 
-    public function getUsername() {
-
-    }
-
     public function isAccountNonExpired() {
-
+        return true;
+//TODO
     }
 
     public function isAccountNonLocked() {
-
+        return $this->getIsActive();
     }
 
     public function isCredentialsNonExpired() {
-
+        return true;
+//TODO
     }
 
     public function isEnabled() {
+        return $this->getIsActive();
+    }
 
+    /**
+     * Set isActive
+     *
+     * @param boolean $isActive
+     * @return User
+     */
+    public function setIsActive($isActive) {
+        $this->isActive = $isActive;
+
+        return $this;
+    }
+
+    /**
+     * Get isActive
+     *
+     * @return boolean
+     */
+    public function getIsActive() {
+        return $this->isActive;
+    }
+
+    public function serialize() {
+        return serialize(array($this->id, $this->username, $this->password));
+    }
+
+    public function unserialize($serialized) {
+        list($this->id, $this->username, $this->password) = unserialize($serialized);
     }
 
 }

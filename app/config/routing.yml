@@ -1,3 +1,7 @@
+leo_game:
+    resource: "@LeoGameBundle/Resources/config/routing.yml"
+    prefix:   /
+
 leo_user:
     resource: "@LeoUserBundle/Resources/config/routing.yml"
     prefix:   /admin

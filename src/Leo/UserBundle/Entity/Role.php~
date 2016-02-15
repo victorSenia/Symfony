@@ -3,6 +3,8 @@
 namespace Leo\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Leo\UserBundle\Entity\User;
 
 /**
  * Role
@@ -69,7 +71,7 @@ class Role {
      * Constructor
      */
     public function __construct() {
-        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     /**
@@ -78,7 +80,7 @@ class Role {
      * @param \Leo\UserBundle\Entity\User $users
      * @return Role
      */
-    public function addUser(\Leo\UserBundle\Entity\User $users) {
+    public function addUser(User $users) {
         $this->users[] = $users;
 
         return $this;

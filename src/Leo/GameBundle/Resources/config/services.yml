@@ -1,0 +1,4 @@
+services:
+#    leo_game.example:
+#        class: Leo\GameBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]
