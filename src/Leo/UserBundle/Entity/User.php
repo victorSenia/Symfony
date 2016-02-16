@@ -212,4 +212,8 @@ class User implements AdvancedUserInterface, \Serializable {
         list($this->id, $this->username, $this->password) = unserialize($serialized);
     }
 
+    public function __toString() {
+        $this->getUsername();
+    }
+
 }

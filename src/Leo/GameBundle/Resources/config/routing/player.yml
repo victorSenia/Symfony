@@ -1,0 +1,12 @@
+player_index:
+    path:     /
+    defaults: { _controller: "LeoGameBundle:Player:index" }
+    methods:  GET
+
+player_show:
+    path:     /{id}/show
+    defaults: { _controller: "LeoGameBundle:Player:show" }
+    methods:  GET
+
+
+

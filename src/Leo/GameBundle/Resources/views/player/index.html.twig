@@ -1,0 +1,36 @@
+{% extends 'LeoGameBundle:Default:index.html.twig' %}
+
+{% block body %}
+    {{parent()}}
+    <h1>Player list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Username</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for player in players %}
+                <tr>
+                    <td><a href="{{ path('player_show', { 'id': player.user.id }) }}">{{ player.user.id }}</a></td>
+                    <td>{{ player.user.username }}</td>
+                    <td>
+                        <ul>
+                            <li>
+                                <a href="{{ path('player_show', { 'id': player.user.id }) }}">show</a>
+                            </li>{#
+                            <li>
+                                <a href="{{ path('game_edit', { 'id': player.id }) }}">edit</a>
+                            </li>#}
+                        </ul>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}

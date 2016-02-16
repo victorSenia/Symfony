@@ -126,4 +126,8 @@ class Player {
         return $this->user;
     }
 
+    public function __toString() {
+        return $this->getUser()->getUsername();
+    }
+
 }
