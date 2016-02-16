@@ -1,3 +1,11 @@
+leo_game_game:
+    resource: "@LeoGameBundle/Resources/config/routing/game.yml"
+    prefix:   /game
+
+leo_game_typegame:
+    resource: "@LeoGameBundle/Resources/config/routing/typegame.yml"
+    prefix:   /type-game
+
 leo_game_homepage:
     path:     /
     defaults: { _controller: LeoGameBundle:Default:index }

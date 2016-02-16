@@ -1,0 +1,40 @@
+{% extends 'LeoGameBundle:Default:index.html.twig' %}
+
+{% block body %}
+    {{parent()}}
+    <h1>TypeGame list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for typeGame in typeGames %}
+                <tr>
+                    <td><a href="{{ path('typegame_show', { 'id': typeGame.id }) }}">{{ typeGame.id }}</a></td>
+                    <td>{{ typeGame.name }}</td>
+                    <td>
+                        <ul>
+                            <li>
+                                <a href="{{ path('typegame_show', { 'id': typeGame.id }) }}">show</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('typegame_edit', { 'id': typeGame.id }) }}">edit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('typegame_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -3,6 +3,7 @@
 namespace Leo\GameBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Leo\GameBundle\Entity\Game;
 
 /**
  * Game
@@ -67,8 +68,7 @@ class TypeGame {
     /**
      * Constructor
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->games = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -78,8 +78,7 @@ class TypeGame {
      * @param \Leo\GameBundle\Entity\Game $games
      * @return TypeGame
      */
-    public function addGame(\Leo\GameBundle\Entity\Game $games)
-    {
+    public function addGame(Game $games) {
         $this->games[] = $games;
 
         return $this;
@@ -88,20 +87,23 @@ class TypeGame {
     /**
      * Remove games
      *
-     * @param \Leo\GameBundle\Entity\Game $games
+     * @param Game $games
      */
-    public function removeGame(\Leo\GameBundle\Entity\Game $games)
-    {
+    public function removeGame(Game $games) {
         $this->games->removeElement($games);
     }
 
     /**
      * Get games
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
-    public function getGames()
-    {
+    public function getGames() {
         return $this->games;
     }
+
+    public function __toString() {
+        return $this->getName();
+    }
+
 }

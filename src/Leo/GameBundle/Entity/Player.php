@@ -18,7 +18,7 @@ class Player {
 
     /**
      * @var \Leo\UserBundle\Entity\User
-     * * @ORM\Id
+     * @ORM\Id
      * @ORM\OneToOne(targetEntity="\Leo\UserBundle\Entity\User")
      * @ORM\JoinColumn(name="id", referencedColumnName="id")
      */

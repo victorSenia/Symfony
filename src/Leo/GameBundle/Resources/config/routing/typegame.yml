@@ -1,0 +1,24 @@
+typegame_index:
+    path:     /
+    defaults: { _controller: "LeoGameBundle:TypeGame:index" }
+    methods:  GET
+
+typegame_show:
+    path:     /{id}/show
+    defaults: { _controller: "LeoGameBundle:TypeGame:show" }
+    methods:  GET
+
+typegame_new:
+    path:     /new
+    defaults: { _controller: "LeoGameBundle:TypeGame:new" }
+    methods:  [GET, POST]
+
+typegame_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "LeoGameBundle:TypeGame:edit" }
+    methods:  [GET, POST]
+
+typegame_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "LeoGameBundle:TypeGame:delete" }
+    methods:  DELETE

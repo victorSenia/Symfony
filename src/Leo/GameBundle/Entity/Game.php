@@ -4,6 +4,7 @@ namespace Leo\GameBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Leo\GameBundle\Entity\Player;
+use Leo\GameBundle\Entity\TypeGame;
 
 /**
  * Game
@@ -28,8 +29,9 @@ class Game {
     private $name;
 
     /**
-     * @var \Leo\UserBundle\Entity\TypeGame
+     * @var TypeGame
      * @ORM\ManyToOne(targetEntity="TypeGame", inversedBy="games")
+     * @ORM\JoinColumn(name="type_game_id", referencedColumnName="id", nullable=false)
      */
     private $typeGame;
 
@@ -84,10 +86,10 @@ class Game {
 
     /**
      * Set typeGame
-     * @param \Leo\UserBundle\Entity\TypeGame $typeGame
+     * @param TypeGame $typeGame
      * @return Game
      */
-    public function setTypeGame(\Leo\UserBundle\Entity\TypeGame $typeGame = null) {
+    public function setTypeGame(TypeGame $typeGame = null) {
         $this->typeGame = $typeGame;
 
         return $this;
@@ -95,7 +97,7 @@ class Game {
 
     /**
      * Get typeGame
-     * @return \Leo\UserBundle\Entity\TypeGame
+     * @return TypeGame
      */
     public function getTypeGame() {
         return $this->typeGame;
@@ -103,10 +105,10 @@ class Game {
 
     /**
      * Add players
-     * @param \Leo\UserBundle\Entity\Player $players
+     * @param Player $players
      * @return Game
      */
-    public function addPlayer(\Leo\UserBundle\Entity\Player $players) {
+    public function addPlayer(Player $players) {
         $this->players[] = $players;
 
         return $this;
@@ -116,7 +118,7 @@ class Game {
      * Remove players
      * @param \Leo\UserBundle\Entity\Player $players
      */
-    public function removePlayer(\Leo\UserBundle\Entity\Player $players) {
+    public function removePlayer(Player $players) {
         $this->players->removeElement($players);
     }
 
@@ -130,10 +132,10 @@ class Game {
 
     /**
      * Add watchers
-     * @param \Leo\UserBundle\Entity\Player $watchers
+     * @param Player $watchers
      * @return Game
      */
-    public function addWatcher(\Leo\UserBundle\Entity\Player $watchers) {
+    public function addWatcher(Player $watchers) {
         $this->watchers[] = $watchers;
 
         return $this;
@@ -141,9 +143,9 @@ class Game {
 
     /**
      * Remove watchers
-     * @param \Leo\UserBundle\Entity\Player $watchers
+     * @param Player $watchers
      */
-    public function removeWatcher(\Leo\UserBundle\Entity\Player $watchers) {
+    public function removeWatcher(Player $watchers) {
         $this->watchers->removeElement($watchers);
     }
 

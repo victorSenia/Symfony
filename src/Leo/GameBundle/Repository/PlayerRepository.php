@@ -1,6 +1,6 @@
 <?php
 
-namespace Leo\UserBundle\Repository;
+namespace Leo\GameBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 
