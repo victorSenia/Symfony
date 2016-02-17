@@ -8,59 +8,26 @@
         <tbody>
             <tr>
                 <th>Id</th>
-                <td>{{ player.user.id }}</td>
+                <td>{{ game.id }}</td>
             </tr>
             <tr>
-                <th>Username</th>
-                <td>{{ player.user.username }}</td>
-            </tr>
-            <tr>
-                <th>Play</th>
-                <td>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Type of game</th>
-                                <th>Name of game</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for played in player.play %}
-                                <tr>
-                                    <td>{{ played.typeGame }}</td>
-                                    <td>{{ played.name }}</td>
-                                </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </td>
-            </tr>
-            <tr>
-                <th>Watch</th>
-                <td>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Type of game</th>
-                                <th>Name of game</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for watched in player.watch %}
-                                <tr>
-                                    <td>{{ watched.typeGame }}</td>
-                                    <td>{{ watched.name }}</td>
-                                </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </td>
+                <th>Name</th>
+                <td>{{ game.name }}</td>
             </tr>
         </tbody>
     </table>
+
     <ul>
         <li>
-            <a href="{{ path('player_index') }}">Back to the list</a>
+            <a href="{{ path('game_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('game_edit', { 'id': game.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+            <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
         </li>
     </ul>
 {% endblock %}

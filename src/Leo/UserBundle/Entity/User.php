@@ -52,7 +52,7 @@ class User implements AdvancedUserInterface, \Serializable {
 
     /**
      * @ORM\ManyToOne(targetEntity="Role", inversedBy="users")
-     * @ORM\JoinColumn(name="role_id", referencedColumnName="id", nullable=false)
+     * @ORM\JoinColumn(nullable=false)
      */
     private $role;
 
@@ -213,7 +213,7 @@ class User implements AdvancedUserInterface, \Serializable {
     }
 
     public function __toString() {
-        $this->getUsername();
+        return $this->getUsername();
     }
 
 }

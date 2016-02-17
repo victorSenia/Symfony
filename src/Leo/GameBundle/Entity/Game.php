@@ -3,7 +3,7 @@
 namespace Leo\GameBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Leo\GameBundle\Entity\Player;
+use Leo\UserBundle\Entity\User;
 use Leo\GameBundle\Entity\TypeGame;
 
 /**
@@ -37,14 +37,14 @@ class Game {
 
     /**
      * @var \Doctrine\Common\Collections\Collection
-     * @ORM\ManyToMany(targetEntity="Player", inversedBy="play")
+     * @ORM\ManyToMany(targetEntity="Leo\UserBundle\Entity\User")
      * @ORM\JoinTable(name="players")
      */
     private $players;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
-     * @ORM\ManyToMany(targetEntity="Player", inversedBy="watch")
+     * @ORM\ManyToMany(targetEntity="Leo\UserBundle\Entity\User")
      * @ORM\JoinTable(name="watchers")
      */
     private $watchers;
@@ -89,7 +89,7 @@ class Game {
      * @param TypeGame $typeGame
      * @return Game
      */
-    public function setTypeGame(TypeGame $typeGame = null) {
+    public function setTypeGame(TypeGame $typeGame) {
         $this->typeGame = $typeGame;
 
         return $this;
@@ -105,10 +105,10 @@ class Game {
 
     /**
      * Add players
-     * @param Player $players
+     * @param \Leo\UserBundle\Entity\User $players
      * @return Game
      */
-    public function addPlayer(Player $players) {
+    public function addPlayer(User $players) {
         $this->players[] = $players;
 
         return $this;
@@ -116,9 +116,9 @@ class Game {
 
     /**
      * Remove players
-     * @param \Leo\UserBundle\Entity\Player $players
+     * @param \Leo\UserBundle\Entity\User $players
      */
-    public function removePlayer(Player $players) {
+    public function removePlayer(User $players) {
         $this->players->removeElement($players);
     }
 
@@ -132,10 +132,10 @@ class Game {
 
     /**
      * Add watchers
-     * @param Player $watchers
+     * @param Leo\UserBundle\Entity\User $watchers
      * @return Game
      */
-    public function addWatcher(Player $watchers) {
+    public function addWatcher(User $watchers) {
         $this->watchers[] = $watchers;
 
         return $this;
@@ -143,9 +143,9 @@ class Game {
 
     /**
      * Remove watchers
-     * @param Player $watchers
+     * @param Leo\UserBundle\Entity\User $watchers
      */
-    public function removeWatcher(Player $watchers) {
+    public function removeWatcher(User $watchers) {
         $this->watchers->removeElement($watchers);
     }
 

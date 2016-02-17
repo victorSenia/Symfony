@@ -13,18 +13,18 @@
             </tr>
         </thead>
         <tbody>
-            {% for player in players %}
+            {% for game in games %}
                 <tr>
-                    <td><a href="{{ path('player_show', { 'id': player.user.id }) }}">{{ player.user.id }}</a></td>
-                    <td>{{ player.user.username }}</td>
+                    <td><a href="{{ path('player_show', { 'id': game.id }) }}">{{ game.id }}</a></td>
+                    <td>{{ game.username }}</td>
                     <td>
                         <ul>
                             <li>
-                                <a href="{{ path('player_show', { 'id': player.user.id }) }}">show</a>
-                            </li>{#
+                                <a href="{{ path('player_show', { 'id': game.id }) }}">show</a>
+                            </li>
                             <li>
-                                <a href="{{ path('game_edit', { 'id': player.id }) }}">edit</a>
-                            </li>#}
+                                <a href="{{ path('player_edit', { 'id': game.id }) }}">edit</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -32,5 +32,9 @@
         </tbody>
     </table>
 
-
+    {#   <ul>
+           <li>
+               <a href="{{ path('game_new') }}">Create a new entry</a>
+           </li>
+       </ul>#}
 {% endblock %}

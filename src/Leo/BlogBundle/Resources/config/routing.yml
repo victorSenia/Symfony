@@ -1,0 +1,11 @@
+leo_blog_post:
+    resource: "@LeoBlogBundle/Resources/config/routing/post.yml"
+    prefix:   /post
+
+leo_blog_comment:
+    resource: "@LeoBlogBundle/Resources/config/routing/comment.yml"
+    prefix:   /comment
+
+leo_blog_homepage:
+    path:     /
+    defaults: { _controller: LeoBlogBundle:Default:index }

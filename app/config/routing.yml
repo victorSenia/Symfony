@@ -1,3 +1,7 @@
+leo_blog:
+    resource: "@LeoBlogBundle/Resources/config/routing.yml"
+    prefix:   /blog
+
 leo_game:
     resource: "@LeoGameBundle/Resources/config/routing.yml"
     prefix:   /game

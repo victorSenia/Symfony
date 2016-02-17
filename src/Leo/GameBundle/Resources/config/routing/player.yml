@@ -8,5 +8,7 @@ player_show:
     defaults: { _controller: "LeoGameBundle:Player:show" }
     methods:  GET
 
-
-
+player_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "LeoGameBundle:Player:edit" }
+    methods:  [GET, POST]
