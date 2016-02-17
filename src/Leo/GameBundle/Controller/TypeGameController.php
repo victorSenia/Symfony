@@ -74,7 +74,7 @@ class TypeGameController extends Controller {
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($typeGame);
+//            $em->persist($typeGame);
             $em->flush();
 
             return $this->redirectToRoute('typegame_edit', array('id' => $typeGame->getId()));

@@ -40,7 +40,7 @@ class Post {
     /**
      * @var User
      * @ORM\ManyToOne(targetEntity="Leo\UserBundle\Entity\User", inversedBy="post")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(onDelete="CASCADE", nullable=false)
      *
      */
     private $author;
@@ -161,7 +161,7 @@ class Post {
     }
 
     public function __toString() {
-        return "\"" . $this->getName() . "\" by \"" . $this->getAuthor() . "\"";
+        return $this->getName();
     }
 
 }

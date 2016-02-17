@@ -8,7 +8,10 @@
         <thead>
             <tr>
                 <th>Id</th>
+                <th>Game type</th>
                 <th>Name</th>
+                <th>Play</th>
+                <th>Watch</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -16,7 +19,10 @@
             {% for game in games %}
                 <tr>
                     <td><a href="{{ path('game_show', { 'id': game.id }) }}">{{ game.id }}</a></td>
+                    <td>{{ game.typeGame }}</td>
                     <td>{{ game.name }}</td>
+                    <td>{{ game.players.count }}</td>
+                    <td>{{ game.watchers.count }}</td>
                     <td>
                         <ul>
                             <li>

@@ -74,7 +74,7 @@ class PostController extends Controller {
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($post);
+//            $em->persist($post);
             $em->flush();
 
             return $this->redirectToRoute('post_edit', array('id' => $post->getId()));

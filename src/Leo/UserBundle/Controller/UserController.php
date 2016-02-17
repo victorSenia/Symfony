@@ -81,7 +81,7 @@ class UserController extends Controller {
             $encoded = $encoder->encodePassword($user, $user->getPassword());
             $user->setPassword($encoded);
             $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
+//            $em->persist($user);
             $em->flush();
 
             return $this->redirectToRoute('user_edit', array('id' => $user->getId()));

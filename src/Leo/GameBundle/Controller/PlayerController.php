@@ -42,22 +42,33 @@ class PlayerController extends Controller {
      * Displays a form to edit an existing Game entity.
      *
      */
-    public function editAction(Request $request, Game $game) {
-        $editForm = $this->createForm('Leo\GameBundle\Form\GameType', $game);
+    public function editAction(Request $request, User $player) {
+        $editForm = $this->createFormBuilder($player)
+                ->add("play")
+                ->add("watch")
+                ->getForm();
+
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($game);
+//            var_dump("<br>play<br>");
+//            foreach ($player->getPlay()->getValues() as $value) {
+//                var_dump($value->getName());
+//            }
+//            var_dump("<br>watch<br>");
+//            foreach ($player->getWatch()->getValues() as $value) {
+//                var_dump($value->getName());
+//            }
+//            $em->merge($player);
             $em->flush();
 
-            return $this->redirectToRoute('game_edit', array('id' => $game->getId()));
+            return $this->redirectToRoute('player_edit', array('id' => $player->getId()));
         }
 
         return $this->render('LeoGameBundle:Player:edit.html.twig', array(
-                    'game' => $game,
+                    'player' => $player,
                     'edit_form' => $editForm->createView(),
-                    'delete_form' => $deleteForm->createView(),
         ));
     }
 

@@ -9,6 +9,7 @@
             <tr>
                 <th>Id</th>
                 <th>Name</th>
+                <th>Games</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -17,6 +18,7 @@
                 <tr>
                     <td><a href="{{ path('typegame_show', { 'id': typeGame.id }) }}">{{ typeGame.id }}</a></td>
                     <td>{{ typeGame.name }}</td>
+                    <td>{{ typeGame.games.count }}</td>
                     <td>
                         <ul>
                             <li>

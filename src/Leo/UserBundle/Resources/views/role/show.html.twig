@@ -14,6 +14,10 @@
                 <th>Role</th>
                 <td>{{ role.role }}</td>
             </tr>
+            <tr>
+                <th>Users</th>
+                <td>{{ role.users.count }}</td>
+            </tr>
         </tbody>
     </table>
 
@@ -25,7 +29,7 @@
             <a href="{{ path('role_edit', { 'id': role.id }) }}">Edit</a>
         </li>
         <li>
-            <a href="{{ path('user_new') }}">New</a>
+            <a href="{{ path('role_new') }}">New</a>
         </li>
         <li>
             {{ form_start(delete_form) }}

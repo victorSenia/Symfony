@@ -8,6 +8,8 @@
         <thead>
             <tr>
                 <th>Id</th>
+                <th>Author</th>
+                <th>Post</th>
                 <th>Comment</th>
                 <th>Actions</th>
             </tr>
@@ -16,6 +18,8 @@
             {% for comment in comments %}
                 <tr>
                     <td><a href="{{ path('comment_show', { 'id': comment.id }) }}">{{ comment.id }}</a></td>
+                    <td>{{ comment.author }}</td>
+                    <td>{{ comment.post }}</td>
                     <td>{{ comment.comment }}</td>
                     <td>
                         <ul>

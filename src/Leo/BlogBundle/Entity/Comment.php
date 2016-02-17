@@ -33,7 +33,7 @@ class Comment {
     /**
      * @var Leo\UserBundle\Entity\User
      * @ORM\ManyToOne(targetEntity="Leo\UserBundle\Entity\User", inversedBy="comment")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(onDelete="CASCADE", nullable=false)
      *
      */
     private $author;
@@ -41,9 +41,13 @@ class Comment {
     /**
      * @var Post
      * @ORM\ManyToOne(targetEntity="Post", inversedBy="comments")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(onDelete="CASCADE", nullable=false)
      */
     private $post;
+
+    public function __toString() {
+        return $this->getComment();
+    }
 
     /**
      * Get id

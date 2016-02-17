@@ -9,6 +9,7 @@
             <tr>
                 <th>Id</th>
                 <th>Role</th>
+                <th>Users</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -17,6 +18,7 @@
                 <tr>
                     <td><a href="{{ path('role_show', { 'id': role.id }) }}">{{ role.id }}</a></td>
                     <td>{{ role.role }}</td>
+                    <td>{{ role.users.count }}</td>
                     <td>
                         <ul>
                             <li>

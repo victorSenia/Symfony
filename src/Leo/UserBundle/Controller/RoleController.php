@@ -89,7 +89,7 @@ class RoleController extends Controller {
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($role);
+//            $em->persist($role);
             $em->flush();
 
             return $this->redirectToRoute('role_edit', array('id' => $role->getId()));

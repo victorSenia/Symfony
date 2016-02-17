@@ -5,6 +5,7 @@ namespace Leo\UserBundle\Repository;
 use Doctrine\ORM\EntityRepository;
 use Leo\UserBundle\Entity\User;
 use \Symfony\Bridge\Doctrine\Security\User\UserLoaderInterface;
+use Doctrine\DBAL\LockMode;
 
 /**
  * UserRepository
@@ -27,7 +28,15 @@ class UserRepository extends EntityRepository {
 //        var_dump($result);
 //        return $result;
 //}
+    public function findAll() {
+        return $this->_em->createQuery("SELECT u, r FROM LeoUserBundle:User u JOIN "
+                        . "u.role r ORDER BY u.username")->getResult();
+    }
 
+    public function find($id, $lockMode = LockMode::NONE, $lockVersion = null) {
+        return $this->_em->createQuery("SELECT u, r FROM LeoUserBundle:User u JOIN u.role r WHERE u.id=?1")
+                        ->setParameter(1, $id)->getSingleResult();
+    }
 
     public function findAllWithGames() {
         return $this->_em->createQuery("SELECT u, gp, gw FROM LeoUserBundle:User u LEFT JOIN "

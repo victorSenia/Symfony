@@ -74,7 +74,7 @@ class CommentController extends Controller {
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($comment);
+//            $em->persist($comment);
             $em->flush();
 
             return $this->redirectToRoute('comment_edit', array('id' => $comment->getId()));

@@ -8,18 +8,18 @@
         <tbody>
             <tr>
                 <th>Id</th>
-                <td>{{ user.id }}</td>
+                <td>{{ author.id }}</td>
             </tr>
             <tr>
                 <th>Username</th>
-                <td>{{ user.username }}</td>
+                <td>{{ author.username }}</td>
             </tr>
-            {%if user.post.count %}
+            {%if author.post.count %}
                 <tr>
                     <th>Posts</th>
                     <td>
                         <ul>
-                            {% for post in user.post%}
+                            {% for post in author.post%}
                                 <li>Title {{ post.name }}. Text {{ post.text }}
                                     <a href="{{ path('post_edit', { 'id': post.id }) }}">Edit</a>
                                 </li>
@@ -28,12 +28,12 @@
                     </td>
                 </tr>
             {%endif%}
-            {%if user.comment.count %}
+            {%if author.comment.count %}
                 <tr>
                     <th>Comments</th>
                     <td>
                         <ul>
-                            {% for comment in user.comment%}
+                            {% for comment in author.comment%}
                                 <li>
                                     {{ comment.comment }}
                                     <a href="{{ path('comment_edit', { 'id': comment.id }) }}">Edit</a>
