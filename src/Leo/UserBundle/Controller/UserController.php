@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Leo\UserBundle\Entity\User;
 use Leo\UserBundle\Form\UserType;
+use Leo\UserBundle\Entity\Role;
 
 /**
  * User controller.
@@ -33,7 +34,14 @@ class UserController extends Controller {
      */
     public function newAction(Request $request) {
         $user = new User();
-        $form = $this->createForm('Leo\UserBundle\Form\UserType', $user);
+        $form = $this->createForm('Leo\UserBundle\Form\UserType', $user, array("locale" => "en"));
+        if (!$this->isGranted("ROLE_ADMIN")) {
+            $form->remove("role")->remove("isActive");
+            $user->setIsActive(TRUE);
+            $role = $this->getDoctrine()->getManager()->find(Role::class, '1');
+            $user->setRole($role);
+        }
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -74,6 +82,10 @@ class UserController extends Controller {
     public function editAction(Request $request, User $user) {
         $deleteForm = $this->createDeleteForm($user);
         $editForm = $this->createForm('Leo\UserBundle\Form\UserType', $user);
+        if (!$this->isGranted("ROLE_SUPER_ADMIN"))
+            $editForm->remove("role");
+        if (!$this->isGranted("ROLE_ADMIN"))
+            $editForm->remove("isActive");
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -81,7 +93,7 @@ class UserController extends Controller {
             $encoded = $encoder->encodePassword($user, $user->getPassword());
             $user->setPassword($encoded);
             $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
+//            $em->persist($user);
             $em->flush();
 
             return $this->redirectToRoute('user_edit', array('id' => $user->getId()));

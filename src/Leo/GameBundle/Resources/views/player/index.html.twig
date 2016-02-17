@@ -19,15 +19,35 @@
                 <tr>
                     <td><a href="{{ path('player_show', { 'id': player.id }) }}">{{ player.id }}</a></td>
                     <td>{{ player.username }}</td>
-                    <td>{{ player.watch.count }}</td>
-                    <td>{{ player.play.count }}</td>
+                    <td>
+                        {%if player.watch.count%}
+                            <ol>
+                                {% for watch in player.watch %}
+                                    <li>
+                                        {{watch.name}}
+                                    </li>
+                                {% endfor %}
+                            </ol>
+                        {%endif%}
+                    </td>
+                    <td>
+                        {%if player.play.count%}
+                            <ol>
+                                {% for play in player.play %}
+                                    <li>
+                                        {{play.name}}
+                                    </li>
+                                {% endfor %}
+                            </ol>
+                        {%endif%}
+                    </td>
                     <td>
                         <ul>
                             <li>
-                                <a href="{{ path('player_show', { 'id': player.id }) }}">show</a>
+                                <a href="{{ path('player_show', { 'id': player.id }) }}"><button>show</button></a>
                             </li>
                             <li>
-                                <a href="{{ path('player_edit', { 'id': player.id }) }}">edit</a>
+                                <a href="{{ path('player_edit', { 'id': player.id }) }}"><button>edit</button></a>
                             </li>
                         </ul>
                     </td>

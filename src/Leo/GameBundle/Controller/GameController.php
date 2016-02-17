@@ -74,7 +74,7 @@ class GameController extends Controller {
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->merge($game);
+//            $em->persist($game);
             $em->flush();
 
             return $this->redirectToRoute('game_edit', array('id' => $game->getId()));

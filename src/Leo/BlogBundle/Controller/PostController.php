@@ -68,13 +68,16 @@ class PostController extends Controller {
      *
      */
     public function editAction(Request $request, Post $post) {
+        if (!($this->isGranted('ROLE_ADMIN') || $post->getAuthor() == $this->getUser())) {
+            throw $this->createAccessDeniedException();
+        }
         $deleteForm = $this->createDeleteForm($post);
         $editForm = $this->createForm('Leo\BlogBundle\Form\PostType', $post);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($post);
+//            $em->persist($post);
             $em->flush();
 
             return $this->redirectToRoute('post_edit', array('id' => $post->getId()));

@@ -34,7 +34,7 @@ class AuthorController extends Controller {
      */
     public function showAction(User $player) {
         return $this->render('LeoBlogBundle:Author:show.html.twig', array(
-                    'player' => $player,
+                    'author' => $player,
         ));
     }
 
@@ -42,21 +42,24 @@ class AuthorController extends Controller {
      * Displays a form to edit an existing Post entity.
      *
      */
-    public function editAction(Request $request, Post $post) {
-        $deleteForm = $this->createDeleteForm($post);
-        $editForm = $this->createForm('Leo\BlogBundle\Form\PostType', $post);
+    public function editAction(Request $request, User $author) {
+        $editForm = $this->createFormBuilder($author)
+                ->add("post")
+                ->add("comment")
+                ->getForm();
+
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($post);
+//            $em->persist($author);
             $em->flush();
 
-            return $this->redirectToRoute('post_edit', array('id' => $post->getId()));
+            return $this->redirectToRoute('author_edit', array('id' => $author->getId()));
         }
 
-        return $this->render('LeoBlogBundle:Post:edit.html.twig', array(
-                    'post' => $post,
+        return $this->render('LeoBlogBundle:Author:edit.html.twig', array(
+                    'author' => $author,
                     'edit_form' => $editForm->createView(),
         ));
     }

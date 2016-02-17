@@ -21,7 +21,7 @@
                         <ul>
                             {% for play in player.play%}
                                 <li>Name {{ play.name }}
-                                    <a href="{{ path('game_edit', { 'id': play.id }) }}">Edit</a>
+                                    <a href="{{ path('game_edit', { 'id': play.id }) }}"><button>Edit</button></a>
                                 </li>
                             {%endfor%}
                         </ul>
@@ -35,7 +35,7 @@
                         <ul>
                             {% for watch in player.watch%}
                                 <li>Name {{ watch.name }}
-                                    <a href="{{ path('game_edit', { 'id': watch.id }) }}">Edit</a>
+                                    <a href="{{ path('game_edit', { 'id': watch.id }) }}"><button>Edit</button></a>
                                 </li>
                             {%endfor%}
                         </ul>
@@ -47,7 +47,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('player_index') }}">Back to the list</a>
+            <a href="{{ path('player_index') }}"><button>Back to the list</button></a>
         </li>
     </ul>
 {% endblock %}

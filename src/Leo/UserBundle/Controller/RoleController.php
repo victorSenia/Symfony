@@ -64,21 +64,6 @@ class RoleController extends Controller {
     }
 
     /**
-     * Finds and displays a Role entity.
-     *
-     */
-    public function showUsersAction(Role $role) {
-
-        $em = $this->getDoctrine()->getManager();
-
-        $users = $em->getRepository('LeoUserBundle:User')->findByRole($role);
-//        var_dump($users);
-        return $this->render('LeoUserBundle:User:index.html.twig', array(
-                    'users' => $users,
-        ));
-    }
-
-    /**
      * Displays a form to edit an existing Role entity.
      *
      */
@@ -89,7 +74,7 @@ class RoleController extends Controller {
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($role);
+//            $em->persist($role);
             $em->flush();
 
             return $this->redirectToRoute('role_edit', array('id' => $role->getId()));

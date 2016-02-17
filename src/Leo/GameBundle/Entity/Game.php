@@ -31,7 +31,7 @@ class Game {
     /**
      * @var TypeGame
      * @ORM\ManyToOne(targetEntity="TypeGame", inversedBy="games")
-     * @ORM\JoinColumn(name="type_game_id", referencedColumnName="id", nullable=false)
+     * @ORM\JoinColumn(onDelete="CASCADE", nullable=false)
      */
     private $typeGame;
 
@@ -55,6 +55,10 @@ class Game {
     public function __construct() {
         $this->players = new \Doctrine\Common\Collections\ArrayCollection();
         $this->watchers = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    public function __toString() {
+        return $this->name;
     }
 
     /**
@@ -109,8 +113,10 @@ class Game {
      * @return Game
      */
     public function addPlayer(User $players) {
+        die("addWatch");
         $this->players[] = $players;
 
+//        $players->addPlay($this);
         return $this;
     }
 
@@ -119,7 +125,10 @@ class Game {
      * @param \Leo\UserBundle\Entity\User $players
      */
     public function removePlayer(User $players) {
+
+        die("addWatch");
         $this->players->removeElement($players);
+//        $players->removePlay($this);
     }
 
     /**
@@ -136,8 +145,10 @@ class Game {
      * @return Game
      */
     public function addWatcher(User $watchers) {
+        die("addWatch");
         $this->watchers[] = $watchers;
 
+//        $watchers->addPlay($this);
         return $this;
     }
 
@@ -146,7 +157,9 @@ class Game {
      * @param Leo\UserBundle\Entity\User $watchers
      */
     public function removeWatcher(User $watchers) {
+        die("addWatch");
         $this->watchers->removeElement($watchers);
+//        $watchers->removeWatch($this);
     }
 
     /**

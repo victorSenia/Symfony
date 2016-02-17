@@ -10,8 +10,9 @@
                 <th>Id</th>
                 <th>Username</th>
                 <th>Email</th>
-                <th>Password</th>
-                    {#                <th>Role</th>#}
+                    {#                <th>Password</th>#}
+                <th>Is Blocked</th>
+                <th>Role</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -21,16 +22,25 @@
                     <td><a href="{{ path('user_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
                     <td>{{ user.username }}</td>
                     <td>{{ user.email }}</td>
-                    <td>{{ user.password }}</td>
-                    {#                    <td>{{ user.role }}</td>#}
+                    {#                    <td>{{ user.password }}</td>#}
+                    <td>
+                        {% if user.isActive %}
+                            <span style="background: #6d6"> active</span>
+                        {% else %}
+                            <span style="background: #B0413E">blocked</span>
+                        {% endif %}
+                    </td>
+                    <td>{{ user.role }}</td>
                     <td>
                         <ul>
                             <li>
-                                <a href="{{ path('user_show', { 'id': user.id }) }}">show</a>
+                                <a href="{{ path('user_show', { 'id': user.id }) }}"><button>show</button></a>
                             </li>
-                            <li>
-                                <a href="{{ path('user_edit', { 'id': user.id }) }}">edit</a>
-                            </li>
+                            {% if (user.role!="ROLE_SUPER_ADMIN") or (user.role=="ROLE_SUPER_ADMIN" and is_granted("ROLE_SUPER_ADMIN"))%}
+                                <li>
+                                    <a href="{{ path('user_edit', { 'id': user.id }) }}"><button>edit</button></a>
+                                </li>
+                            {% endif%}
                         </ul>
                     </td>
                 </tr>
@@ -40,7 +50,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('user_new') }}">Create a new entry</a>
+            <a href="{{ path('user_new') }}"><button>Create a new entry</button></a>
         </li>
     </ul>
 {% endblock %}

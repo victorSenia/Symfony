@@ -71,4 +71,11 @@ security:
 #                invalidate_session:   true
 
     access_control:
+        - { path: ^/admin/user/new, methods: [POST, GET], roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/user/\d+/edit, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/admin/user/\d+/show, roles: IS_AUTHENTICATED_FULLY }
         - { path: ^/admin/user, roles: ROLE_ADMIN }
+        - { path: ^/admin/role, roles: ROLE_SUPER_ADMIN }
+        - { path: /new, roles: IS_AUTHENTICATED_FULLY }
+#        - { path: /edit, allow_if: "has_role('ROLE_ADMIN') or user " }
+#        - { path: /delete, roles: "has_role('ROLE_ADMIN') or " }

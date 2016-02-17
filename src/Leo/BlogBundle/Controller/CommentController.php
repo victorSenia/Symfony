@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Leo\BlogBundle\Entity\Comment;
 use Leo\BlogBundle\Form\CommentType;
+use Leo\BlogBundle\Entity\Post;
 
 /**
  * Comment controller.
@@ -31,8 +32,9 @@ class CommentController extends Controller {
      * Creates a new Comment entity.
      *
      */
-    public function newAction(Request $request) {
+    public function newAction(Request $request, Post $post) {
         $comment = new Comment();
+        $comment->setPost($post);
         $form = $this->createForm('Leo\BlogBundle\Form\CommentType', $comment);
         $form->handleRequest($request);
 
@@ -41,7 +43,7 @@ class CommentController extends Controller {
             $em->persist($comment);
             $em->flush();
 
-            return $this->redirectToRoute('comment_show', array('id' => $comment->getId()));
+            return $this->redirectToRoute('post_index', array('id' => $comment->getId()));
         }
 
         return $this->render('LeoBlogBundle:Comment:new.html.twig', array(
@@ -68,13 +70,16 @@ class CommentController extends Controller {
      *
      */
     public function editAction(Request $request, Comment $comment) {
+        if (!($this->isGranted('ROLE_ADMIN') || $comment->getAuthor() == $this->getUser())) {
+            throw $this->createAccessDeniedException();
+        }
         $deleteForm = $this->createDeleteForm($comment);
         $editForm = $this->createForm('Leo\BlogBundle\Form\CommentType', $comment);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($comment);
+//            $em->persist($comment);
             $em->flush();
 
             return $this->redirectToRoute('comment_edit', array('id' => $comment->getId()));
@@ -95,12 +100,11 @@ class CommentController extends Controller {
         $form = $this->createDeleteForm($comment);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($comment);
-            $em->flush();
-        }
-
+//        if ($form->isSubmitted() && $form->isValid()) {
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($comment);
+        $em->flush();
+//        }
         return $this->redirectToRoute('comment_index');
     }
 

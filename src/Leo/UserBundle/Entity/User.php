@@ -55,17 +55,19 @@ class User implements AdvancedUserInterface, \Serializable {
 
     /**
      * @ORM\ManyToOne(targetEntity="Role", inversedBy="users")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(onDelete="CASCADE", nullable=false)
      */
     private $role;
 
     /**
      * @ORM\ManyToMany(targetEntity="\Leo\GameBundle\Entity\Game", mappedBy="players")
+     * @ORM\JoinTable(name="players")
      */
     private $play;
 
     /**
      * @ORM\ManyToMany(targetEntity="\Leo\GameBundle\Entity\Game", mappedBy="watchers")
+     * @ORM\JoinTable(name="watchers")
      */
     private $watch;
 
@@ -86,6 +88,16 @@ class User implements AdvancedUserInterface, \Serializable {
         $this->post = new \Doctrine\Common\Collections\ArrayCollection();
         $this->comment = new \Doctrine\Common\Collections\ArrayCollection();
     }
+
+//    /**
+//     * @ORM\PrePersist
+//     */
+//    public function createActiveUser() {
+//        if ($this->role == NULL)
+//            $this->setRole($role);
+//        if (!$this->isActive)
+//            $this->setIsActive(TRUE);
+//    }
 
     /**
      * Get id
@@ -250,8 +262,9 @@ class User implements AdvancedUserInterface, \Serializable {
      * @return User
      */
     public function addPlay(Game $play) {
+//        die("addWatch");
         $this->play[] = $play;
-
+//        $play->addPlayer($this);
         return $this;
     }
 
@@ -261,7 +274,9 @@ class User implements AdvancedUserInterface, \Serializable {
      * @param Game $play
      */
     public function removePlay(Game $play) {
+//        die("addWatch");
         $this->play->removeElement($play);
+//        $play->removePlayer($this);
     }
 
     /**
@@ -280,7 +295,9 @@ class User implements AdvancedUserInterface, \Serializable {
      * @return User
      */
     public function addWatch(Game $watch) {
+//        die("addWatch");
         $this->watch[] = $watch;
+//        $watch->addWatcher($this);
 
         return $this;
     }
@@ -291,7 +308,9 @@ class User implements AdvancedUserInterface, \Serializable {
      * @param Game $watch
      */
     public function removeWatch(Game $watch) {
+//        die("addWatch");
         $this->watch->removeElement($watch);
+//        $watch->removeWatcher($this);
     }
 
     /**

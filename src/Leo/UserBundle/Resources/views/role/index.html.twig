@@ -9,6 +9,7 @@
             <tr>
                 <th>Id</th>
                 <th>Role</th>
+                <th>Users</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -18,15 +19,23 @@
                     <td><a href="{{ path('role_show', { 'id': role.id }) }}">{{ role.id }}</a></td>
                     <td>{{ role.role }}</td>
                     <td>
+                        {%if role.users.count%}
+                            <ol>
+                                {% for user in role.users %}
+                                    <li>
+                                        {{user.username}}
+                                    </li>
+                                {% endfor %}
+                            </ol>
+                        {%endif%}
+                    </td>
+                    <td>
                         <ul>
                             <li>
-                                <a href="{{ path('role_show', { 'id': role.id }) }}">show</a>
+                                <a href="{{ path('role_show', { 'id': role.id }) }}"><button>show</button></a>
                             </li>
                             <li>
-                                <a href="{{ path('role_edit', { 'id': role.id }) }}">edit</a>
-                            </li>
-                            <li>
-                                <a href="{{ path('role_show_users', { 'id': role.id }) }}">show users</a>
+                                <a href="{{ path('role_edit', { 'id': role.id }) }}"><button>edit</button></a>
                             </li>
                         </ul>
                     </td>
@@ -37,7 +46,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('role_new') }}">Create a new entry</a>
+            <a href="{{ path('role_new') }}"><button>Create a new entry</button></a>
         </li>
     </ul>
 {% endblock %}

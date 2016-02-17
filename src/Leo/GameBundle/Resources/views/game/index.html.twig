@@ -8,7 +8,10 @@
         <thead>
             <tr>
                 <th>Id</th>
+                <th>Game type</th>
                 <th>Name</th>
+                <th>Play</th>
+                <th>Watch</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -16,14 +19,40 @@
             {% for game in games %}
                 <tr>
                     <td><a href="{{ path('game_show', { 'id': game.id }) }}">{{ game.id }}</a></td>
+                    <td>{{ game.typeGame }}</td>
                     <td>{{ game.name }}</td>
+                    <td>
+                        {%if game.players.count%}
+                            <ol>
+                                {% for player in game.players %}
+                                    <li>
+                                        {{player.username}}
+                                    </li>
+                                {% endfor %}
+                            </ol>
+                        {%endif%}
+                    </td>
+                    <td>
+                        {%if game.watchers.count%}
+                            <ol>
+                                {% for watcher in game.watchers %}
+                                    <li>
+                                        {{watcher.username}}
+                                    </li>
+                                {% endfor %}
+                            </ol>
+                        {%endif%}
+                    </td>
                     <td>
                         <ul>
                             <li>
-                                <a href="{{ path('game_show', { 'id': game.id }) }}">show</a>
+                                <a href="{{ path('game_show', { 'id': game.id }) }}"><button>show</button></a>
                             </li>
                             <li>
-                                <a href="{{ path('game_edit', { 'id': game.id }) }}">edit</a>
+                                <a href="{{ path('game_edit', { 'id': game.id }) }}"><button>edit</button></a>
+                            </li>
+                            <li>
+                                <a href="{{ path('game_delete', { 'id': game.id }) }}"><button>delete</button></a>
                             </li>
                         </ul>
                     </td>
@@ -34,7 +63,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('game_new') }}">Create a new entry</a>
+            <a href="{{ path('game_new') }}"><button>Create a new game</button></a>
         </li>
     </ul>
 {% endblock %}

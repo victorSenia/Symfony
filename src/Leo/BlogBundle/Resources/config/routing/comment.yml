@@ -9,7 +9,7 @@ comment_show:
     methods:  GET
 
 comment_new:
-    path:     /new
+    path:     /{id}/new
     defaults: { _controller: "LeoBlogBundle:Comment:new" }
     methods:  [GET, POST]
 

@@ -17,23 +17,31 @@
             <tr>
                 <th>Email</th>
                 <td>{{ user.email }}</td>
-            </tr>
+            </tr>{#
             <tr>
                 <th>Password</th>
                 <td>{{ user.password }}</td>
-            </tr>
+            </tr>#}
+            {%if app.user and is_granted("ROLE_ADMIN") %}
+                <tr>
+                    <th>Role</th>
+                    <td>{{ user.role.role }}</td>
+                </tr>
+            {% endif %}
         </tbody>
     </table>
 
     <ul>
         <li>
-            <a href="{{ path('user_index') }}">Back to the list</a>
+            <a href="{{ path('user_index') }}"><button>Back to the list</button></a>
         </li>
+        {% if (user.role!="ROLE_SUPER_ADMIN") or (user.role=="ROLE_SUPER_ADMIN" and is_granted("ROLE_SUPER_ADMIN"))%}
+            <li>
+                <a href="{{ path('user_edit', { 'id': user.id }) }}"><button>Edit</button></a>
+            </li>
+        {%endif%}
         <li>
-            <a href="{{ path('user_edit', { 'id': user.id }) }}">Edit</a>
-        </li>
-        <li>
-            <a href="{{ path('user_new') }}">New</a>
+            <a href="{{ path('user_new') }}"><button>New</button></a>
         </li>
         <li>
             {{ form_start(delete_form) }}

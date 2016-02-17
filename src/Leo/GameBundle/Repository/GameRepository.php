@@ -3,6 +3,7 @@
 namespace Leo\GameBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\DBAL\LockMode;
 
 /**
  * GameRepository
@@ -11,5 +12,16 @@ use Doctrine\ORM\EntityRepository;
  * repository methods below.
  */
 class GameRepository extends EntityRepository {
+
+    public function findAll() {
+        return $this->_em->createQuery("SELECT g, t, p, w FROM LeoGameBundle:Game g JOIN "
+                        . "g.typeGame t LEFT JOIN g.players p LEFT JOIN g.watchers w ORDER BY g.id")->getResult();
+    }
+
+    public function find($id, $lockMode = LockMode::NONE, $lockVersion = null) {
+        return $this->_em->createQuery("SELECT g, t, p, w FROM LeoGameBundle:Game g JOIN "
+                                . "g.typeGame t LEFT JOIN g.players p LEFT JOIN g.watchers w WHERE g.id=?1")
+                        ->setParameter(1, $id)->getSingleResult();
+    }
 
 }
