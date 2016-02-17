@@ -6,6 +6,10 @@ leo_blog_comment:
     resource: "@LeoBlogBundle/Resources/config/routing/comment.yml"
     prefix:   /comment
 
+leo_blog_author:
+    resource: "@LeoBlogBundle/Resources/config/routing/author.yml"
+    prefix:   /author
+
 leo_blog_homepage:
     path:     /
     defaults: { _controller: LeoBlogBundle:Default:index }

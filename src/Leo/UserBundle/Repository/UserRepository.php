@@ -3,6 +3,7 @@
 namespace Leo\UserBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use Leo\UserBundle\Entity\User;
 use \Symfony\Bridge\Doctrine\Security\User\UserLoaderInterface;
 
 /**
@@ -12,6 +13,7 @@ use \Symfony\Bridge\Doctrine\Security\User\UserLoaderInterface;
  * repository methods below.
  */
 class UserRepository extends EntityRepository {
+
 //implements UserLoaderInterface {
 //
 //    public function loadUserByUsername($username) {
@@ -25,4 +27,16 @@ class UserRepository extends EntityRepository {
 //        var_dump($result);
 //        return $result;
 //}
+
+
+    public function findAllWithGames() {
+        return $this->_em->createQuery("SELECT u, gp, gw FROM LeoUserBundle:User u LEFT JOIN "
+                        . "u.play gp LEFT JOIN u.watch gw ORDER BY u.username")->getResult();
+    }
+
+    public function findAllWithPosts() {
+        return $this->_em->createQuery("SELECT u, p, c FROM LeoUserBundle:User u LEFT JOIN "
+                        . "u.post p LEFT JOIN u.comment c ORDER BY u.username")->getResult();
+    }
+
 }

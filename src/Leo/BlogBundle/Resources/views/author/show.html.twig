@@ -1,0 +1,54 @@
+{% extends 'LeoBlogBundle:Default:index.html.twig' %}
+
+{% block body %}
+    {{parent()}}
+    <h1>Author activity</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ user.id }}</td>
+            </tr>
+            <tr>
+                <th>Username</th>
+                <td>{{ user.username }}</td>
+            </tr>
+            {%if user.post.count %}
+                <tr>
+                    <th>Posts</th>
+                    <td>
+                        <ul>
+                            {% for post in user.post%}
+                                <li>Title {{ post.name }}. Text {{ post.text }}
+                                    <a href="{{ path('post_edit', { 'id': post.id }) }}">Edit</a>
+                                </li>
+                            {%endfor%}
+                        </ul>
+                    </td>
+                </tr>
+            {%endif%}
+            {%if user.comment.count %}
+                <tr>
+                    <th>Comments</th>
+                    <td>
+                        <ul>
+                            {% for comment in user.comment%}
+                                <li>
+                                    {{ comment.comment }}
+                                    <a href="{{ path('comment_edit', { 'id': comment.id }) }}">Edit</a>
+                                </li>
+                            {%endfor%}
+                        </ul>
+                    </td>
+                </tr>
+            {%endif%}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('author_index') }}">Back to the list</a>
+        </li>
+    </ul>
+{% endblock %}

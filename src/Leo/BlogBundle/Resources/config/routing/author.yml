@@ -1,0 +1,14 @@
+author_index:
+    path:     /
+    defaults: { _controller: "LeoBlogBundle:Author:index" }
+    methods:  GET
+
+author_show:
+    path:     /{id}/show
+    defaults: { _controller: "LeoBlogBundle:Author:show" }
+    methods:  GET
+
+author_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "LeoBlogBundle:Author:edit" }
+    methods:  [GET, POST]

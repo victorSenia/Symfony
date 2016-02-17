@@ -39,7 +39,7 @@ class Post {
 
     /**
      * @var User
-     * @ORM\ManyToOne(targetEntity="Leo\UserBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="Leo\UserBundle\Entity\User", inversedBy="post")
      * @ORM\JoinColumn(nullable=false)
      *
      */

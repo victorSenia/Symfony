@@ -37,14 +37,14 @@ class Game {
 
     /**
      * @var \Doctrine\Common\Collections\Collection
-     * @ORM\ManyToMany(targetEntity="Leo\UserBundle\Entity\User")
+     * @ORM\ManyToMany(targetEntity="Leo\UserBundle\Entity\User", inversedBy="play")
      * @ORM\JoinTable(name="players")
      */
     private $players;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
-     * @ORM\ManyToMany(targetEntity="Leo\UserBundle\Entity\User")
+     * @ORM\ManyToMany(targetEntity="Leo\UserBundle\Entity\User", inversedBy="watch")
      * @ORM\JoinTable(name="watchers")
      */
     private $watchers;

@@ -9,21 +9,25 @@
             <tr>
                 <th>Id</th>
                 <th>Username</th>
+                <th>Watch</th>
+                <th>Play</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-            {% for game in games %}
+            {% for player in players %}
                 <tr>
-                    <td><a href="{{ path('player_show', { 'id': game.id }) }}">{{ game.id }}</a></td>
-                    <td>{{ game.username }}</td>
+                    <td><a href="{{ path('player_show', { 'id': player.id }) }}">{{ player.id }}</a></td>
+                    <td>{{ player.username }}</td>
+                    <td>{{ player.watch.count }}</td>
+                    <td>{{ player.play.count }}</td>
                     <td>
                         <ul>
                             <li>
-                                <a href="{{ path('player_show', { 'id': game.id }) }}">show</a>
+                                <a href="{{ path('player_show', { 'id': player.id }) }}">show</a>
                             </li>
                             <li>
-                                <a href="{{ path('player_edit', { 'id': game.id }) }}">edit</a>
+                                <a href="{{ path('player_edit', { 'id': player.id }) }}">edit</a>
                             </li>
                         </ul>
                     </td>

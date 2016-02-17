@@ -32,7 +32,7 @@ class Comment {
 
     /**
      * @var Leo\UserBundle\Entity\User
-     * @ORM\ManyToOne(targetEntity="Leo\UserBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="Leo\UserBundle\Entity\User", inversedBy="comment")
      * @ORM\JoinColumn(nullable=false)
      *
      */

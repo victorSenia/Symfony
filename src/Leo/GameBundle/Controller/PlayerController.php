@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Leo\GameBundle\Entity\Game;
 use Leo\GameBundle\Form\GameType;
+use Leo\UserBundle\Entity\User;
 
 /**
  * Player controller.
@@ -20,11 +21,10 @@ class PlayerController extends Controller {
     public function indexAction() {
         $em = $this->getDoctrine()->getManager();
 
-        $games = $em->getRepository('LeoUserBundle:User')->findAll();
-//        $games = $em->getRepository('LeoGameBundle:Game')->findAll();
+        $players = $em->getRepository('LeoUserBundle:User')->findAllWithGames();
 
         return $this->render('LeoGameBundle:Player:index.html.twig', array(
-                    'games' => $games,
+                    'players' => $players,
         ));
     }
 
@@ -32,10 +32,9 @@ class PlayerController extends Controller {
      * Finds and displays a Game entity.
      *
      */
-    public function showAction(Game $game) {
+    public function showAction(User $player) {
         return $this->render('LeoGameBundle:Player:show.html.twig', array(
-                    'game' => $game,
-                    'delete_form' => $deleteForm->createView(),
+                    'player' => $player,
         ));
     }
 
