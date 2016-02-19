@@ -37,15 +37,15 @@ class Game {
 
     /**
      * @var \Doctrine\Common\Collections\Collection
-     * @ORM\ManyToMany(targetEntity="Leo\UserBundle\Entity\User", inversedBy="play")
-     * @ORM\JoinTable(name="players")
+     * @ORM\ManyToMany(targetEntity="Player", inversedBy="play")
+     * @ORM\JoinTable(name="players_test")
      */
     private $players;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
-     * @ORM\ManyToMany(targetEntity="Leo\UserBundle\Entity\User", inversedBy="watch")
-     * @ORM\JoinTable(name="watchers")
+     * @ORM\ManyToMany(targetEntity="Player", inversedBy="watch")
+     * @ORM\JoinTable(name="watchers_test")
      */
     private $watchers;
 
@@ -109,11 +109,11 @@ class Game {
 
     /**
      * Add players
-     * @param \Leo\UserBundle\Entity\User $players
+     * @param Player $players
      * @return Game
      */
-    public function addPlayer(User $players) {
-        die("addWatch");
+    public function addPlayer(Player $players) {
+//        die("addPlayer");
         $this->players[] = $players;
 
 //        $players->addPlay($this);
@@ -122,11 +122,11 @@ class Game {
 
     /**
      * Remove players
-     * @param \Leo\UserBundle\Entity\User $players
+     * @param Player $players
      */
-    public function removePlayer(User $players) {
+    public function removePlayer(Player $players) {
 
-        die("addWatch");
+        die("removePlayer");
         $this->players->removeElement($players);
 //        $players->removePlay($this);
     }
@@ -141,11 +141,11 @@ class Game {
 
     /**
      * Add watchers
-     * @param Leo\UserBundle\Entity\User $watchers
+     * @param Player $watchers
      * @return Game
      */
-    public function addWatcher(User $watchers) {
-        die("addWatch");
+    public function addWatcher(Player $watchers) {
+//        die("addWatcher");
         $this->watchers[] = $watchers;
 
 //        $watchers->addPlay($this);
@@ -154,10 +154,10 @@ class Game {
 
     /**
      * Remove watchers
-     * @param Leo\UserBundle\Entity\User $watchers
+     * @param Player $watchers
      */
-    public function removeWatcher(User $watchers) {
-        die("addWatch");
+    public function removeWatcher(Player $watchers) {
+        die("removeWatcher");
         $this->watchers->removeElement($watchers);
 //        $watchers->removeWatch($this);
     }

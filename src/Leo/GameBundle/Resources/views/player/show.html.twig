@@ -8,11 +8,11 @@
         <tbody>
             <tr>
                 <th>Id</th>
-                <td>{{ player.id }}</td>
+                <td>{{ player.user.id }}</td>
             </tr>
             <tr>
                 <th>Username</th>
-                <td>{{ player.username }}</td>
+                <td>{{ player.user.username }}</td>
             </tr>
             {%if player.play.count %}
                 <tr>

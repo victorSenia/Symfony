@@ -13,15 +13,16 @@ use Doctrine\DBAL\LockMode;
  */
 class GameRepository extends EntityRepository {
 
+//
     public function findAll() {
-        return $this->_em->createQuery("SELECT g, t, p, w FROM LeoGameBundle:Game g JOIN "
-                        . "g.typeGame t LEFT JOIN g.players p LEFT JOIN g.watchers w ORDER BY g.id")->getResult();
+        return $this->_em->createQuery("SELECT g, t FROM LeoGameBundle:Game g JOIN "
+                        . "g.typeGame t ORDER BY g.id")->getResult();
     }
 
-    public function find($id, $lockMode = LockMode::NONE, $lockVersion = null) {
-        return $this->_em->createQuery("SELECT g, t, p, w FROM LeoGameBundle:Game g JOIN "
-                                . "g.typeGame t LEFT JOIN g.players p LEFT JOIN g.watchers w WHERE g.id=?1")
-                        ->setParameter(1, $id)->getSingleResult();
-    }
-
+//
+//    public function find($id, $lockMode = LockMode::NONE, $lockVersion = null) {
+//        return $this->_em->createQuery("SELECT g, t, p, w FROM LeoGameBundle:Game g JOIN "
+//                                . "g.typeGame t LEFT JOIN g.players p LEFT JOIN g.watchers w WHERE g.id=?1")
+//                        ->setParameter(1, $id)->getSingleResult();
+//    }
 }

@@ -60,18 +60,6 @@ class User implements AdvancedUserInterface, \Serializable {
     private $role;
 
     /**
-     * @ORM\ManyToMany(targetEntity="\Leo\GameBundle\Entity\Game", mappedBy="players")
-     * @ORM\JoinTable(name="players")
-     */
-    private $play;
-
-    /**
-     * @ORM\ManyToMany(targetEntity="\Leo\GameBundle\Entity\Game", mappedBy="watchers")
-     * @ORM\JoinTable(name="watchers")
-     */
-    private $watch;
-
-    /**
      * @ORM\OneToMany(targetEntity="\Leo\BlogBundle\Entity\Post", mappedBy="author")
      */
     private $post;
@@ -243,73 +231,6 @@ class User implements AdvancedUserInterface, \Serializable {
 
     public function __toString() {
         return $this->getUsername();
-    }
-
-    /**
-     * Add play
-     *
-     * @param Game $play
-     * @return User
-     */
-    public function addPlay(Game $play) {
-//        die("addWatch");
-        $this->play[] = $play;
-//        $play->addPlayer($this);
-        return $this;
-    }
-
-    /**
-     * Remove play
-     *
-     * @param Game $play
-     */
-    public function removePlay(Game $play) {
-//        die("addWatch");
-        $this->play->removeElement($play);
-//        $play->removePlayer($this);
-    }
-
-    /**
-     * Get play
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getPlay() {
-        return $this->play;
-    }
-
-    /**
-     * Add watch
-     *
-     * @param Game $watch
-     * @return User
-     */
-    public function addWatch(Game $watch) {
-//        die("addWatch");
-        $this->watch[] = $watch;
-//        $watch->addWatcher($this);
-
-        return $this;
-    }
-
-    /**
-     * Remove watch
-     *
-     * @param Game $watch
-     */
-    public function removeWatch(Game $watch) {
-//        die("addWatch");
-        $this->watch->removeElement($watch);
-//        $watch->removeWatcher($this);
-    }
-
-    /**
-     * Get watch
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getWatch() {
-        return $this->watch;
     }
 
     /**

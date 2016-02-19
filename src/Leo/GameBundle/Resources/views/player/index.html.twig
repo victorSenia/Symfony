@@ -17,17 +17,17 @@
         <tbody>
             {% for player in players %}
                 <tr>
-                    <td><a href="{{ path('player_show', { 'id': player.id }) }}">{{ player.id }}</a></td>
-                    <td>{{ player.username }}</td>
+                    <td><a href="{{ path('player_show', { 'id': player.user.id }) }}">{{ player.user.id }}</a></td>
+                    <td>{{ player.user.username }}</td>
                     <td>{{ player.watch.count }}</td>
                     <td>{{ player.play.count }}</td>
                     <td>
                         <ul>
                             <li>
-                                <a href="{{ path('player_show', { 'id': player.id }) }}">show</a>
+                                <a href="{{ path('player_show', { 'id': player.user.id }) }}">show</a>
                             </li>
                             <li>
-                                <a href="{{ path('player_edit', { 'id': player.id }) }}">edit</a>
+                                <a href="{{ path('player_edit', { 'id': player.user.id }) }}">edit</a>
                             </li>
                         </ul>
                     </td>
