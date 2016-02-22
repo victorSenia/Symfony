@@ -34,12 +34,14 @@
                             <li>
                                 <a href="{{ path('typegame_show', { 'id': typeGame.id }) }}"><button>show</button></a>
                             </li>
-                            <li>
-                                <a href="{{ path('typegame_edit', { 'id': typeGame.id }) }}"><button>edit</button></a>
-                            </li>
-                            <li>
-                                <a href="{{ path('typegame_delete', { 'id': typeGame.id }) }}"><button>delete</button></a>
-                            </li>
+                            {% if is_granted("ROLE_ADMIN") %}
+                                <li>
+                                    <a href="{{ path('typegame_edit', { 'id': typeGame.id }) }}"><button>edit</button></a>
+                                </li>
+                            {%endif%}{#
+                                <li>
+                                    <a href="{{ path('typegame_delete', { 'id': typeGame.id }) }}"><button>delete</button></a>
+                                </li>#}
                         </ul>
                     </td>
                 </tr>
@@ -47,9 +49,11 @@
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('typegame_new') }}"><button>Create a new entry</button></a>
-        </li>
-    </ul>
+    {% if is_granted("ROLE_ADMIN") %}
+        <ul>
+            <li>
+                <a href="{{ path('typegame_new') }}"><button>Create a new entry</button></a>
+            </li>
+        </ul>
+    {%endif%}
 {% endblock %}

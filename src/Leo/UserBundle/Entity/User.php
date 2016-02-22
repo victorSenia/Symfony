@@ -264,7 +264,7 @@ class User implements AdvancedUserInterface, \Serializable {
     public function addPlay(Game $play) {
 //        die("addWatch");
         $this->play[] = $play;
-//        $play->addPlayer($this);
+        $play->addPlayer($this);
         return $this;
     }
 
@@ -276,7 +276,7 @@ class User implements AdvancedUserInterface, \Serializable {
     public function removePlay(Game $play) {
 //        die("addWatch");
         $this->play->removeElement($play);
-//        $play->removePlayer($this);
+        $play->removePlayer($this);
     }
 
     /**
@@ -297,7 +297,7 @@ class User implements AdvancedUserInterface, \Serializable {
     public function addWatch(Game $watch) {
 //        die("addWatch");
         $this->watch[] = $watch;
-//        $watch->addWatcher($this);
+        $watch->addWatcher($this);
 
         return $this;
     }
@@ -310,7 +310,7 @@ class User implements AdvancedUserInterface, \Serializable {
     public function removeWatch(Game $watch) {
 //        die("addWatch");
         $this->watch->removeElement($watch);
-//        $watch->removeWatcher($this);
+        $watch->removeWatcher($this);
     }
 
     /**

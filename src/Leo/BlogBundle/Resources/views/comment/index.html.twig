@@ -26,12 +26,15 @@
                             <li>
                                 <a href="{{ path('comment_show', { 'id': comment.id }) }}"><button>show</button></a>
                             </li>
-                            <li>
-                                <a href="{{ path('comment_edit', { 'id': comment.id }) }}"><button>edit</button></a>
-                            </li>
-                            <li>
-                                <a href="{{ path('comment_delete', { 'id': comment.id }) }}"><button>delete</button></a>
-                            </li>
+                            {% if (app.user==comment.author or is_granted("ROLE_ADMIN")) %}
+                                <li>
+                                    <a href="{{ path('comment_edit', { 'id': comment.id }) }}"><button>edit</button></a>
+                                </li>
+                            {%endif%}
+                            {#
+                                                <li>
+                                                    <a href="{{ path('comment_delete', { 'id': comment.id }) }}"><button>delete</button></a>
+                                                </li>#}
                         </ul>
                     </td>
                 </tr>

@@ -18,19 +18,21 @@
     </table>
 
     <ul>
+        {% if is_granted("ROLE_ADMIN") %}
+            <li>
+                <a href="{{ path('typegame_edit', { 'id': typeGame.id }) }}"><button>Edit</button></a>
+            </li>
+            <li>
+                {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+                {{ form_end(delete_form) }}
+            </li>
+            <li>
+                <a href="{{ path('typegame_new') }}"><button>New</button></a>
+            </li>
+        {%endif%}
         <li>
             <a href="{{ path('typegame_index') }}"><button>Back to the list</button></a>
-        </li>
-        <li>
-            <a href="{{ path('typegame_edit', { 'id': typeGame.id }) }}"><button>Edit</button></a>
-        </li>
-        <li>
-            <a href="{{ path('typegame_new') }}"><button>New</button></a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-            <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
         </li>
     </ul>
 {% endblock %}

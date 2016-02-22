@@ -14,23 +14,54 @@
                 <th>Name</th>
                 <td>{{ game.name }}</td>
             </tr>
+
+            {%if game.players.count%}
+                <tr>
+                    <th>Players</th>
+                    <td>
+                        <ol>
+                            {% for player in game.players %}
+                                <li>
+                                    {{player.username}}
+                                </li>
+                            {% endfor %}
+                    </td>
+                </tr>
+                </ol>
+            {%endif%}
+            {%if game.watchers.count%}
+                <tr>
+                    <th>Watchers</th>
+                    <td>
+                        <ol>
+                            {% for watcher in game.watchers %}
+                                <li>
+                                    {{watcher.username}}
+                                </li>
+                            {% endfor %}
+                        </ol>
+                    </td>
+                </tr>
+            {%endif%}
         </tbody>
     </table>
 
     <ul>
-        <li>
-            <a href="{{ path('game_index') }}"><button>Back to the list</button></a>
-        </li>
-        <li>
-            <a href="{{ path('game_edit', { 'id': game.id }) }}"><button>Edit</button></a>
-        </li>
+        {% if is_granted("ROLE_ADMIN") %}
+            <li>
+                <a href="{{ path('game_edit', { 'id': game.id }) }}"><button>Edit</button></a>
+            </li>
+            <li>
+                {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+                {{ form_end(delete_form) }}
+            </li>
+        {%endif%}
         <li>
             <a href="{{ path('game_new') }}"><button>New</button></a>
         </li>
         <li>
-            {{ form_start(delete_form) }}
-            <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
+            <a href="{{ path('game_index') }}"><button>Back to the list</button></a>
         </li>
     </ul>
 {% endblock %}

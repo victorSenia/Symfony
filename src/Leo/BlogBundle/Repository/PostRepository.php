@@ -14,8 +14,8 @@ use Doctrine\DBAL\LockMode;
 class PostRepository extends EntityRepository {
 
     public function findAll() {
-        return $this->_em->createQuery("SELECT a, p, c FROM LeoBlogBundle:Post p LEFT JOIN "
-                        . "p.author a LEFT JOIN p.comments c ORDER BY p.id")->getResult();
+        return $this->_em->createQuery("SELECT a, p, c, ac FROM LeoBlogBundle:Post p LEFT JOIN "
+                        . "p.author a LEFT JOIN p.comments c LEFT JOIN c.author ac ORDER BY p.id")->getResult();
     }
 
     public function find($id, $lockMode = LockMode::NONE, $lockVersion = null) {

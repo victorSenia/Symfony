@@ -20,8 +20,11 @@
                     <td>
                         <ul>
                             {% for play in player.play%}
-                                <li>Name {{ play.name }}
-                                    <a href="{{ path('game_edit', { 'id': play.id }) }}"><button>Edit</button></a>
+                                <li> {{ play.name }}
+                                    {% if player.username==app.user or is_granted('ROLE_ADMIN')%}
+                                        <a href="{{ path('player_delete',
+{ 'user_id': player.id, 'type': 'play', 'game_id': play.id}) }}"><button>Delete</button></a>
+                                    {% endif%}
                                 </li>
                             {%endfor%}
                         </ul>
@@ -34,8 +37,11 @@
                     <td>
                         <ul>
                             {% for watch in player.watch%}
-                                <li>Name {{ watch.name }}
-                                    <a href="{{ path('game_edit', { 'id': watch.id }) }}"><button>Edit</button></a>
+                                <li> {{ watch.name }}
+                                    {% if player.username==app.user or is_granted('ROLE_ADMIN')%}
+                                        <a href="{{ path('player_delete',
+{ 'user_id': player.id, 'type': 'watch', 'game_id': watch.id }) }}"><button>Delete</button></a>
+                                    {% endif %}
                                 </li>
                             {%endfor%}
                         </ul>
@@ -44,8 +50,12 @@
             {%endif%}
         </tbody>
     </table>
-
     <ul>
+        {% if player.username==app.user or is_granted('ROLE_ADMIN')%}
+            <li>
+                <a href="{{ path('player_edit', { 'id': player.id }) }}"><button>Edit</button></a>
+            </li>
+        {%endif%}
         <li>
             <a href="{{ path('player_index') }}"><button>Back to the list</button></a>
         </li>

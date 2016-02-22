@@ -66,7 +66,7 @@ security:
             # ...
             logout:
                 path:   leo_user_logout
-                target: leo_user_homepage
+#                target: leo_user_homepage
 #                success_handler:      ~
 #                invalidate_session:   true
 

@@ -16,8 +16,8 @@ class PostType extends AbstractType {
         $builder
                 ->add('name')
                 ->add('text')
-                ->add('author')
-                ->add('comments')
+//                ->add('author')
+//                ->add('comments')
         ;
     }
 

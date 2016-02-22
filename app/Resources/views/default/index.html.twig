@@ -2,9 +2,16 @@
 
 {% block body %}
 
-    Hello user!<br>
-    <a href="{{path("homepage")}}">Main</a><br>
-
+    Hello {%if app.user%}{{app.user}}{%else%}user{%endif%}!<br>
+    <a href="{{path("homepage")}}">Main</a>
+    {%if is_granted("IS_AUTHENTICATED_REMEMBERED")%}
+        <a href="{{path("leo_user_logout")}}"><button style="float: right">Logout</button></a>
+    {%endif%}
+    {#    {%if is_granted("IS_AUTHENTICATED_ANONYMOUSLY")%}#}
+    {%if not is_granted("IS_AUTHENTICATED_REMEMBERED")%}
+        <a href="{{path("leo_user_login")}}"><button style="float: right">Login</button></a>
+    {%endif%}
+    <br>
     <a href="{{path("leo_game_homepage")}}">Games</a>
     <a href="{{path("leo_user_homepage")}}">Users</a>
     <a href="{{path("leo_blog_homepage")}}">Blogs</a><br>

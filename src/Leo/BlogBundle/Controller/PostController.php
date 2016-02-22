@@ -33,6 +33,7 @@ class PostController extends Controller {
      */
     public function newAction(Request $request) {
         $post = new Post();
+        $post->setAuthor($this->getUser());
         $form = $this->createForm('Leo\BlogBundle\Form\PostType', $post);
         $form->handleRequest($request);
 

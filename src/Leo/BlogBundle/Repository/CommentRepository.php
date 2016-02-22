@@ -14,8 +14,8 @@ use Doctrine\DBAL\LockMode;
 class CommentRepository extends EntityRepository {
 
     public function findAll() {
-        return $this->_em->createQuery("SELECT c, a, p FROM LeoBlogBundle:Comment c JOIN "
-                        . "c.author a JOIN c.post p ORDER BY c.id")->getResult();
+        return $this->_em->createQuery("SELECT c, a, p FROM LeoBlogBundle:Comment c LEFT JOIN "
+                        . "c.author a LEFT JOIN c.post p ORDER BY c.id")->getResult();
     }
 
     public function find($id, $lockMode = LockMode::NONE, $lockVersion = null) {

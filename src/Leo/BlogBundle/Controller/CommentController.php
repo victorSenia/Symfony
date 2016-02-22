@@ -35,6 +35,7 @@ class CommentController extends Controller {
     public function newAction(Request $request, Post $post) {
         $comment = new Comment();
         $comment->setPost($post);
+        $comment->setAuthor($this->getUser());
         $form = $this->createForm('Leo\BlogBundle\Form\CommentType', $comment);
         $form->handleRequest($request);
 
@@ -100,11 +101,11 @@ class CommentController extends Controller {
         $form = $this->createDeleteForm($comment);
         $form->handleRequest($request);
 
-//        if ($form->isSubmitted() && $form->isValid()) {
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($comment);
-        $em->flush();
-//        }
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($comment);
+            $em->flush();
+        }
         return $this->redirectToRoute('comment_index');
     }
 

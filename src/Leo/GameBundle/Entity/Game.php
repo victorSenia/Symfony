@@ -113,7 +113,7 @@ class Game {
      * @return Game
      */
     public function addPlayer(User $players) {
-        die("addWatch");
+//        die("addWatch");
         $this->players[] = $players;
 
 //        $players->addPlay($this);
@@ -126,7 +126,7 @@ class Game {
      */
     public function removePlayer(User $players) {
 
-        die("addWatch");
+//        die("addWatch");
         $this->players->removeElement($players);
 //        $players->removePlay($this);
     }
@@ -145,7 +145,7 @@ class Game {
      * @return Game
      */
     public function addWatcher(User $watchers) {
-        die("addWatch");
+//        die("addWatch");
         $this->watchers[] = $watchers;
 
 //        $watchers->addPlay($this);
@@ -157,7 +157,7 @@ class Game {
      * @param Leo\UserBundle\Entity\User $watchers
      */
     public function removeWatcher(User $watchers) {
-        die("addWatch");
+//        die("addWatch");
         $this->watchers->removeElement($watchers);
 //        $watchers->removeWatch($this);
     }

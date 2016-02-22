@@ -21,7 +21,9 @@
                         <ul>
                             {% for post in author.post%}
                                 <li>Title {{ post.name }}. Text {{ post.text }}
-                                    <a href="{{ path('post_edit', { 'id': post.id }) }}"><button>Edit</button></a>
+                                    {% if (app.user==post.author or is_granted("ROLE_ADMIN")) %}
+                                        <a href="{{ path('post_edit', { 'id': post.id }) }}"><button>Edit</button></a>
+                                    {%endif%}
                                 </li>
                             {%endfor%}
                         </ul>
@@ -36,7 +38,9 @@
                             {% for comment in author.comment%}
                                 <li>
                                     {{ comment.comment }}
-                                    <a href="{{ path('comment_edit', { 'id': comment.id }) }}"><button>Edit</button></a>
+                                    {% if (app.user==comment.author or is_granted("ROLE_ADMIN")) %}
+                                        <a href="{{ path('comment_edit', { 'id': comment.id }) }}"><button>Edit</button></a>
+                                    {%endif%}
                                 </li>
                             {%endfor%}
                         </ul>
