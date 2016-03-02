@@ -2,18 +2,18 @@
 
 {% block body %}
     {{ parent() }}
-    <h1>User list</h1>
+    <h1>{{'User list'|trans({}, 'LeoUserBundle')}}</h1>
 
     <table>
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Username</th>
-                <th>Email</th>
+                <th>{{'Id'|trans({}, 'LeoUserBundle')}}</th>
+                <th>{{'Username'|trans({}, 'LeoUserBundle')}}</th>
+                <th>{{'Email'|trans({}, 'LeoUserBundle')}}</th>
                     {#                <th>Password</th>#}
-                <th>Is Blocked</th>
-                <th>Role</th>
-                <th>Actions</th>
+                <th>{{'Is active'|trans({}, 'LeoUserBundle')}}</th>
+                <th>{{'Role'|trans({}, 'LeoUserBundle')}}</th>
+                <th>{{'Actions'|trans({}, 'LeoUserBundle')}}</th>
             </tr>
         </thead>
         <tbody>
@@ -25,20 +25,20 @@
                     {#                    <td>{{ user.password }}</td>#}
                     <td>
                         {% if user.isActive %}
-                            <span style="background: #6d6"> active</span>
+                            <span style="background: #6d6">{{'active'|trans({}, 'LeoUserBundle')}} </span>
                         {% else %}
-                            <span style="background: #B0413E">blocked</span>
+                            <span style="background: #B0413E">{{'blocked'|trans({}, 'LeoUserBundle')}}</span>
                         {% endif %}
                     </td>
                     <td>{{ user.role }}</td>
                     <td>
                         <ul>
                             <li>
-                                <a href="{{ path('user_show', { 'id': user.id }) }}"><button>show</button></a>
+                                <a href="{{ path('user_show', { 'id': user.id }) }}"><button>{{'show'|trans({}, 'LeoUserBundle')}}</button></a>
                             </li>
                             {% if (user.role!="ROLE_SUPER_ADMIN") or (user.role=="ROLE_SUPER_ADMIN" and is_granted("ROLE_SUPER_ADMIN"))%}
                                 <li>
-                                    <a href="{{ path('user_edit', { 'id': user.id }) }}"><button>edit</button></a>
+                                    <a href="{{ path('user_edit', { 'id': user.id }) }}"><button>{{'edit'|trans({}, 'LeoUserBundle')}}</button></a>
                                 </li>
                             {% endif%}
                         </ul>
@@ -50,7 +50,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('user_new') }}"><button>Create a new entry</button></a>
+            <a href="{{ path('user_new') }}"><button>{{'Create a new entry'|trans({}, 'LeoUserBundle')}}</button></a>
         </li>
     </ul>
 {% endblock %}

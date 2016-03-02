@@ -2,20 +2,20 @@
 
 {% block body %}
     {{parent()}}
-    <h1>Role</h1>
+    <h1>{{ 'Role'|trans({}, 'LeoUserBundle') }}</h1>
 
     <table>
         <tbody>
             <tr>
-                <th>Id</th>
+                <th>{{ 'Id'|trans({}, 'LeoUserBundle') }}</th>
                 <td>{{ role.id }}</td>
             </tr>
             <tr>
-                <th>Role</th>
+                <th>{{ 'Role'|trans({}, 'LeoUserBundle') }}</th>
                 <td>{{ role.role }}</td>
             </tr>
             <tr>
-                <th>Users</th>
+                <th>{{ 'Users'|trans({}, 'LeoUserBundle') }}</th>
                 <td>{%if role.users.count%}
                     <ol>
                         {% for user in role.users %}
@@ -31,17 +31,17 @@
 
         <ul>
             <li>
-                <a href="{{ path('role_index') }}"><button>Back to the list</button></a>
+                <a href="{{ path('role_index') }}"><button>{{ 'Back to the list'|trans({}, 'LeoUserBundle') }}</button></a>
             </li>
             <li>
-                <a href="{{ path('role_edit', { 'id': role.id }) }}"><button>Edit</button></a>
+                <a href="{{ path('role_edit', { 'id': role.id }) }}"><button>{{ 'Edit'|trans({}, 'LeoUserBundle') }}</button></a>
             </li>
             <li>
-                <a href="{{ path('role_new') }}"><button>New</button></a>
+                <a href="{{ path('role_new') }}"><button>{{ 'New'|trans({}, 'LeoUserBundle') }}</button></a>
             </li>
             <li>
                 {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input type="submit" value="{{ 'Delete'|trans({}, 'LeoUserBundle') }}">
                 {{ form_end(delete_form) }}
             </li>
         </ul>

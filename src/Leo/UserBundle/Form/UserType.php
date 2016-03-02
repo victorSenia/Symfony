@@ -25,9 +25,9 @@ class UserType extends AbstractType {
                     'second_options' => array('label' => 'Repeat Password'),))
                 ->add('isActive')
                 ->add('role', NULL //array('preferred_choices' => array("ROLE_USER"))
-                        , array('choice_label' => ($options["locale"] == "en" ? "role" : 'id'),)
-                )
-        ;
+                        , array('choice_label' => ($options["locale"] == "en" ? "role" : 'id'),
+                    'translation_domain' => 'LeoUserBundle',)
+        );
     }
 
     /**
@@ -37,6 +37,7 @@ class UserType extends AbstractType {
         $resolver->setDefaults(array(
             'data_class' => 'Leo\UserBundle\Entity\User',
             'locale' => 'en',
+            'translation_domain' => 'LeoUserBundle'
         ));
     }
 

@@ -2,16 +2,18 @@
 
 {% block body %}
     {{ parent() }}
-    <h1>User creation</h1>
+    <h1>{{'User creation'|trans({}, 'LeoUserBundle')}}</h1>
 
     {{ form_start(form) }}
+
+    {#    {{ form_label(form.username|trans({}, 'LeoUserBundle')) }}#}
     {{ form_widget(form) }}
-    <input type="submit" value="Create" />
+    <input type="submit" value="{{ 'Create'|trans({}, 'LeoUserBundle') }}" />
     {{ form_end(form) }}
 
     <ul>
         <li>
-            <a href="{{ path('user_index') }}"><button>Back to the list</button></a>
+            <a href="{{ path('user_index') }}"><button>{{ 'Back to the list'|trans({}, 'LeoUserBundle') }}</button></a>
         </li>
     </ul>
 {% endblock %}

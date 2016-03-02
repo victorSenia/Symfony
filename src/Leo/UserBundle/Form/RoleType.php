@@ -24,7 +24,8 @@ class RoleType extends AbstractType {
      */
     public function configureOptions(OptionsResolver $resolver) {
         $resolver->setDefaults(array(
-            'data_class' => 'Leo\UserBundle\Entity\Role'
+            'data_class' => 'Leo\UserBundle\Entity\Role',
+            'translation_domain' => 'LeoUserBundle'
         ));
     }
 
