@@ -2,17 +2,17 @@
 
 {% block body %}
     {{parent()}}
-    <h1>Game list</h1>
+    <h1>{{ 'Game list'|trans({}, 'LeoGameBundle') }}</h1>
 
     <table>
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Game type</th>
-                <th>Name</th>
-                <th>Play</th>
-                <th>Watch</th>
-                <th>Actions</th>
+                <th>{{ 'Id'|trans({}, 'LeoGameBundle') }}</th>
+                <th>{{ 'Game type'|trans({}, 'LeoGameBundle') }}</th>
+                <th>{{ 'Name'|trans({}, 'LeoGameBundle') }}</th>
+                <th>{{ 'Play'|trans({}, 'LeoGameBundle') }}</th>
+                <th>{{ 'Watch'|trans({}, 'LeoGameBundle') }}</th>
+                <th>{{ 'Actions'|trans({}, 'LeoGameBundle') }}</th>
             </tr>
         </thead>
         <tbody>
@@ -46,11 +46,11 @@
                     <td>
                         <ul>
                             <li>
-                                <a href="{{ path('game_show', { 'id': game.id }) }}"><button>show</button></a>
+                                <a href="{{ path('game_show', { 'id': game.id }) }}"><button>{{ 'show'|trans({}, 'LeoGameBundle') }}</button></a>
                             </li>
                             {% if is_granted("ROLE_ADMIN") %}
                                 <li>
-                                    <a href="{{ path('game_edit', { 'id': game.id }) }}"><button>edit</button></a>
+                                    <a href="{{ path('game_edit', { 'id': game.id }) }}"><button>{{ 'edit'|trans({}, 'LeoGameBundle') }}</button></a>
                                 </li>
                             {%endif%}
                             {#
@@ -67,7 +67,7 @@
     {% if is_granted("IS_AUTHENTICATED_FULLY") %}
         <ul>
             <li>
-                <a href="{{ path('game_new') }}"><button>Create a new game</button></a>
+                <a href="{{ path('game_new') }}"><button>{{ 'Create a new game'|trans({}, 'LeoGameBundle') }}</button></a>
             </li>
         </ul>
     {%endif%}

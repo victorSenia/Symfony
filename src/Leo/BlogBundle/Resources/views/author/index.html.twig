@@ -2,16 +2,16 @@
 
 {% block body %}
     {{parent()}}
-    <h1>Author list</h1>
+    <h1>{{ 'Author list'|trans({}, 'LeoBlogBundle') }}</h1>
 
     <table>
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Username</th>
-                <th>Posts</th>
-                <th>Comments</th>
-                <th>Actions</th>
+                <th>{{ 'Id'|trans({}, 'LeoBlogBundle') }}</th>
+                <th>{{ 'Username'|trans({}, 'LeoBlogBundle') }}</th>
+                <th>{{ 'Posts'|trans({}, 'LeoBlogBundle') }}</th>
+                <th>{{ 'Comments'|trans({}, 'LeoBlogBundle') }}</th>
+                <th>{{ 'Actions'|trans({}, 'LeoBlogBundle') }}</th>
             </tr>
         </thead>
         <tbody>
@@ -24,7 +24,7 @@
                     <td>
                         <ul>
                             <li>
-                                <a href="{{ path('author_show', { 'id': author.id }) }}"><button>show</button></a>
+                                <a href="{{ path('author_show', { 'id': author.id }) }}"><button>{{ 'show'|trans({}, 'LeoBlogBundle') }}</button></a>
                             </li>{#
                             <li>
                                 <a href="{{ path('author_edit', { 'id': author.id }) }}"><button>edit</button></a>

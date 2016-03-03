@@ -2,15 +2,15 @@
 
 {% block body %}
     {{parent()}}
-    <h1>TypeGame list</h1>
+    <h1>{{ 'TypeGame list'|trans({}, 'LeoGameBundle') }}</h1>
 
     <table>
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Games</th>
-                <th>Actions</th>
+                <th>{{ 'Id'|trans({}, 'LeoGameBundle') }}</th>
+                <th>{{ 'Name'|trans({}, 'LeoGameBundle') }}</th>
+                <th>{{ 'Games'|trans({}, 'LeoGameBundle') }}</th>
+                <th>{{ 'Actions'|trans({}, 'LeoGameBundle') }}</th>
             </tr>
         </thead>
         <tbody>
@@ -32,11 +32,11 @@
                     <td>
                         <ul>
                             <li>
-                                <a href="{{ path('typegame_show', { 'id': typeGame.id }) }}"><button>show</button></a>
+                                <a href="{{ path('typegame_show', { 'id': typeGame.id }) }}"><button>{{ 'show'|trans({}, 'LeoGameBundle') }}</button></a>
                             </li>
                             {% if is_granted("ROLE_ADMIN") %}
                                 <li>
-                                    <a href="{{ path('typegame_edit', { 'id': typeGame.id }) }}"><button>edit</button></a>
+                                    <a href="{{ path('typegame_edit', { 'id': typeGame.id }) }}"><button>{{ 'edit'|trans({}, 'LeoGameBundle') }}</button></a>
                                 </li>
                             {%endif%}{#
                                 <li>
@@ -52,7 +52,7 @@
     {% if is_granted("ROLE_ADMIN") %}
         <ul>
             <li>
-                <a href="{{ path('typegame_new') }}"><button>Create a new entry</button></a>
+                <a href="{{ path('typegame_new') }}"><button>{{ 'Create a new entry'|trans({}, 'LeoGameBundle') }}</button></a>
             </li>
         </ul>
     {%endif%}

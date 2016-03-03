@@ -2,25 +2,25 @@
 
 {% block body %}
     {{parent()}}
-    <h1>Post list</h1>
+    <h1>{{ 'Post list'|trans({}, 'LeoBlogBundle') }}</h1>
     {% for post in posts %}
-        <h2>  Author {{ post.author }}</h2>
-        <h3>  Title {{ post.name }}</h3>
-        <p> Text {{ post.text }}</p>
-        <a href="{{ path('post_show', { 'id': post.id }) }}"><button>show</button></a>
+        <h2>{{ 'Author'|trans({}, 'LeoBlogBundle') }} {{ post.author }}</h2>
+        <h3> {{ 'Title'|trans({}, 'LeoBlogBundle') }} {{ post.name }}</h3>
+        <p>{{ 'Text'|trans({}, 'LeoBlogBundle') }}  {{ post.text }}</p>
+        <a href="{{ path('post_show', { 'id': post.id }) }}"><button>{{ 'show'|trans({}, 'LeoBlogBundle') }}</button></a>
         {% if (app.user==post.author or is_granted("ROLE_ADMIN")) %}
-            <a href="{{ path('post_edit', { 'id': post.id }) }}"><button>edit</button></a>
+            <a href="{{ path('post_edit', { 'id': post.id }) }}"><button>{{ 'edit'|trans({}, 'LeoBlogBundle') }}</button></a>
         {%endif%}{#
 <a href="{{ path('post_delete', { 'id': post.id }) }}"><button>delete</button></a>#}
         {%if post.comments.count%}
             <ul>
                 {% for comment in post.comments %}
                     <li>
-                        <h3> Author   {{ comment.author }}</h3>
-                        <p> Comment  {{ comment.comment }}</p>
-                        <a href="{{ path('comment_show', { 'id': comment.id }) }}"><button>show</button></a>
+                        <h3> {{ 'Author'|trans({}, 'LeoBlogBundle') }} {{ comment.author }}</h3>
+                        <p> {{ 'Comment'|trans({}, 'LeoBlogBundle') }} {{ comment.comment }}</p>
+                        <a href="{{ path('comment_show', { 'id': comment.id }) }}"><button>{{ 'show'|trans({}, 'LeoBlogBundle') }}</button></a>
                         {% if (app.user==comment.author or is_granted("ROLE_ADMIN")) %}
-                            <a href="{{ path('comment_edit', { 'id': comment.id }) }}"><button>edit</button></a>
+                            <a href="{{ path('comment_edit', { 'id': comment.id }) }}"><button>{{ 'edit'|trans({}, 'LeoBlogBundle') }}</button></a>
                         {%endif%}
                         {#
                         <a href="{{ path('comment_delete', { 'id': comment.id }) }}"><button>delete</button></a>#}
@@ -28,12 +28,12 @@
                 {% endfor %}
             </ul>
         {%endif%}
-        <p> <a href="{{ path('comment_new', { 'id': post.id }) }}"><button>New comment</button></a></p>
+        <p> <a href="{{ path('comment_new', { 'id': post.id }) }}"><button>{{ 'New comment'|trans({}, 'LeoBlogBundle') }}</button></a></p>
         <hr>
     {% endfor %}
     <ul>
         <li>
-            <a href="{{ path('post_new') }}"><button>Add new post</button></a>
+            <a href="{{ path('post_new') }}"><button>{{ 'Add new post'|trans({}, 'LeoBlogBundle') }}</button></a>
         </li>
     </ul>
 {% endblock %}

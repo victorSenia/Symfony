@@ -2,25 +2,25 @@
 
 {% block body %}
     {{parent()}}
-    <h1>Player edit</h1>
+    <h1>{{ 'Player edit'|trans({}, 'LeoGameBundle') }}</h1>
     <table>
         <tr>
-            <th>Id</th>
+            <th>{{ 'Id'|trans({}, 'LeoGameBundle') }}</th>
             <td>{{ player.id }}</td>
         </tr>
         <tr>
-            <th>Username</th>
+            <th>{{ 'Username'|trans({}, 'LeoGameBundle') }}</th>
             <td>{{ player.username }}</td>
         </tr>
     </table>
     {{ form_start(edit_form) }}
     {{ form_widget(edit_form) }}
-    <input type="submit" value="Edit" />
+    <input type="submit" value="{{ 'Edit'|trans({}, 'LeoGameBundle') }}" />
     {{ form_end(edit_form) }}
 
     <ul>
         <li>
-            <a href="{{ path('player_index') }}"><button>Back to the list</button></a>
+            <a href="{{ path('player_index') }}"><button>{{ 'Back to the list'|trans({}, 'LeoGameBundle') }}</button></a>
         </li>
     </ul>
 {% endblock %}

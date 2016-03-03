@@ -42,6 +42,13 @@ security:
             pattern: ^/
             anonymous: ~
 
+            remember_me:
+                secret:   '%secret%'
+                lifetime: 86400
+                # 1 day in seconds
+                path:     /
+                remember_me_parameter: remember_me
+
             # activate different ways to authenticate
 
 #            http_basic: ~

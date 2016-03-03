@@ -2,16 +2,16 @@
 
 {% block body %}
     {{parent()}}
-    <h1>Player list</h1>
+    <h1>{{ 'Player list'|trans({}, 'LeoGameBundle') }}</h1>
 
     <table>
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Username</th>
-                <th>Watch</th>
-                <th>Play</th>
-                <th>Actions</th>
+                <th>{{ 'Id'|trans({}, 'LeoGameBundle') }}</th>
+                <th>{{ 'Username'|trans({}, 'LeoGameBundle') }}</th>
+                <th>{{ 'Watch'|trans({}, 'LeoGameBundle') }}</th>
+                <th>{{ 'Play'|trans({}, 'LeoGameBundle') }}</th>
+                <th>{{ 'Actions'|trans({}, 'LeoGameBundle') }}</th>
             </tr>
         </thead>
         <tbody>
@@ -44,11 +44,11 @@
                     <td>
                         <ul>
                             <li>
-                                <a href="{{ path('player_show', { 'id': player.id }) }}"><button>show</button></a>
+                                <a href="{{ path('player_show', { 'id': player.id }) }}"><button>{{ 'show'|trans({}, 'LeoGameBundle') }}</button></a>
                             </li>
                             {% if player.username==app.user or is_granted('ROLE_ADMIN')%}
                                 <li>
-                                    <a href="{{ path('player_edit', { 'id': player.id }) }}"><button>edit</button></a>
+                                    <a href="{{ path('player_edit', { 'id': player.id }) }}"><button>{{ 'edit'|trans({}, 'LeoGameBundle') }}</button></a>
                                 </li>
                             {% endif%}
                         </ul>

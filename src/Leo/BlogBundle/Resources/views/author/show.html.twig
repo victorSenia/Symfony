@@ -2,27 +2,27 @@
 
 {% block body %}
     {{parent()}}
-    <h1>Author activity</h1>
+    <h1>{{ 'Author activity'|trans({}, 'LeoBlogBundle') }}</h1>
 
     <table>
         <tbody>
             <tr>
-                <th>Id</th>
+                <th>{{ 'Id'|trans({}, 'LeoBlogBundle') }}</th>
                 <td>{{ author.id }}</td>
             </tr>
             <tr>
-                <th>Username</th>
+                <th>{{ 'Username'|trans({}, 'LeoBlogBundle') }}</th>
                 <td>{{ author.username }}</td>
             </tr>
             {%if author.post.count %}
                 <tr>
-                    <th>Posts</th>
+                    <th>{{ 'Posts'|trans({}, 'LeoBlogBundle') }}</th>
                     <td>
                         <ul>
                             {% for post in author.post%}
-                                <li>Title {{ post.name }}. Text {{ post.text }}
+                                <li>{{ 'Title'|trans({}, 'LeoBlogBundle') }} {{ post.name }}. {{ 'Text'|trans({}, 'LeoBlogBundle') }} {{ post.text }}
                                     {% if (app.user==post.author or is_granted("ROLE_ADMIN")) %}
-                                        <a href="{{ path('post_edit', { 'id': post.id }) }}"><button>Edit</button></a>
+                                        <a href="{{ path('post_edit', { 'id': post.id }) }}"><button>{{ 'Edit'|trans({}, 'LeoBlogBundle') }}</button></a>
                                     {%endif%}
                                 </li>
                             {%endfor%}
@@ -32,14 +32,14 @@
             {%endif%}
             {%if author.comment.count %}
                 <tr>
-                    <th>Comments</th>
+                    <th>{{ 'Comments'|trans({}, 'LeoBlogBundle') }}</th>
                     <td>
                         <ul>
                             {% for comment in author.comment%}
                                 <li>
                                     {{ comment.comment }}
                                     {% if (app.user==comment.author or is_granted("ROLE_ADMIN")) %}
-                                        <a href="{{ path('comment_edit', { 'id': comment.id }) }}"><button>Edit</button></a>
+                                        <a href="{{ path('comment_edit', { 'id': comment.id }) }}"><button>{{ 'Edit'|trans({}, 'LeoBlogBundle') }}</button></a>
                                     {%endif%}
                                 </li>
                             {%endfor%}
@@ -52,7 +52,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('author_index') }}"><button>Back to the list</button></a>
+            <a href="{{ path('author_index') }}"><button>{{ 'Back to the list'|trans({}, 'LeoBlogBundle') }}</button></a>
         </li>
     </ul>
 {% endblock %}

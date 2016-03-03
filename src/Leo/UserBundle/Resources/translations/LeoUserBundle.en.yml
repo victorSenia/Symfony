@@ -1,29 +1,41 @@
 Username: Username
 Name: Name
 Email: E-Mail
-Role: Role
 Is active: Account status
 Password: Password
 Repeat Password: Repeat Password
 Users: Users
 Roles: Roles
+Role: Role
+User: User
+User creation: User creation
+Role creation: Role creation
 User list: User list
+User edit: User edit
+Role edit: Role edit
+Role list: Role list
+Create a new entry: Create a new entry
+Back to the list: Back to the list
 Id: Id
 Actions: Actions
 active: active
+blocked: blocked
 show: show
 edit: edit
-Create a new entry: Create a new entry
-blocked: blocked
-User creation: User creation
 Create: Create
-Role creation: Role creation
-Role edit: Role edit
-User: User
-Id: Id
-Back to the list: Back to the list
 Edit: Edit
 New: New
 Delete: Delete
-Role list: Role list
 Show: Show
+Login or Email Address: Login or Email Address
+Remember Me: Remember Me
+Login: Log in
+Create new user: Create new user
+Enter your username: Enter your username
+Enter your e-mail: Enter your e-mail
+Enter your password: Enter your password
+Repead your password: Repead your password
+Enter role: Enter role
+ROLE_ADMIN: Admin
+ROLE_SUPER_ADMIN: God
+ROLE_USER: User

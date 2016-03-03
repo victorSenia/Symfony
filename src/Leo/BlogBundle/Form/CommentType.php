@@ -14,7 +14,7 @@ class CommentType extends AbstractType {
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
-                ->add('comment')
+                ->add('comment', NULL, array('attr' => array('placeholder' => 'Enter text of comment')))
 //                ->add('author')
 //                ->add('post')
         ;
@@ -25,7 +25,8 @@ class CommentType extends AbstractType {
      */
     public function configureOptions(OptionsResolver $resolver) {
         $resolver->setDefaults(array(
-            'data_class' => 'Leo\BlogBundle\Entity\Comment'
+            'data_class' => 'Leo\BlogBundle\Entity\Comment',
+            'translation_domain' => 'LeoBlogBundle'
         ));
     }
 

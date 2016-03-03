@@ -2,17 +2,27 @@
 
 {% block body %}
     {{parent()}}
-    <h1>TypeGame</h1>
+    <h1>{{ 'TypeGame'|trans({}, 'LeoGameBundle') }}</h1>
 
     <table>
         <tbody>
             <tr>
-                <th>Id</th>
+                <th>{{ 'Id'|trans({}, 'LeoGameBundle') }}</th>
                 <td>{{ typeGame.id }}</td>
             </tr>
             <tr>
-                <th>Name</th>
-                <td>{{ typeGame.name }}</td>
+                <th>{{ 'Name'|trans({}, 'LeoGameBundle') }}</th>
+                <td>{{ typeGame.name }}
+            </tr>
+            <tr>
+                <th>{{ 'Games'|trans({}, 'LeoGameBundle') }}</th>
+                <td> <ol>
+                        {% for game in typeGame.games %}
+                            <li>
+                                {{game.name}}
+                            </li>
+                        {% endfor %}
+                    </ol></td>
             </tr>
         </tbody>
     </table>
@@ -20,19 +30,19 @@
     <ul>
         {% if is_granted("ROLE_ADMIN") %}
             <li>
-                <a href="{{ path('typegame_edit', { 'id': typeGame.id }) }}"><button>Edit</button></a>
+                <a href="{{ path('typegame_edit', { 'id': typeGame.id }) }}"><button>{{ 'Edit'|trans({}, 'LeoGameBundle') }}</button></a>
             </li>
             <li>
                 {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input type="submit" value="{{ 'Delete'|trans({}, 'LeoGameBundle') }}">
                 {{ form_end(delete_form) }}
             </li>
             <li>
-                <a href="{{ path('typegame_new') }}"><button>New</button></a>
+                <a href="{{ path('typegame_new') }}"><button>{{ 'New'|trans({}, 'LeoGameBundle') }}</button></a>
             </li>
         {%endif%}
         <li>
-            <a href="{{ path('typegame_index') }}"><button>Back to the list</button></a>
+            <a href="{{ path('typegame_index') }}"><button>{{ 'Back to the list'|trans({}, 'LeoGameBundle') }}</button></a>
         </li>
     </ul>
 {% endblock %}

@@ -5,7 +5,6 @@ namespace Leo\GameBundle\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Leo\GameBundle\Entity\Game;
-use Leo\GameBundle\Form\GameType;
 use Leo\UserBundle\Entity\User;
 
 /**
@@ -43,7 +42,10 @@ class PlayerController extends Controller {
      *
      */
     public function editAction(Request $request, User $player) {
-        $editForm = $this->createFormBuilder($player)->add("play")->add("watch")->getForm();
+        $editForm = $this->createFormBuilder($player)
+                ->add("play", NULL, array('translation_domain' => 'LeoGameBundle'))
+                ->add("watch", NULL, array('translation_domain' => 'LeoGameBundle'))
+                ->getForm();
         $editForm->handleRequest($request);
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();

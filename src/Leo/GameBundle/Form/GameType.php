@@ -14,7 +14,7 @@ class GameType extends AbstractType {
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
-                ->add('name')
+                ->add('name', NULL, array('attr' => array('placeholder' => 'Enter name of game')))
                 ->add('typeGame')
                 ->add('players')
                 ->add('watchers')
@@ -26,7 +26,8 @@ class GameType extends AbstractType {
      */
     public function configureOptions(OptionsResolver $resolver) {
         $resolver->setDefaults(array(
-            'data_class' => 'Leo\GameBundle\Entity\Game'
+            'data_class' => 'Leo\GameBundle\Entity\Game',
+            'translation_domain' => 'LeoGameBundle'
         ));
     }
 

@@ -2,16 +2,16 @@
 
 {% block body %}
     {{parent()}}
-    <h1>TypeGame creation</h1>
+    <h1>{{ 'TypeGame creation'|trans({}, 'LeoGameBundle') }}</h1>
 
     {{ form_start(form) }}
     {{ form_widget(form) }}
-    <input type="submit" value="Create" />
+    <input type="submit" value="{{ 'Create'|trans({}, 'LeoGameBundle') }}" />
     {{ form_end(form) }}
 
     <ul>
         <li>
-            <a href="{{ path('typegame_index') }}"><button>Back to the list</button></a>
+            <a href="{{ path('typegame_index') }}"><button>{{ 'Back to the list'|trans({}, 'LeoGameBundle') }}</button></a>
         </li>
     </ul>
 {% endblock %}

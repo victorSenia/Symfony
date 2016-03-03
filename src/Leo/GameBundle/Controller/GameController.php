@@ -106,9 +106,7 @@ class GameController extends Controller {
 
     /**
      * Creates a form to delete a Game entity.
-     *
      * @param Game $game The Game entity
-     *
      * @return \Symfony\Component\Form\Form The form
      */
     private function createDeleteForm(Game $game) {
@@ -119,4 +117,7 @@ class GameController extends Controller {
         ;
     }
 
+//    public function createDeleteAction(Game $game) {
+//        return $this->createDeleteForm($game)->createView();
+//    }
 }

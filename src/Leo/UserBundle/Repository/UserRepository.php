@@ -29,7 +29,7 @@ class UserRepository extends EntityRepository implements UserLoaderInterface {
 
     public function findAll() {
         return $this->_em->createQuery("SELECT u, r FROM LeoUserBundle:User u JOIN "
-                        . "u.role r ORDER BY u.username")->getResult();
+                        . "u.role r ORDER BY u.id")->getResult();
     }
 
 //    public function find($id, $lockMode = LockMode::NONE, $lockVersion = null) {
@@ -39,12 +39,12 @@ class UserRepository extends EntityRepository implements UserLoaderInterface {
 
     public function findAllWithGames() {
         return $this->_em->createQuery("SELECT u, gp, gw FROM LeoUserBundle:User u LEFT JOIN "
-                        . "u.play gp LEFT JOIN u.watch gw ORDER BY u.username")->getResult();
+                        . "u.play gp LEFT JOIN u.watch gw ORDER BY u.id")->getResult();
     }
 
     public function findAllWithPosts() {
         return $this->_em->createQuery("SELECT u, p, c FROM LeoUserBundle:User u LEFT JOIN "
-                        . "u.post p LEFT JOIN u.comment c ORDER BY u.username")->getResult();
+                        . "u.post p LEFT JOIN u.comment c ORDER BY u.id")->getResult();
     }
 
 }

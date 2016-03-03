@@ -25,28 +25,28 @@
             {%if app.user and is_granted("ROLE_ADMIN") %}
                 <tr>
                     <th>{{'Role'|trans({}, 'LeoUserBundle')}}</th>
-                    <td>{{ user.role.role }}</td>
+                    <td>{{ user.role.role|trans({}, 'LeoUserBundle') }}</td>
                 </tr>
             {% endif %}
         </tbody>
     </table>
 
     <ul>
-        <li>
-            <a href="{{ path('user_index') }}"><button>{{'Back to the list'|trans({}, 'LeoUserBundle')}}</button></a>
-        </li>
-        {% if (user.role!="ROLE_SUPER_ADMIN") or (user.role=="ROLE_SUPER_ADMIN" and is_granted("ROLE_SUPER_ADMIN"))%}
+        {% if (user.id == app.user.id or (user.role!="ROLE_SUPER_ADMIN" and is_granted("ROLE_ADMIN")) or (user.role=="ROLE_SUPER_ADMIN" and is_granted("ROLE_SUPER_ADMIN")))%}
             <li>
                 <a href="{{ path('user_edit', { 'id': user.id }) }}"><button>{{'Edit'|trans({}, 'LeoUserBundle')}}</button></a>
             </li>
+            <li>
+                {{ form_start(delete_form) }}
+                <input type="submit" value="{{'Delete'|trans({}, 'LeoUserBundle')}}">
+                {{ form_end(delete_form) }}
+            </li>
         {%endif%}
         <li>
-            <a href="{{ path('user_new') }}"><button>{{'New'|trans({}, 'LeoUserBundle')}}</button></a>
+            <a href="{{ path('user_index') }}"><button>{{'Back to the list'|trans({}, 'LeoUserBundle')}}</button></a>
         </li>
         <li>
-            {{ form_start(delete_form) }}
-            <input type="submit" value="{{'Delete'|trans({}, 'LeoUserBundle')}}">
-            {{ form_end(delete_form) }}
+            <a href="{{ path('user_new') }}"><button>{{'New'|trans({}, 'LeoUserBundle')}}</button></a>
         </li>
     </ul>
 {% endblock %}
