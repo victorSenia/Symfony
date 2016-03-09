@@ -30,12 +30,12 @@
                 </label>
             </div>
             <div>
-                <button type="submit">{{ 'Login'|trans({}, 'LeoUserBundle') }}</button>
+                <input type="submit" value="{{ 'Login'|trans({}, 'LeoUserBundle') }}"/>
             </div>
         </form>
         <div>
-            <a href="{{ path('user_new') }}">
-                <button>{{ 'Create new user'|trans({}, 'LeoUserBundle') }}</button>
+            <a class="button" href="{{ path('user_new') }}">
+                {{ 'Create new user'|trans({}, 'LeoUserBundle') }}
             </a>
         </div>
     </div>

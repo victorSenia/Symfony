@@ -9,20 +9,20 @@
         {% endfor %}
     {% endfor %}
     <h2>Hello {%if app.user%}{{app.user}}{%else%}guest{%endif%}!</h2>
-    <a href="{{path("homepage")}}">Main</a>
+    <a class="button"href="{{path("homepage")}}">Main</a>
     <div  style="right: 10px; top: 10px; position: fixed">
         {%if is_granted("IS_AUTHENTICATED_REMEMBERED")%}
-            <a href="{{path("leo_user_logout")}}"><button>Logout</button></a>
-            <a href="{{path("user_show",{'id':app.user.id})}}"><button>Show</button></a>
+            <a class="button"href="{{path("leo_user_logout")}}">Logout</a>
+            <a class="button"href="{{path("user_show",{'id':app.user.id})}}">Show</a>
         {%endif%}
         {%if not is_granted("IS_AUTHENTICATED_REMEMBERED")%}
-            <a href="{{path("leo_user_login")}}"><button>Login</button></a>
+            <a class="button"href="{{path("leo_user_login")}}">Login</a>
         {%endif%}
     </div>
     <br>
-    <a href="{{path("leo_game_homepage")}}">Games</a>
-    <a href="{{path("leo_user_homepage")}}">Users</a>
-    <a href="{{path("leo_blog_homepage")}}">Blogs</a><br>
+    <a class="button"href="{{path("leo_game_homepage")}}">Games</a>
+    <a class="button"href="{{path("leo_user_homepage")}}">Users</a>
+    <a class="button"href="{{path("leo_blog_homepage")}}">Blogs</a><br>
 {% endblock %}
 {% block stylesheets %}
     {{parent()}}

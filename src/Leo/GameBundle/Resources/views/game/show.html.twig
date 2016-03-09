@@ -49,7 +49,7 @@
     <ul>
         {% if is_granted("ROLE_ADMIN") %}
             <li>
-                <a href="{{ path('game_edit', { 'id': game.id }) }}"><button>{{ 'Edit'|trans({}, 'LeoGameBundle') }}</button></a>
+                <a class="button"href="{{ path('game_edit', { 'id': game.id }) }}">{{ 'Edit'|trans({}, 'LeoGameBundle') }}</a>
             </li>
             <li>
                 {{ form_start(delete_form) }}
@@ -58,10 +58,10 @@
             </li>
         {%endif%}
         <li>
-            <a href="{{ path('game_new') }}"><button>{{ 'New'|trans({}, 'LeoGameBundle') }}</button></a>
+            <a class="button"href="{{ path('game_new') }}">{{ 'New'|trans({}, 'LeoGameBundle') }}</a>
         </li>
         <li>
-            <a href="{{ path('game_index') }}"><button>{{ 'Back to the list'|trans({}, 'LeoGameBundle') }}</button></a>
+            <a class="button"href="{{ path('game_index') }}">{{ 'Back to the list'|trans({}, 'LeoGameBundle') }}</a>
         </li>
     </ul>
 {% endblock %}

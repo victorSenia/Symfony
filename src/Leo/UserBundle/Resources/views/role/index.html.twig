@@ -16,8 +16,8 @@
         <tbody>
             {% for role in roles %}
                 <tr>
-                    <td><a href="{{ path('role_show', { 'id': role.id }) }}">{{ role.id }}</a></td>
-                    <td>{{ role.role }}</td>
+                    <td>{{ role.id }}</td>
+                    <td>{{ role.role|trans({}, 'LeoUserBundle') }}</td>
                     <td>
                         {%if role.users.count%}
                             <ol>
@@ -32,10 +32,10 @@
                     <td>
                         <ul>
                             <li>
-                                <a href="{{ path('role_show', { 'id': role.id }) }}"><button>{{ 'Show'|trans({}, 'LeoUserBundle') }}</button></a>
+                                <a class="button"href="{{ path('role_show', { 'id': role.id }) }}">{{ 'Show'|trans({}, 'LeoUserBundle') }}</a>
                             </li>
                             <li>
-                                <a href="{{ path('role_edit', { 'id': role.id }) }}"><button>{{ 'Edit'|trans({}, 'LeoUserBundle') }}</button></a>
+                                <a class="button"href="{{ path('role_edit', { 'id': role.id }) }}">{{ 'Edit'|trans({}, 'LeoUserBundle') }}</a>
                             </li>
                         </ul>
                     </td>
@@ -46,7 +46,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('role_new') }}"><button>{{ 'Create a new entry'|trans({}, 'LeoUserBundle') }}</button></a>
+            <a class="button"href="{{ path('role_new') }}">{{ 'Create a new entry'|trans({}, 'LeoUserBundle') }}</a>
         </li>
     </ul>
 {% endblock %}

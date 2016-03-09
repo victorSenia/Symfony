@@ -22,7 +22,7 @@
                             {% for post in author.post%}
                                 <li>{{ 'Title'|trans({}, 'LeoBlogBundle') }} {{ post.name }}. {{ 'Text'|trans({}, 'LeoBlogBundle') }} {{ post.text }}
                                     {% if (app.user==post.author or is_granted("ROLE_ADMIN")) %}
-                                        <a href="{{ path('post_edit', { 'id': post.id }) }}"><button>{{ 'Edit'|trans({}, 'LeoBlogBundle') }}</button></a>
+                                        <a class="button"href="{{ path('post_edit', { 'id': post.id }) }}">{{ 'Edit'|trans({}, 'LeoBlogBundle') }}</a>
                                     {%endif%}
                                 </li>
                             {%endfor%}
@@ -39,7 +39,7 @@
                                 <li>
                                     {{ comment.comment }}
                                     {% if (app.user==comment.author or is_granted("ROLE_ADMIN")) %}
-                                        <a href="{{ path('comment_edit', { 'id': comment.id }) }}"><button>{{ 'Edit'|trans({}, 'LeoBlogBundle') }}</button></a>
+                                        <a class="button"href="{{ path('comment_edit', { 'id': comment.id }) }}">{{ 'Edit'|trans({}, 'LeoBlogBundle') }}</a>
                                     {%endif%}
                                 </li>
                             {%endfor%}
@@ -52,7 +52,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('author_index') }}"><button>{{ 'Back to the list'|trans({}, 'LeoBlogBundle') }}</button></a>
+            <a class="button"href="{{ path('author_index') }}">{{ 'Back to the list'|trans({}, 'LeoBlogBundle') }}</a>
         </li>
     </ul>
 {% endblock %}

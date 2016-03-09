@@ -9,16 +9,21 @@ table {
     border-style: ridge;
     background: #ffffcc;
 }
-td,th {
+
+td, th {
     border-style: ridge;
     padding: 5px;
 }
-button, input[type="submit"] {
+
+a.button, input[type="submit"] {
+    text-decoration: none;
     padding: 3px;
     background: #ccccff;
-    border-style: outset;
+    border: 2px outset #ccccff;
     border-radius: 5px;
-}
-*{
+    display: inline-block;
+    text-align: center;
     margin: 3px;
+    color: black;
+    font: inherit;
 }

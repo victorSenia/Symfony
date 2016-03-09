@@ -20,7 +20,7 @@
     <ul>
         {% if (app.user==comment.author or is_granted("ROLE_ADMIN")) %}
             <li>
-                <a href="{{ path('comment_edit', { 'id': comment.id }) }}"><button>{{ 'Edit'|trans({}, 'LeoBlogBundle') }}</button></a>
+                <a class="button"href="{{ path('comment_edit', { 'id': comment.id }) }}">{{ 'Edit'|trans({}, 'LeoBlogBundle') }}</a>
             </li>
             <li>
                 {{ form_start(delete_form) }}
@@ -29,7 +29,7 @@
             </li>
         {%endif%}
         <li>
-            <a href="{{ path('comment_index') }}"><button>{{ 'Back to the list'|trans({}, 'LeoBlogBundle') }}</button></a>
+            <a class="button"href="{{ path('comment_index') }}">{{ 'Back to the list'|trans({}, 'LeoBlogBundle') }}</a>
         </li>
     </ul>
 {% endblock %}

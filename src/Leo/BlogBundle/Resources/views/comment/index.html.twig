@@ -17,23 +17,23 @@
         <tbody>
             {% for comment in comments %}
                 <tr>
-                    <td><a href="{{ path('comment_show', { 'id': comment.id }) }}">{{ comment.id }}</a></td>
+                    <td>{{ comment.id }}</td>
                     <td>{{ comment.author }}</td>
                     <td>{{ comment.post }}</td>
                     <td>{{ comment.comment }}</td>
                     <td>
                         <ul>
                             <li>
-                                <a href="{{ path('comment_show', { 'id': comment.id }) }}"><button>{{ 'show'|trans({}, 'LeoBlogBundle') }}</button></a>
+                                <a class="button"href="{{ path('comment_show', { 'id': comment.id }) }}">{{ 'show'|trans({}, 'LeoBlogBundle') }}</a>
                             </li>
                             {% if (app.user==comment.author or is_granted("ROLE_ADMIN")) %}
                                 <li>
-                                    <a href="{{ path('comment_edit', { 'id': comment.id }) }}"><button>{{ 'edit'|trans({}, 'LeoBlogBundle') }}</button></a>
+                                    <a class="button"href="{{ path('comment_edit', { 'id': comment.id }) }}">{{ 'edit'|trans({}, 'LeoBlogBundle') }}</a>
                                 </li>
                             {%endif%}
                             {#
                                                 <li>
-                                                    <a href="{{ path('comment_delete', { 'id': comment.id }) }}"><button>delete</button></a>
+                                                    <a class="button"href="{{ path('comment_delete', { 'id': comment.id }) }}">delete</a>
                                                 </li>#}
                         </ul>
                     </td>
@@ -44,7 +44,7 @@
     {#
         <ul>
             <li>
-                <a href="{{ path('comment_new') }}">Create a new entry</a>
+                <a class="button"href="{{ path('comment_new') }}">Create a new entry</a>
             </li>
         </ul>#}
 {% endblock %}

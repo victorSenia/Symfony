@@ -18,7 +18,7 @@
         <tbody>
             {% for game in games %}
                 <tr>
-                    <td><a href="{{ path('game_show', { 'id': game.id }) }}">{{ game.id }}</a></td>
+                    <td>{{ game.id }}</td>
                     <td>{{ game.typeGame }}</td>
                     <td>{{ game.name }}</td>
                     <td>
@@ -46,16 +46,16 @@
                     <td>
                         <ul>
                             <li>
-                                <a href="{{ path('game_show', { 'id': game.id }) }}"><button>{{ 'show'|trans({}, 'LeoGameBundle') }}</button></a>
+                                <a class="button"href="{{ path('game_show', { 'id': game.id }) }}">{{ 'show'|trans({}, 'LeoGameBundle') }}</a>
                             </li>
                             {% if is_granted("ROLE_ADMIN") %}
                                 <li>
-                                    <a href="{{ path('game_edit', { 'id': game.id }) }}"><button>{{ 'edit'|trans({}, 'LeoGameBundle') }}</button></a>
+                                    <a class="button"href="{{ path('game_edit', { 'id': game.id }) }}">{{ 'edit'|trans({}, 'LeoGameBundle') }}</a>
                                 </li>
                             {%endif%}
                             {#
                                                 <li>
-                                                    <a href="{{ path('game_delete', { 'id': game.id }) }}"><button>delete</button></a>
+                                                    <a class="button"href="{{ path('game_delete', { 'id': game.id }) }}">delete</a>
                                                 </li>#}
                         </ul>
                     </td>
@@ -67,7 +67,7 @@
     {% if is_granted("IS_AUTHENTICATED_FULLY") %}
         <ul>
             <li>
-                <a href="{{ path('game_new') }}"><button>{{ 'Create a new game'|trans({}, 'LeoGameBundle') }}</button></a>
+                <a class="button"href="{{ path('game_new') }}">{{ 'Create a new game'|trans({}, 'LeoGameBundle') }}</a>
             </li>
         </ul>
     {%endif%}

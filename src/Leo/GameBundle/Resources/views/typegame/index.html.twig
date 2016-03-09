@@ -16,7 +16,7 @@
         <tbody>
             {% for typeGame in typeGames %}
                 <tr>
-                    <td><a href="{{ path('typegame_show', { 'id': typeGame.id }) }}">{{ typeGame.id }}</a></td>
+                    <td>{{ typeGame.id }}</td>
                     <td>{{ typeGame.name }}</td>
                     <td>
                         {%if typeGame.games.count%}
@@ -32,15 +32,15 @@
                     <td>
                         <ul>
                             <li>
-                                <a href="{{ path('typegame_show', { 'id': typeGame.id }) }}"><button>{{ 'show'|trans({}, 'LeoGameBundle') }}</button></a>
+                                <a class="button"href="{{ path('typegame_show', { 'id': typeGame.id }) }}">{{ 'show'|trans({}, 'LeoGameBundle') }}</a>
                             </li>
                             {% if is_granted("ROLE_ADMIN") %}
                                 <li>
-                                    <a href="{{ path('typegame_edit', { 'id': typeGame.id }) }}"><button>{{ 'edit'|trans({}, 'LeoGameBundle') }}</button></a>
+                                    <a class="button"href="{{ path('typegame_edit', { 'id': typeGame.id }) }}">{{ 'edit'|trans({}, 'LeoGameBundle') }}</a>
                                 </li>
                             {%endif%}{#
                                 <li>
-                                    <a href="{{ path('typegame_delete', { 'id': typeGame.id }) }}"><button>delete</button></a>
+                                    <a class="button"href="{{ path('typegame_delete', { 'id': typeGame.id }) }}">delete</a>
                                 </li>#}
                         </ul>
                     </td>
@@ -52,7 +52,7 @@
     {% if is_granted("ROLE_ADMIN") %}
         <ul>
             <li>
-                <a href="{{ path('typegame_new') }}"><button>{{ 'Create a new entry'|trans({}, 'LeoGameBundle') }}</button></a>
+                <a class="button"href="{{ path('typegame_new') }}">{{ 'Create a new entry'|trans({}, 'LeoGameBundle') }}</a>
             </li>
         </ul>
     {%endif%}

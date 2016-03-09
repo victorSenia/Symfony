@@ -19,7 +19,7 @@
         <tbody>
             {% for user in users %}
                 <tr>
-                    <td><a href="{{ path('user_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
+                    <td>{{ user.id }}</td>
                     <td>{{ user.username }}</td>
                     <td>{{ user.email }}</td>
                     {#                    <td>{{ user.password }}</td>#}
@@ -34,11 +34,11 @@
                     <td>
                         <ul>
                             <li>
-                                <a href="{{ path('user_show', { 'id': user.id }) }}"><button>{{'show'|trans({}, 'LeoUserBundle')}}</button></a>
+                                <a class="button"href="{{ path('user_show', { 'id': user.id }) }}">{{'show'|trans({}, 'LeoUserBundle')}}</a>
                             </li>
                             {% if (user.role!="ROLE_SUPER_ADMIN") or (user.role=="ROLE_SUPER_ADMIN" and is_granted("ROLE_SUPER_ADMIN"))%}
                                 <li>
-                                    <a href="{{ path('user_edit', { 'id': user.id }) }}"><button>{{'edit'|trans({}, 'LeoUserBundle')}}</button></a>
+                                    <a class="button"href="{{ path('user_edit', { 'id': user.id }) }}">{{'edit'|trans({}, 'LeoUserBundle')}}</a>
                                 </li>
                             {% endif%}
                         </ul>
@@ -50,7 +50,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('user_new') }}"><button>{{'Create a new entry'|trans({}, 'LeoUserBundle')}}</button></a>
+            <a class="button"href="{{ path('user_new') }}">{{'Create a new entry'|trans({}, 'LeoUserBundle')}}</a>
         </li>
     </ul>
 {% endblock %}

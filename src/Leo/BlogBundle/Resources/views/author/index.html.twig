@@ -17,17 +17,17 @@
         <tbody>
             {% for author in authors %}
                 <tr>
-                    <td><a href="{{ path('author_show', { 'id': author.id }) }}">{{ author.id }}</a></td>
+                    <td>{{ author.id }}</td>
                     <td>{{ author.username }}</td>
                     <td>{{ author.post.count }}</td>
                     <td>{{ author.comment.count }}</td>
                     <td>
                         <ul>
                             <li>
-                                <a href="{{ path('author_show', { 'id': author.id }) }}"><button>{{ 'show'|trans({}, 'LeoBlogBundle') }}</button></a>
+                                <a class="button"href="{{ path('author_show', { 'id': author.id }) }}">{{ 'show'|trans({}, 'LeoBlogBundle') }}</a>
                             </li>{#
                             <li>
-                                <a href="{{ path('author_edit', { 'id': author.id }) }}"><button>edit</button></a>
+                                <a class="button"href="{{ path('author_edit', { 'id': author.id }) }}">edit</a>
                             </li>#}
                         </ul>
                     </td>
