@@ -3,6 +3,7 @@
 namespace Leo\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Leo\UserBundle\Entity\User;
 
@@ -25,7 +26,8 @@ class Role {
 
     /**
      * @var string
-     *
+     * @Assert\Length(min=4, max=20)
+     * @Assert\NotBlank()
      * @ORM\Column(name="role", type="string", length=30, unique=true)
      */
     private $role;

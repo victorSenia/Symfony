@@ -1,7 +1,13 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
+    {% for label, flashes in app.session.flashbag.all %}
+        {% for flash in flashes %}
+            <div class="alert alert-{{ label }}">
+                {{ flash }}
+            </div>
+        {% endfor %}
+    {% endfor %}
     <h2>Hello {%if app.user%}{{app.user}}{%else%}guest{%endif%}!</h2>
     <a href="{{path("homepage")}}">Main</a>
     <div  style="right: 10px; top: 10px; position: fixed">
@@ -9,7 +15,6 @@
             <a href="{{path("leo_user_logout")}}"><button>Logout</button></a>
             <a href="{{path("user_show",{'id':app.user.id})}}"><button>Show</button></a>
         {%endif%}
-        {#    {%if is_granted("IS_AUTHENTICATED_ANONYMOUSLY")%}#}
         {%if not is_granted("IS_AUTHENTICATED_REMEMBERED")%}
             <a href="{{path("leo_user_login")}}"><button>Login</button></a>
         {%endif%}

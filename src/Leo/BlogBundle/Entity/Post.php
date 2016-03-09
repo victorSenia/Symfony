@@ -1,22 +1,20 @@
 <?php
-
 namespace Leo\BlogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use Leo\UserBundle\Entity\User;
 use Leo\BlogBundle\Entity\Comment;
 
 /**
  * Post
- *
  * @ORM\Table(name="post")
  * @ORM\Entity(repositoryClass="Leo\BlogBundle\Repository\PostRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
-class Post {
-
+class Post{
     /**
      * @var int
-     *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -25,23 +23,36 @@ class Post {
 
     /**
      * @var string
-     *
+     * @Assert\Length(min=4, max=25)
+     * @Assert\NotBlank()
      * @ORM\Column(name="name", type="string", length=30)
      */
     private $name;
 
     /**
      * @var string
-     *
+     * @Assert\Length(min=4)
+     * @Assert\NotBlank()
      * @ORM\Column(name="text", type="text")
      */
     private $text;
 
     /**
+     * @var \DateTime
+     * @ORM\Column(name="create_time", type="datetimetz")
+     */
+    private $createTime;
+
+    /**
+     * @var \DateTime
+     * @ORM\Column(name="update_time", type="datetimetz", nullable=true)
+     */
+    private $updateTime;
+
+    /**
      * @var User
      * @ORM\ManyToOne(targetEntity="Leo\UserBundle\Entity\User", inversedBy="post")
      * @ORM\JoinColumn(onDelete="CASCADE", nullable=false)
-     *
      */
     private $author;
 
@@ -56,7 +67,8 @@ class Post {
      *
      * @return integer
      */
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
@@ -64,11 +76,12 @@ class Post {
      * Set name
      *
      * @param string $name
+     *
      * @return Post
      */
-    public function setName($name) {
+    public function setName($name)
+    {
         $this->name = $name;
-
         return $this;
     }
 
@@ -77,7 +90,8 @@ class Post {
      *
      * @return string
      */
-    public function getName() {
+    public function getName()
+    {
         return $this->name;
     }
 
@@ -85,11 +99,12 @@ class Post {
      * Set text
      *
      * @param string $text
+     *
      * @return Post
      */
-    public function setText($text) {
+    public function setText($text)
+    {
         $this->text = $text;
-
         return $this;
     }
 
@@ -98,19 +113,57 @@ class Post {
      *
      * @return string
      */
-    public function getText() {
+    public function getText()
+    {
         return $this->text;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function setCreateTime()
+    {
+        $this->createTime = new \DateTime();
+    }
+
+    /**
+     * Get createDate
+     *
+     * @return \DateTime
+     */
+    public function getCreateTime()
+    {
+        return $this->createTime;
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function setUpdateTime()
+    {
+        $this->updateTime = new \DateTime();
+    }
+
+    /**
+     * Get updateTime
+     *
+     * @return \DateTime
+     */
+    public function getUpdateTime()
+    {
+        return $this->updateTime;
     }
 
     /**
      * Set author
      *
      * @param User $author
+     *
      * @return Post
      */
-    public function setAuthor(User $author) {
+    public function setAuthor(User $author)
+    {
         $this->author = $author;
-
         return $this;
     }
 
@@ -119,14 +172,16 @@ class Post {
      *
      * @return User
      */
-    public function getAuthor() {
+    public function getAuthor()
+    {
         return $this->author;
     }
 
     /**
      * Constructor
      */
-    public function __construct() {
+    public function __construct()
+    {
         $this->comments = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -134,11 +189,12 @@ class Post {
      * Add comments
      *
      * @param \Leo\BlogBundle\Entity\Comment $comments
+     *
      * @return Post
      */
-    public function addComment(\Leo\BlogBundle\Entity\Comment $comments) {
+    public function addComment(\Leo\BlogBundle\Entity\Comment $comments)
+    {
         $this->comments[] = $comments;
-
         return $this;
     }
 
@@ -147,7 +203,8 @@ class Post {
      *
      * @param \Leo\BlogBundle\Entity\Comment $comments
      */
-    public function removeComment(\Leo\BlogBundle\Entity\Comment $comments) {
+    public function removeComment(\Leo\BlogBundle\Entity\Comment $comments)
+    {
         $this->comments->removeElement($comments);
     }
 
@@ -156,12 +213,13 @@ class Post {
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getComments() {
+    public function getComments()
+    {
         return $this->comments;
     }
 
-    public function __toString() {
+    public function __toString()
+    {
         return $this->getName();
     }
-
 }

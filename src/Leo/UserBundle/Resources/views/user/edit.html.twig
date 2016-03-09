@@ -2,20 +2,22 @@
 
 {% block body %}
     {{ parent() }}
-    <h1>{{'User edit'|trans({}, 'LeoUserBundle')}}</h1>
+    <h1>{{ 'User edit'|trans({}, 'LeoUserBundle') }}</h1>
 
-    {{ form_start(edit_form) }}
+    {{ form_start(edit_form, {'attr': {'novalidate': 'novalidate'} }) }}
     {{ form_widget(edit_form) }}
-    <input type="submit" value="{{'Edit'|trans({}, 'LeoUserBundle')}}" />
+    <input type="submit" value="{{ 'Edit'|trans({}, 'LeoUserBundle') }}"/>
     {{ form_end(edit_form) }}
 
     <ul>
         <li>
-            <a href="{{ path('user_index') }}"><button>{{'Back to the list'|trans({}, 'LeoUserBundle')}} </button></a>
+            <a href="{{ path('user_index') }}">
+                <button>{{ 'Back to the list'|trans({}, 'LeoUserBundle') }} </button>
+            </a>
         </li>
         <li>
             {{ form_start(delete_form) }}
-            <input type="submit" value="{{'Delete'|trans({}, 'LeoUserBundle')}}">
+            <input type="submit" value="{{ 'Delete'|trans({}, 'LeoUserBundle') }}">
             {{ form_end(delete_form) }}
         </li>
     </ul>

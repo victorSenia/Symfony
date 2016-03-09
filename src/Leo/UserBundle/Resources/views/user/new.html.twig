@@ -3,9 +3,9 @@
 {% block body %}
     {{ parent() }}
     <h1>{{'User creation'|trans({}, 'LeoUserBundle')}}</h1>
-
-    {{ form_start(form) }}
-
+    {#    {{ form(form, {'attr': {'novalidate': 'novalidate'}}) }}#}
+    {{ form_start(form, {'attr': {'novalidate': 'novalidate'} }) }}
+    {#    {{ form(form, {'attr': {'novalidate': 'novalidate'}}) }}#}
     {#    {{ form_label(form.username|trans({}, 'LeoUserBundle')) }}#}
     {{ form_widget(form) }}
     <input type="submit" value="{{ 'Create'|trans({}, 'LeoUserBundle') }}" />

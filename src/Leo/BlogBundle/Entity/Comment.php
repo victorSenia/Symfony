@@ -1,22 +1,20 @@
 <?php
-
 namespace Leo\BlogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use Leo\UserBundle\Entity\User;
 use Leo\BlogBundle\Entity\Post;
 
 /**
  * Comment
- *
  * @ORM\Table(name="comment")
  * @ORM\Entity(repositoryClass="Leo\BlogBundle\Repository\CommentRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
-class Comment {
-
+class Comment{
     /**
      * @var int
-     *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -25,16 +23,28 @@ class Comment {
 
     /**
      * @var string
-     *
+     * @Assert\Length(min=4)
+     * @Assert\NotBlank()
      * @ORM\Column(name="comment", type="text")
      */
     private $comment;
 
     /**
-     * @var Leo\UserBundle\Entity\User
+     * @var \DateTime
+     * @ORM\Column(name="create_time", type="datetimetz")
+     */
+    private $createTime;
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="update_time", type="datetimetz", nullable=true)
+     */
+    private $updateTime;
+
+    /**
+     * @var User
      * @ORM\ManyToOne(targetEntity="Leo\UserBundle\Entity\User", inversedBy="comment")
      * @ORM\JoinColumn(onDelete="CASCADE", nullable=false)
-     *
      */
     private $author;
 
@@ -45,7 +55,8 @@ class Comment {
      */
     private $post;
 
-    public function __toString() {
+    public function __toString()
+    {
         return $this->getComment();
     }
 
@@ -54,7 +65,8 @@ class Comment {
      *
      * @return integer
      */
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
@@ -62,11 +74,12 @@ class Comment {
      * Set comment
      *
      * @param string $comment
+     *
      * @return Comment
      */
-    public function setComment($comment) {
+    public function setComment($comment)
+    {
         $this->comment = $comment;
-
         return $this;
     }
 
@@ -75,19 +88,54 @@ class Comment {
      *
      * @return string
      */
-    public function getComment() {
+    public function getComment()
+    {
         return $this->comment;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function setCreateTime()
+    {
+        $this->createTime = new \DateTime();
+    }
+
+    /**
+     * Get createDate
+     *
+     * @return \DateTime
+     */
+    public function getCreateTime()
+    {
+        return $this->createTime;
+    }
+    /**
+     * @ORM\PreUpdate
+     */
+    public function setUpdateTime() {
+        $this->updateTime = new \DateTime();
+    }
+
+    /**
+     * Get updateTime
+     *
+     * @return \DateTime
+     */
+    public function getUpdateTime() {
+        return $this->updateTime;
     }
 
     /**
      * Set author
      *
-     * @param Leo\UserBundle\Entity\User $author
+     * @param User $author
+     *
      * @return Comment
      */
-    public function setAuthor(User $author) {
+    public function setAuthor(User $author)
+    {
         $this->author = $author;
-
         return $this;
     }
 
@@ -96,7 +144,8 @@ class Comment {
      *
      * @return User
      */
-    public function getAuthor() {
+    public function getAuthor()
+    {
         return $this->author;
     }
 
@@ -104,11 +153,12 @@ class Comment {
      * Set post
      *
      * @param Post $post
+     *
      * @return Comment
      */
-    public function setPost(Post $post) {
+    public function setPost(Post $post)
+    {
         $this->post = $post;
-
         return $this;
     }
 
@@ -117,8 +167,8 @@ class Comment {
      *
      * @return Post
      */
-    public function getPost() {
+    public function getPost()
+    {
         return $this->post;
     }
-
 }

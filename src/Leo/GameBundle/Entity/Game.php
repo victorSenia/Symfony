@@ -3,6 +3,7 @@
 namespace Leo\GameBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use Leo\UserBundle\Entity\User;
 use Leo\GameBundle\Entity\TypeGame;
 
@@ -24,6 +25,8 @@ class Game {
 
     /**
      * @var string
+     * @Assert\Length(min=4, max=40)
+     * @Assert\NotBlank()
      * @ORM\Column(name="name", type="string", length=50, unique=true)
      */
     private $name;

@@ -1,3 +1,7 @@
+leo_validation:
+    resource: "@LeoValidationBundle/Resources/config/routing.yml"
+    prefix:   /
+
 leo_blog:
     resource: "@LeoBlogBundle/Resources/config/routing.yml"
     prefix:   /blog
