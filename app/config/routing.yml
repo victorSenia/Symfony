@@ -1,3 +1,7 @@
+leo_excel:
+    resource: "@LeoExcelBundle/Resources/config/routing.yml"
+    prefix:   /
+
 leo_validation:
     resource: "@LeoValidationBundle/Resources/config/routing.yml"
     prefix:   /

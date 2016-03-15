@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new Leo\GameBundle\LeoGameBundle(),
             new Leo\BlogBundle\LeoBlogBundle(),
             new Leo\ValidationBundle\LeoValidationBundle(),
+            new Leo\ExcelBundle\LeoExcelBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {

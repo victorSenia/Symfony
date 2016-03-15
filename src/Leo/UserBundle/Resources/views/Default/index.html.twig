@@ -2,6 +2,8 @@
 {% block body %}
     {{parent()}}
     <a class="button"href="{{path("user_index")}}">{{ 'Users'|trans({}, 'LeoUserBundle') }}</a>
-    <a class="button"href="{{path("role_index")}}">{{ 'Roles'|trans({}, 'LeoUserBundle') }}</a>{#
+    <a class="button"href="{{path("role_index")}}">{{ 'Roles'|trans({}, 'LeoUserBundle') }}</a>
+    <a class="button"href="{{path("leo_excel_homepage")}}">{{ 'Users to Excel'|trans({}, 'LeoUserBundle') }}</a>
+    {#
     <a class="button"href="{{path("leo_user_logout")}}">Logout</a>#}
 {% endblock %}

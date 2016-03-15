@@ -36,6 +36,9 @@ Enter your e-mail: Enter your e-mail
 Enter your password: Enter your password
 Repead your password: Repead your password
 Enter role: Enter role
+Users to Excel: Users to Excel
+Old password: Old password
+Enter your old password: Enter your old password
 ROLE_ADMIN: Admin
 ROLE_SUPER_ADMIN: God
 ROLE_USER: User
