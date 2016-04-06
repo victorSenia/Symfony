@@ -20,7 +20,7 @@ class TypeGameRepository extends EntityRepository
 
     public function find($id, $lockMode = LockMode::NONE, $lockVersion = NULL)
     {
-        return $this->_em->createQuery("SELECT t, g FROM LeoGameBundle:TypeGame t JOIN t.games g WHERE t.id=?1")
+        return $this->_em->createQuery("SELECT t, g, p, w FROM LeoGameBundle:TypeGame t LEFT JOIN t.games g LEFT JOIN g.watchers w LEFT JOIN g.players p WHERE t.id=?1")
             ->setParameter(1, $id)->getSingleResult();
     }
 

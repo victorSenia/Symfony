@@ -1,6 +1,7 @@
 <?php
 namespace Leo\GameBundle\Controller;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Leo\GameBundle\Entity\TypeGame;
@@ -34,6 +35,9 @@ class TypeGameController extends Controller
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            foreach($typeGame->getGames() as $game) {
+                $game->setTypeGame($typeGame);
+            }
             $em->persist($typeGame);
             $em->flush();
             return $this->redirectToRoute('typegame_show', array('id' => $typeGame->getId()));
@@ -77,12 +81,24 @@ class TypeGameController extends Controller
     {
         $deleteForm = $this->createDeleteForm($typeGame);
         $editForm = $this->createForm('Leo\GameBundle\Form\TypeGameType', $typeGame);
+        $originalGames = new ArrayCollection();
+        foreach($typeGame->getGames() as $game) {
+            $originalGames->add($game);
+        }
         $editForm->handleRequest($request);
         if($editForm->isSubmitted() && $editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
-//            $em->persist($typeGame);
+            foreach($originalGames as $game) {
+                if($typeGame->getGames()->contains($game) === FALSE) {
+                    $em->remove($game);
+                }
+            }
+            foreach($typeGame->getGames() as $game) {
+                $game->setTypeGame($typeGame);
+            }
+            $em->persist($typeGame);
             $em->flush();
-//            return $this->redirectToRoute('typegame_edit', array('id' => $typeGame->getId()));
+            return $this->redirectToRoute('typegame_edit', array('id' => $typeGame->getId()));
         }
         return $this->render('LeoGameBundle:TypeGame:edit.html.twig', array(
             'typeGame' => $typeGame,

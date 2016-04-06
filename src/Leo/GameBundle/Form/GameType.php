@@ -5,7 +5,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class GameType extends AbstractType
+class GameType extends GameAddType
 {
 
     /**
@@ -15,21 +15,7 @@ class GameType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', NULL, array('attr' => array('placeholder' => 'Enter name of game')))
-            ->add('typeGame')
-            ->add('players')
-            ->add('watchers');
-    }
-
-    /**
-     * @param OptionsResolver $resolver
-     */
-    public function configureOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefaults(array(
-            'data_class' => 'Leo\GameBundle\Entity\Game',
-            'translation_domain' => 'LeoGameBundle',
-        ));
+            ->add('typeGame');
     }
 
 }

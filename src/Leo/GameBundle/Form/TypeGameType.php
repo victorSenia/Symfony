@@ -19,7 +19,7 @@ class TypeGameType extends AbstractType
         $builder
             ->add('name', NULL, array('attr' => array('placeholder' => 'Enter name of game type')))
             ->add('games', CollectionType::class, array(
-                'entry_type' => GameType::class,
+                'entry_type' => GameAddType::class,
                 'allow_add' => TRUE,
                 'by_reference' => FALSE,
                 'allow_delete' => TRUE,
