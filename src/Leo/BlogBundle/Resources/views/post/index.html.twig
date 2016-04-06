@@ -10,11 +10,11 @@
         <p>{{ 'Created'|trans({}, 'LeoBlogBundle') }} {{ post.createTime|date("H:i:s d.m.Y") }}</p>
         {% if  post.updateTime %}
             <p>{{ 'Changed'|trans({}, 'LeoBlogBundle') }} {{ post.updateTime|date("H:i:s d.m.Y") }}</p>{% endif %}
-        <a class="button"href="{{ path('post_show', { 'id': post.id }) }}">
+        <a class="button" href="{{ path('post_show', { 'id': post.id }) }}">
             {{ 'show'|trans({}, 'LeoBlogBundle') }}
         </a>
         {% if (app.user==post.author or is_granted("ROLE_ADMIN")) %}
-            <a class="button"href="{{ path('post_edit', { 'id': post.id }) }}">
+            <a class="button" href="{{ path('post_edit', { 'id': post.id }) }}">
                 {{ 'edit'|trans({}, 'LeoBlogBundle') }}
             </a>
         {% endif %}{#
@@ -28,11 +28,11 @@
                         <p>{{ 'Created'|trans({}, 'LeoBlogBundle') }} {{ comment.createTime|date("H:i:s d.m.Y") }}</p>
                         {% if  comment.updateTime %}
                             <p>{{ 'Changed'|trans({}, 'LeoBlogBundle') }} {{ comment.updateTime|date("H:i:s d.m.Y") }}</p>{% endif %}
-                        <a class="button"href="{{ path('comment_show', { 'id': comment.id }) }}">
+                        <a class="button" href="{{ path('comment_show', { 'id': comment.id }) }}">
                             {{ 'show'|trans({}, 'LeoBlogBundle') }}
                         </a>
                         {% if (app.user==comment.author or is_granted("ROLE_ADMIN")) %}
-                            <a class="button"href="{{ path('comment_edit', { 'id': comment.id }) }}">
+                            <a class="button" href="{{ path('comment_edit', { 'id': comment.id }) }}">
                                 {{ 'edit'|trans({}, 'LeoBlogBundle') }}
                             </a>
                         {% endif %}
@@ -42,14 +42,14 @@
                 {% endfor %}
             </ul>
         {% endif %}
-        <p><a class="button"href="{{ path('comment_new', { 'id': post.id }) }}">
+        <p><a class="button" href="{{ path('comment_new', { 'id': post.id }) }}">
                 {{ 'New comment'|trans({}, 'LeoBlogBundle') }}
             </a></p>
         <hr>
     {% endfor %}
     <ul>
         <li>
-            <a class="button"href="{{ path('post_new') }}">
+            <a class="button" href="{{ path('post_new') }}">
                 {{ 'Add new post'|trans({}, 'LeoBlogBundle') }}
             </a>
         </li>

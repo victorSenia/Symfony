@@ -1,44 +1,46 @@
 {% extends 'LeoBlogBundle:Default:index.html.twig' %}
 
 {% block body %}
-    {{parent()}}
+    {{ parent() }}
     <h1>{{ 'Comment list'|trans({}, 'LeoBlogBundle') }}</h1>
 
     <table>
         <thead>
-            <tr>
-                <th>{{ 'Id'|trans({}, 'LeoBlogBundle') }}</th>
-                <th>{{ 'Author'|trans({}, 'LeoBlogBundle') }}</th>
-                <th>{{ 'Post'|trans({}, 'LeoBlogBundle') }}</th>
-                <th>{{ 'Comment'|trans({}, 'LeoBlogBundle') }}</th>
-                <th>{{ 'Actions'|trans({}, 'LeoBlogBundle') }}</th>
-            </tr>
+        <tr>
+            <th>{{ 'Id'|trans({}, 'LeoBlogBundle') }}</th>
+            <th>{{ 'Author'|trans({}, 'LeoBlogBundle') }}</th>
+            <th>{{ 'Post'|trans({}, 'LeoBlogBundle') }}</th>
+            <th>{{ 'Comment'|trans({}, 'LeoBlogBundle') }}</th>
+            <th>{{ 'Actions'|trans({}, 'LeoBlogBundle') }}</th>
+        </tr>
         </thead>
         <tbody>
-            {% for comment in comments %}
-                <tr>
-                    <td>{{ comment.id }}</td>
-                    <td>{{ comment.author }}</td>
-                    <td>{{ comment.post }}</td>
-                    <td>{{ comment.comment }}</td>
-                    <td>
-                        <ul>
+        {% for comment in comments %}
+            <tr>
+                <td>{{ comment.id }}</td>
+                <td>{{ comment.author }}</td>
+                <td>{{ comment.post }}</td>
+                <td>{{ comment.comment }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a class="button"
+                               href="{{ path('comment_show', { 'id': comment.id }) }}">{{ 'show'|trans({}, 'LeoBlogBundle') }}</a>
+                        </li>
+                        {% if (app.user==comment.author or is_granted("ROLE_ADMIN")) %}
                             <li>
-                                <a class="button"href="{{ path('comment_show', { 'id': comment.id }) }}">{{ 'show'|trans({}, 'LeoBlogBundle') }}</a>
+                                <a class="button"
+                                   href="{{ path('comment_edit', { 'id': comment.id }) }}">{{ 'edit'|trans({}, 'LeoBlogBundle') }}</a>
                             </li>
-                            {% if (app.user==comment.author or is_granted("ROLE_ADMIN")) %}
-                                <li>
-                                    <a class="button"href="{{ path('comment_edit', { 'id': comment.id }) }}">{{ 'edit'|trans({}, 'LeoBlogBundle') }}</a>
-                                </li>
-                            {%endif%}
-                            {#
-                                                <li>
-                                                    <a class="button"href="{{ path('comment_delete', { 'id': comment.id }) }}">delete</a>
-                                                </li>#}
-                        </ul>
-                    </td>
-                </tr>
-            {% endfor %}
+                        {% endif %}
+                        {#
+                                            <li>
+                                                <a class="button"href="{{ path('comment_delete', { 'id': comment.id }) }}">delete</a>
+                                            </li>#}
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
         </tbody>
     </table>
     {#

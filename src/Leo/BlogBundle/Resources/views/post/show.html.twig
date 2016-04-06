@@ -1,42 +1,43 @@
 {% extends 'LeoBlogBundle:Default:index.html.twig' %}
 
 {% block body %}
-    {{parent()}}
+    {{ parent() }}
     <h1>{{ 'Post'|trans({}, 'LeoBlogBundle') }}</h1>
 
     <table>
         <tbody>
-            <tr>
-                <th>{{ 'Id'|trans({}, 'LeoBlogBundle') }}</th>
-                <td>{{ post.id }}</td>
-            </tr>
-            <tr>
-                <th>{{ 'Name'|trans({}, 'LeoBlogBundle') }}</th>
-                <td>{{ post.name }}</td>
-            </tr>
-            <tr>
-                <th>{{ 'Text'|trans({}, 'LeoBlogBundle') }}</th>
-                <td>{{ post.text }}</td>
-            </tr>
+        <tr>
+            <th>{{ 'Id'|trans({}, 'LeoBlogBundle') }}</th>
+            <td>{{ post.id }}</td>
+        </tr>
+        <tr>
+            <th>{{ 'Name'|trans({}, 'LeoBlogBundle') }}</th>
+            <td>{{ post.name }}</td>
+        </tr>
+        <tr>
+            <th>{{ 'Text'|trans({}, 'LeoBlogBundle') }}</th>
+            <td>{{ post.text }}</td>
+        </tr>
         </tbody>
     </table>
 
     <ul>
         {% if (app.user==post.author or is_granted("ROLE_ADMIN")) %}
             <li>
-                <a class="button"href="{{ path('post_edit', { 'id': post.id }) }}">{{ 'Edit'|trans({}, 'LeoBlogBundle') }}</a>
+                <a class="button"
+                   href="{{ path('post_edit', { 'id': post.id }) }}">{{ 'Edit'|trans({}, 'LeoBlogBundle') }}</a>
             </li>
             <li>
                 {{ form_start(delete_form) }}
                 <input type="submit" value="{{ 'Delete'|trans({}, 'LeoBlogBundle') }}">
                 {{ form_end(delete_form) }}
             </li>
-        {%endif%}
+        {% endif %}
         <li>
-            <a class="button"href="{{ path('post_new') }}">{{ 'New'|trans({}, 'LeoBlogBundle') }} </a>
+            <a class="button" href="{{ path('post_new') }}">{{ 'New'|trans({}, 'LeoBlogBundle') }} </a>
         </li>
         <li>
-            <a class="button"href="{{ path('post_index') }}">{{ 'Back to the list'|trans({}, 'LeoBlogBundle') }}</a>
+            <a class="button" href="{{ path('post_index') }}">{{ 'Back to the list'|trans({}, 'LeoBlogBundle') }}</a>
         </li>
     </ul>
 {% endblock %}

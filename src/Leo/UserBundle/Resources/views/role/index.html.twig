@@ -6,47 +6,49 @@
 
     <table>
         <thead>
-            <tr>
-                <th>{{ 'Id'|trans({}, 'LeoUserBundle') }}</th>
-                <th>{{ 'Role'|trans({}, 'LeoUserBundle') }}</th>
-                <th>{{ 'Users'|trans({}, 'LeoUserBundle') }}</th>
-                <th>{{ 'Actions'|trans({}, 'LeoUserBundle') }}</th>
-            </tr>
+        <tr>
+            <th>{{ 'Id'|trans({}, 'LeoUserBundle') }}</th>
+            <th>{{ 'Role'|trans({}, 'LeoUserBundle') }}</th>
+            <th>{{ 'Users'|trans({}, 'LeoUserBundle') }}</th>
+            <th>{{ 'Actions'|trans({}, 'LeoUserBundle') }}</th>
+        </tr>
         </thead>
         <tbody>
-            {% for role in roles %}
-                <tr>
-                    <td>{{ role.id }}</td>
-                    <td>{{ role.role|trans({}, 'LeoUserBundle') }}</td>
-                    <td>
-                        {%if role.users.count%}
-                            <ol>
-                                {% for user in role.users %}
-                                    <li>
-                                        {{user.username}}
-                                    </li>
-                                {% endfor %}
-                            </ol>
-                        {%endif%}
-                    </td>
-                    <td>
-                        <ul>
-                            <li>
-                                <a class="button"href="{{ path('role_show', { 'id': role.id }) }}">{{ 'Show'|trans({}, 'LeoUserBundle') }}</a>
-                            </li>
-                            <li>
-                                <a class="button"href="{{ path('role_edit', { 'id': role.id }) }}">{{ 'Edit'|trans({}, 'LeoUserBundle') }}</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
-            {% endfor %}
+        {% for role in roles %}
+            <tr>
+                <td>{{ role.id }}</td>
+                <td>{{ role.role|trans({}, 'LeoUserBundle') }}</td>
+                <td>
+                    {% if role.users.count %}
+                        <ol>
+                            {% for user in role.users %}
+                                <li>
+                                    {{ user.username }}
+                                </li>
+                            {% endfor %}
+                        </ol>
+                    {% endif %}
+                </td>
+                <td>
+                    <ul>
+                        <li>
+                            <a class="button"
+                               href="{{ path('role_show', { 'id': role.id }) }}">{{ 'Show'|trans({}, 'LeoUserBundle') }}</a>
+                        </li>
+                        <li>
+                            <a class="button"
+                               href="{{ path('role_edit', { 'id': role.id }) }}">{{ 'Edit'|trans({}, 'LeoUserBundle') }}</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
         </tbody>
     </table>
 
     <ul>
         <li>
-            <a class="button"href="{{ path('role_new') }}">{{ 'Create a new entry'|trans({}, 'LeoUserBundle') }}</a>
+            <a class="button" href="{{ path('role_new') }}">{{ 'Create a new entry'|trans({}, 'LeoUserBundle') }}</a>
         </li>
     </ul>
 {% endblock %}

@@ -12,7 +12,8 @@ use Leo\BlogBundle\Entity\Post;
  * @ORM\Entity(repositoryClass="Leo\BlogBundle\Repository\CommentRepository")
  * @ORM\HasLifecycleCallbacks()
  */
-class Comment{
+class Comment
+{
     /**
      * @var int
      * @ORM\Column(name="id", type="integer")
@@ -36,7 +37,6 @@ class Comment{
     private $createTime;
     /**
      * @var \DateTime
-     *
      * @ORM\Column(name="update_time", type="datetimetz", nullable=true)
      */
     private $updateTime;
@@ -74,7 +74,6 @@ class Comment{
      * Set comment
      *
      * @param string $comment
-     *
      * @return Comment
      */
     public function setComment($comment)
@@ -110,10 +109,12 @@ class Comment{
     {
         return $this->createTime;
     }
+
     /**
      * @ORM\PreUpdate
      */
-    public function setUpdateTime() {
+    public function setUpdateTime()
+    {
         $this->updateTime = new \DateTime();
     }
 
@@ -122,7 +123,8 @@ class Comment{
      *
      * @return \DateTime
      */
-    public function getUpdateTime() {
+    public function getUpdateTime()
+    {
         return $this->updateTime;
     }
 
@@ -130,7 +132,6 @@ class Comment{
      * Set author
      *
      * @param User $author
-     *
      * @return Comment
      */
     public function setAuthor(User $author)
@@ -153,7 +154,6 @@ class Comment{
      * Set post
      *
      * @param Post $post
-     *
      * @return Comment
      */
     public function setPost(Post $post)

@@ -185,7 +185,6 @@ class User implements AdvancedUserInterface, \Serializable
      * Set email
      *
      * @param string $email
-     *
      * @return User
      */
     public function setEmail($email)
@@ -232,7 +231,6 @@ class User implements AdvancedUserInterface, \Serializable
      * Set name
      *
      * @param string $username
-     *
      * @return User
      */
     public function setUsername($username)
@@ -255,7 +253,6 @@ class User implements AdvancedUserInterface, \Serializable
      * Set password
      *
      * @param string $password
-     *
      * @return User
      */
     public function setPassword($password)
@@ -288,7 +285,6 @@ class User implements AdvancedUserInterface, \Serializable
      * Set Role
      *
      * @param Role $role
-     *
      * @return User
      */
     public function setRole($role)
@@ -338,7 +334,6 @@ class User implements AdvancedUserInterface, \Serializable
      * Set isActive
      *
      * @param boolean $isActive
-     *
      * @return User
      */
     public function setIsActive($isActive)
@@ -351,7 +346,6 @@ class User implements AdvancedUserInterface, \Serializable
      * Add play
      *
      * @param Game $play
-     *
      * @return User
      */
     public function addPlay(Game $play)
@@ -388,7 +382,6 @@ class User implements AdvancedUserInterface, \Serializable
      * Add watch
      *
      * @param Game $watch
-     *
      * @return User
      */
     public function addWatch(Game $watch)
@@ -425,7 +418,6 @@ class User implements AdvancedUserInterface, \Serializable
      * Add post
      *
      * @param Post $post
-     *
      * @return User
      */
     public function addPost(Post $post)
@@ -458,7 +450,6 @@ class User implements AdvancedUserInterface, \Serializable
      * Add comment
      *
      * @param Comment $comment
-     *
      * @return User
      */
     public function addComment(Comment $comment)

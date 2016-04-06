@@ -1,5 +1,4 @@
 <?php
-
 namespace Leo\BlogBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;

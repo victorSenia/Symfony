@@ -15,7 +15,7 @@ td, th {
     padding: 5px;
 }
 
-a.button, input[type="submit"] {
+a.button, input[type="submit"], button[type="button"] {
     text-decoration: none;
     padding: 3px;
     background: #ccccff;

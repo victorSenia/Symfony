@@ -1,17 +1,17 @@
 {% extends 'LeoBlogBundle:Default:index.html.twig' %}
 
 {% block body %}
-    {{parent()}}
+    {{ parent() }}
     <h1>{{ 'Comment creation'|trans({}, 'LeoBlogBundle') }}</h1>
 
     {{ form_start(form) }}
     {{ form_widget(form) }}
-    <input type="submit" value="{{ 'Create'|trans({}, 'LeoBlogBundle') }}" />
+    <input type="submit" value="{{ 'Create'|trans({}, 'LeoBlogBundle') }}"/>
     {{ form_end(form) }}
 
     <ul>
         <li>
-            <a class="button"href="{{ path('comment_index') }}">{{ 'Back to the list'|trans({}, 'LeoBlogBundle') }}</a>
+            <a class="button" href="{{ path('comment_index') }}">{{ 'Back to the list'|trans({}, 'LeoBlogBundle') }}</a>
         </li>
     </ul>
 {% endblock %}

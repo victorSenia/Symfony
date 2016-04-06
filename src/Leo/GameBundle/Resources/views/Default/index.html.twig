@@ -1,7 +1,7 @@
 {% extends 'default/index.html.twig' %}
 {% block body %}
-    {{parent()}}
-    <a class="button"href="{{path("game_index")}}">{{ 'Games'|trans({}, 'LeoGameBundle') }}</a>
-    <a class="button"href="{{path("player_index")}}">{{ 'Players'|trans({}, 'LeoGameBundle') }}</a>
-    <a class="button"href="{{path("typegame_index")}}">{{ 'Typegame'|trans({}, 'LeoGameBundle') }}</a>
+    {{ parent() }}
+    <a class="button" href="{{ path("game_index") }}">{{ 'Games'|trans({}, 'LeoGameBundle') }}</a>
+    <a class="button" href="{{ path("player_index") }}">{{ 'Players'|trans({}, 'LeoGameBundle') }}</a>
+    <a class="button" href="{{ path("typegame_index") }}">{{ 'Typegame'|trans({}, 'LeoGameBundle') }}</a>
 {% endblock %}

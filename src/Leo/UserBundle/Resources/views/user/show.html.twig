@@ -2,51 +2,52 @@
 
 {% block body %}
     {{ parent() }}
-    <h1>{{'User'|trans({}, 'LeoUserBundle')}}</h1>
+    <h1>{{ 'User'|trans({}, 'LeoUserBundle') }}</h1>
 
     <table>
         <tbody>
-            <tr>
-                <th>{{'Id'|trans({}, 'LeoUserBundle')}}</th>
-                <td>{{ user.id }}</td>
-            </tr>
-            <tr>
-                <th>{{'Username'|trans({}, 'LeoUserBundle')}}</th>
-                <td>{{ user.username }}</td>
-            </tr>
-            <tr>
-                <th>{{'Email'|trans({}, 'LeoUserBundle')}}</th>
-                <td>{{ user.email }}</td>
-            </tr>{#
+        <tr>
+            <th>{{ 'Id'|trans({}, 'LeoUserBundle') }}</th>
+            <td>{{ user.id }}</td>
+        </tr>
+        <tr>
+            <th>{{ 'Username'|trans({}, 'LeoUserBundle') }}</th>
+            <td>{{ user.username }}</td>
+        </tr>
+        <tr>
+            <th>{{ 'Email'|trans({}, 'LeoUserBundle') }}</th>
+            <td>{{ user.email }}</td>
+        </tr>{#
             <tr>
                 <th>Password</th>
                 <td>{{ user.password }}</td>
             </tr>#}
-            {%if app.user and is_granted("ROLE_ADMIN") %}
-                <tr>
-                    <th>{{'Role'|trans({}, 'LeoUserBundle')}}</th>
-                    <td>{{ user.role.role|trans({}, 'LeoUserBundle') }}</td>
-                </tr>
-            {% endif %}
+        {% if app.user and is_granted("ROLE_ADMIN") %}
+            <tr>
+                <th>{{ 'Role'|trans({}, 'LeoUserBundle') }}</th>
+                <td>{{ user.role.role|trans({}, 'LeoUserBundle') }}</td>
+            </tr>
+        {% endif %}
         </tbody>
     </table>
 
     <ul>
-        {% if (user.id == app.user.id or (user.role!="ROLE_SUPER_ADMIN" and is_granted("ROLE_ADMIN")) or (user.role=="ROLE_SUPER_ADMIN" and is_granted("ROLE_SUPER_ADMIN")))%}
+        {% if (user.id == app.user.id or (user.role!="ROLE_SUPER_ADMIN" and is_granted("ROLE_ADMIN")) or (user.role=="ROLE_SUPER_ADMIN" and is_granted("ROLE_SUPER_ADMIN"))) %}
             <li>
-                <a class="button"href="{{ path('user_edit', { 'id': user.id }) }}">{{'Edit'|trans({}, 'LeoUserBundle')}}</a>
+                <a class="button"
+                   href="{{ path('user_edit', { 'id': user.id }) }}">{{ 'Edit'|trans({}, 'LeoUserBundle') }}</a>
             </li>
             <li>
                 {{ form_start(delete_form) }}
-                <input type="submit" value="{{'Delete'|trans({}, 'LeoUserBundle')}}">
+                <input type="submit" value="{{ 'Delete'|trans({}, 'LeoUserBundle') }}">
                 {{ form_end(delete_form) }}
             </li>
-        {%endif%}
+        {% endif %}
         <li>
-            <a class="button"href="{{ path('user_index') }}">{{'Back to the list'|trans({}, 'LeoUserBundle')}}</a>
+            <a class="button" href="{{ path('user_index') }}">{{ 'Back to the list'|trans({}, 'LeoUserBundle') }}</a>
         </li>
         <li>
-            <a class="button"href="{{ path('user_new') }}">{{'New'|trans({}, 'LeoUserBundle')}}</a>
+            <a class="button" href="{{ path('user_new') }}">{{ 'New'|trans({}, 'LeoUserBundle') }}</a>
         </li>
     </ul>
 {% endblock %}

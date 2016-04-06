@@ -1,12 +1,12 @@
 {% extends 'LeoBlogBundle:Default:index.html.twig' %}
 
 {% block body %}
-    {{parent()}}
+    {{ parent() }}
     <h1>{{ 'Post edit'|trans({}, 'LeoBlogBundle') }}</h1>
 
     {{ form_start(edit_form) }}
     {{ form_widget(edit_form) }}
-    <input type="submit" value="{{ 'Edit'|trans({}, 'LeoBlogBundle') }}" />
+    <input type="submit" value="{{ 'Edit'|trans({}, 'LeoBlogBundle') }}"/>
     {{ form_end(edit_form) }}
 
     {{ form_start(delete_form) }}
@@ -14,7 +14,7 @@
     {{ form_end(delete_form) }}
     <ul>
         <li>
-            <a class="button"href="{{ path('post_index') }}">{{ 'Back to the list'|trans({}, 'LeoBlogBundle') }}</a>
+            <a class="button" href="{{ path('post_index') }}">{{ 'Back to the list'|trans({}, 'LeoBlogBundle') }}</a>
         </li>
     </ul>
 {% endblock %}

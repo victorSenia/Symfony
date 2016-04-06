@@ -1,63 +1,64 @@
 {% extends 'LeoGameBundle:Default:index.html.twig' %}
 
 {% block body %}
-    {{parent()}}
+    {{ parent() }}
     <h1>{{ 'Player'|trans({}, 'LeoGameBundle') }}</h1>
 
     <table>
         <tbody>
+        <tr>
+            <th>{{ 'Id'|trans({}, 'LeoGameBundle') }}</th>
+            <td>{{ player.id }}</td>
+        </tr>
+        <tr>
+            <th>{{ 'Username'|trans({}, 'LeoGameBundle') }}</th>
+            <td>{{ player.username }}</td>
+        </tr>
+        {% if player.play.count %}
             <tr>
-                <th>{{ 'Id'|trans({}, 'LeoGameBundle') }}</th>
-                <td>{{ player.id }}</td>
+                <th>{{ 'Play'|trans({}, 'LeoGameBundle') }}</th>
+                <td>
+                    <ul>
+                        {% for play in player.play %}
+                            <li> {{ play.name }}
+                                {% if player.username==app.user or is_granted('ROLE_ADMIN') %}
+                                    <a class="button" href="{{ path('player_delete',
+                                    { 'user_id': player.id, 'type': 'play', 'game_id': play.id}) }}">{{ 'Delete'|trans({}, 'LeoGameBundle') }}</a>
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </td>
             </tr>
+        {% endif %}
+        {% if player.watch.count %}
             <tr>
-                <th>{{ 'Username'|trans({}, 'LeoGameBundle') }}</th>
-                <td>{{ player.username }}</td>
+                <th>{{ 'Watch'|trans({}, 'LeoGameBundle') }}</th>
+                <td>
+                    <ul>
+                        {% for watch in player.watch %}
+                            <li> {{ watch.name }}
+                                {% if player.username==app.user or is_granted('ROLE_ADMIN') %}
+                                    <a class="button" href="{{ path('player_delete',
+                                    { 'user_id': player.id, 'type': 'watch', 'game_id': watch.id }) }}">{{ 'Delete'|trans({}, 'LeoGameBundle') }}</a>
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </td>
             </tr>
-            {%if player.play.count %}
-                <tr>
-                    <th>{{ 'Play'|trans({}, 'LeoGameBundle') }}</th>
-                    <td>
-                        <ul>
-                            {% for play in player.play%}
-                                <li> {{ play.name }}
-                                    {% if player.username==app.user or is_granted('ROLE_ADMIN')%}
-                                        <a class="button"href="{{ path('player_delete',
-{ 'user_id': player.id, 'type': 'play', 'game_id': play.id}) }}">{{ 'Delete'|trans({}, 'LeoGameBundle') }}</a>
-                                    {% endif%}
-                                </li>
-                            {%endfor%}
-                        </ul>
-                    </td>
-                </tr>
-            {%endif%}
-            {%if player.watch.count %}
-                <tr>
-                    <th>{{ 'Watch'|trans({}, 'LeoGameBundle') }}</th>
-                    <td>
-                        <ul>
-                            {% for watch in player.watch%}
-                                <li> {{ watch.name }}
-                                    {% if player.username==app.user or is_granted('ROLE_ADMIN')%}
-                                        <a class="button"href="{{ path('player_delete',
-{ 'user_id': player.id, 'type': 'watch', 'game_id': watch.id }) }}">{{ 'Delete'|trans({}, 'LeoGameBundle') }}</a>
-                                    {% endif %}
-                                </li>
-                            {%endfor%}
-                        </ul>
-                    </td>
-                </tr>
-            {%endif%}
+        {% endif %}
         </tbody>
     </table>
     <ul>
-        {% if player.username==app.user or is_granted('ROLE_ADMIN')%}
+        {% if player.username==app.user or is_granted('ROLE_ADMIN') %}
             <li>
-                <a class="button"href="{{ path('player_edit', { 'id': player.id }) }}">{{ 'Edit'|trans({}, 'LeoGameBundle') }}</a>
+                <a class="button"
+                   href="{{ path('player_edit', { 'id': player.id }) }}">{{ 'Edit'|trans({}, 'LeoGameBundle') }}</a>
             </li>
-        {%endif%}
+        {% endif %}
         <li>
-            <a class="button"href="{{ path('player_index') }}">{{ 'Back to the list'|trans({}, 'LeoGameBundle') }}</a>
+            <a class="button" href="{{ path('player_index') }}">{{ 'Back to the list'|trans({}, 'LeoGameBundle') }}</a>
         </li>
     </ul>
 {% endblock %}

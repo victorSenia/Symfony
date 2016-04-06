@@ -1,17 +1,17 @@
 {% extends 'LeoUserBundle:Default:index.html.twig' %}
 
 {% block body %}
-    {{parent()}}
+    {{ parent() }}
     <h1>{{ 'Role creation'|trans({}, 'LeoUserBundle') }}</h1>
 
     {{ form_start(form) }}
     {{ form_widget(form) }}
-    <input type="submit" value="{{ 'Create'|trans({}, 'LeoUserBundle') }}" />
+    <input type="submit" value="{{ 'Create'|trans({}, 'LeoUserBundle') }}"/>
     {{ form_end(form) }}
 
     <ul>
         <li>
-            <a class="button"href="{{ path('role_index') }}">{{ 'Back to the list'|trans({}, 'LeoUserBundle') }}</a>
+            <a class="button" href="{{ path('role_index') }}">{{ 'Back to the list'|trans({}, 'LeoUserBundle') }}</a>
         </li>
     </ul>
 {% endblock %}

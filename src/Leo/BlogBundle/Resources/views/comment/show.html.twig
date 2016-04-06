@@ -1,35 +1,36 @@
 {% extends 'LeoBlogBundle:Default:index.html.twig' %}
 
 {% block body %}
-    {{parent()}}
+    {{ parent() }}
     <h1>{{ 'Comment'|trans({}, 'LeoBlogBundle') }}</h1>
 
     <table>
         <tbody>
-            <tr>
-                <th>{{ 'Id'|trans({}, 'LeoBlogBundle') }}</th>
-                <td>{{ comment.id }}</td>
-            </tr>
-            <tr>
-                <th>{{ 'Comment'|trans({}, 'LeoBlogBundle') }}</th>
-                <td>{{ comment.comment }}</td>
-            </tr>
+        <tr>
+            <th>{{ 'Id'|trans({}, 'LeoBlogBundle') }}</th>
+            <td>{{ comment.id }}</td>
+        </tr>
+        <tr>
+            <th>{{ 'Comment'|trans({}, 'LeoBlogBundle') }}</th>
+            <td>{{ comment.comment }}</td>
+        </tr>
         </tbody>
     </table>
 
     <ul>
         {% if (app.user==comment.author or is_granted("ROLE_ADMIN")) %}
             <li>
-                <a class="button"href="{{ path('comment_edit', { 'id': comment.id }) }}">{{ 'Edit'|trans({}, 'LeoBlogBundle') }}</a>
+                <a class="button"
+                   href="{{ path('comment_edit', { 'id': comment.id }) }}">{{ 'Edit'|trans({}, 'LeoBlogBundle') }}</a>
             </li>
             <li>
                 {{ form_start(delete_form) }}
                 <input type="submit" value="{{ 'Delete'|trans({}, 'LeoBlogBundle') }}">
                 {{ form_end(delete_form) }}
             </li>
-        {%endif%}
+        {% endif %}
         <li>
-            <a class="button"href="{{ path('comment_index') }}">{{ 'Back to the list'|trans({}, 'LeoBlogBundle') }}</a>
+            <a class="button" href="{{ path('comment_index') }}">{{ 'Back to the list'|trans({}, 'LeoBlogBundle') }}</a>
         </li>
     </ul>
 {% endblock %}

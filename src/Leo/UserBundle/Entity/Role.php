@@ -1,5 +1,4 @@
 <?php
-
 namespace Leo\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -9,15 +8,14 @@ use Leo\UserBundle\Entity\User;
 
 /**
  * Role
- *
  * @ORM\Table(name="role")
  * @ORM\Entity(repositoryClass="Leo\UserBundle\Repository\RoleRepository")
  */
-class Role {
+class Role
+{
 
     /**
      * @var int
-     *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -34,7 +32,6 @@ class Role {
 
     /**
      * @var User
-     *
      * @ORM\OneToMany(targetEntity="User", mappedBy="role")
      */
     private $users;
@@ -44,7 +41,8 @@ class Role {
      *
      * @return integer
      */
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
@@ -54,9 +52,9 @@ class Role {
      * @param string $role
      * @return Role
      */
-    public function setRole($role) {
+    public function setRole($role)
+    {
         $this->role = $role;
-
         return $this;
     }
 
@@ -65,14 +63,16 @@ class Role {
      *
      * @return string
      */
-    public function getRole() {
+    public function getRole()
+    {
         return $this->role;
     }
 
     /**
      * Constructor
      */
-    public function __construct() {
+    public function __construct()
+    {
         $this->users = new ArrayCollection();
     }
 
@@ -82,9 +82,9 @@ class Role {
      * @param \Leo\UserBundle\Entity\User $users
      * @return Role
      */
-    public function addUser(User $users) {
+    public function addUser(User $users)
+    {
         $this->users[] = $users;
-
         return $this;
     }
 
@@ -93,7 +93,8 @@ class Role {
      *
      * @param \Leo\UserBundle\Entity\User $users
      */
-    public function removeUser(\Leo\UserBundle\Entity\User $users) {
+    public function removeUser(\Leo\UserBundle\Entity\User $users)
+    {
         $this->users->removeElement($users);
     }
 
@@ -102,11 +103,13 @@ class Role {
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getUsers() {
+    public function getUsers()
+    {
         return $this->users;
     }
 
-    public function __toString() {
+    public function __toString()
+    {
         return $this->getRole();
     }
 

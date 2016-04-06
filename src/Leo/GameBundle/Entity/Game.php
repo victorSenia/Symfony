@@ -1,5 +1,4 @@
 <?php
-
 namespace Leo\GameBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -9,11 +8,11 @@ use Leo\GameBundle\Entity\TypeGame;
 
 /**
  * Game
- *
  * @ORM\Table(name="game")
  * @ORM\Entity(repositoryClass="Leo\GameBundle\Repository\GameRepository")
  */
-class Game {
+class Game
+{
 
     /**
      * @var int
@@ -27,7 +26,7 @@ class Game {
      * @var string
      * @Assert\Length(min=4, max=40)
      * @Assert\NotBlank()
-     * @ORM\Column(name="name", type="string", length=50, unique=true)
+     * @ORM\Column(name="name", type="string", length=50)
      */
     private $name;
 
@@ -55,80 +54,92 @@ class Game {
     /**
      * Constructor
      */
-    public function __construct() {
+    public function __construct()
+    {
         $this->players = new \Doctrine\Common\Collections\ArrayCollection();
         $this->watchers = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
-    public function __toString() {
+    public function __toString()
+    {
         return $this->name;
     }
 
     /**
      * Get id
+     *
      * @return integer
      */
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
     /**
      * Set name
+     *
      * @param string $name
      * @return Game
      */
-    public function setName($name) {
+    public function setName($name)
+    {
         $this->name = $name;
-
         return $this;
     }
 
     /**
      * Get name
+     *
      * @return string
      */
-    public function getName() {
+    public function getName()
+    {
         return $this->name;
     }
 
     /**
      * Set typeGame
+     *
      * @param TypeGame $typeGame
      * @return Game
      */
-    public function setTypeGame(TypeGame $typeGame) {
+    public function setTypeGame(TypeGame $typeGame)
+    {
         $this->typeGame = $typeGame;
-
         return $this;
     }
 
     /**
      * Get typeGame
+     *
      * @return TypeGame
      */
-    public function getTypeGame() {
+    public function getTypeGame()
+    {
         return $this->typeGame;
     }
 
     /**
      * Add players
+     *
      * @param \Leo\UserBundle\Entity\User $players
      * @return Game
      */
-    public function addPlayer(User $players) {
+    public function addPlayer(User $players)
+    {
 //        die("addWatch");
         $this->players[] = $players;
-
 //        $players->addPlay($this);
         return $this;
     }
 
     /**
      * Remove players
+     *
      * @param \Leo\UserBundle\Entity\User $players
      */
-    public function removePlayer(User $players) {
-
+    public function removePlayer(User $players)
+    {
 //        die("addWatch");
         $this->players->removeElement($players);
 //        $players->removePlay($this);
@@ -136,30 +147,35 @@ class Game {
 
     /**
      * Get players
+     *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getPlayers() {
+    public function getPlayers()
+    {
         return $this->players;
     }
 
     /**
      * Add watchers
-     * @param Leo\UserBundle\Entity\User $watchers
+     *
+     * @param \Leo\UserBundle\Entity\User $watchers
      * @return Game
      */
-    public function addWatcher(User $watchers) {
+    public function addWatcher(User $watchers)
+    {
 //        die("addWatch");
         $this->watchers[] = $watchers;
-
 //        $watchers->addPlay($this);
         return $this;
     }
 
     /**
      * Remove watchers
-     * @param Leo\UserBundle\Entity\User $watchers
+     *
+     * @param \Leo\UserBundle\Entity\User $watchers
      */
-    public function removeWatcher(User $watchers) {
+    public function removeWatcher(User $watchers)
+    {
 //        die("addWatch");
         $this->watchers->removeElement($watchers);
 //        $watchers->removeWatch($this);
@@ -167,9 +183,11 @@ class Game {
 
     /**
      * Get watchers
+     *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getWatchers() {
+    public function getWatchers()
+    {
         return $this->watchers;
     }
 

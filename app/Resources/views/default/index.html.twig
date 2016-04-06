@@ -8,23 +8,37 @@
             </div>
         {% endfor %}
     {% endfor %}
-    <h2>Hello {%if app.user%}{{app.user}}{%else%}guest{%endif%}!</h2>
-    <a class="button"href="{{path("homepage")}}">Main</a>
-    <div  style="right: 10px; top: 10px; position: fixed">
-        {%if is_granted("IS_AUTHENTICATED_REMEMBERED")%}
-            <a class="button"href="{{path("leo_user_logout")}}">Logout</a>
-            <a class="button"href="{{path("user_show",{'id':app.user.id})}}">Show</a>
-        {%endif%}
-        {%if not is_granted("IS_AUTHENTICATED_REMEMBERED")%}
-            <a class="button"href="{{path("leo_user_login")}}">Login</a>
-        {%endif%}
+    <h2>Hello {% if app.user %}{{ app.user }}{% else %}guest{% endif %}!</h2>
+    <a class="button" href="{{ path("homepage") }}">Main</a>
+    <div style="right: 10px; top: 10px; position: fixed">
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            <a class="button" href="{{ path("leo_user_logout") }}">Logout</a>
+            <a class="button" href="{{ path("user_show",{'id':app.user.id}) }}">Show</a>
+        {% endif %}
+        {% if not is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            <a class="button" href="{{ path("leo_user_login") }}">Login</a>
+        {% endif %}
     </div>
     <br>
-    <a class="button"href="{{path("leo_game_homepage")}}">Games</a>
-    <a class="button"href="{{path("leo_user_homepage")}}">Users</a>
-    <a class="button"href="{{path("leo_blog_homepage")}}">Blogs</a><br>
+    <a class="button" href="{{ path("leo_game_homepage") }}">Games</a>
+    <a class="button" href="{{ path("leo_user_homepage") }}">Users</a>
+    <a class="button" href="{{ path("leo_blog_homepage") }}">Blogs</a>
+    <a onclick="countRabbits()" class="button" href="javascript:">json-send to Zend2</a><br>
+    <script>
+        function countRabbits() {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", 'http://zend/albums/json-send', true);
+//            xhr.onreadystatechange = function (test) {
+//                console.log(test)
+//            };
+            xhr.onloadend = function(){
+                alert(xhr.responseText);
+            }
+            xhr.send();
+        }
+    </script>
 {% endblock %}
 {% block stylesheets %}
-    {{parent()}}
-    <link rel="stylesheet" href="{{ asset('public/css/main.css') }}" />
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('public/css/main.css') }}"/>
 {% endblock %}

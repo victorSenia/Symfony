@@ -1,38 +1,40 @@
 {% extends 'LeoBlogBundle:Default:index.html.twig' %}
 
 {% block body %}
-    {{parent()}}
+    {{ parent() }}
     <h1>{{ 'Author list'|trans({}, 'LeoBlogBundle') }}</h1>
 
+    {{ '[[21,25]]'|trim('([[|]])') }}
     <table>
         <thead>
-            <tr>
-                <th>{{ 'Id'|trans({}, 'LeoBlogBundle') }}</th>
-                <th>{{ 'Username'|trans({}, 'LeoBlogBundle') }}</th>
-                <th>{{ 'Posts'|trans({}, 'LeoBlogBundle') }}</th>
-                <th>{{ 'Comments'|trans({}, 'LeoBlogBundle') }}</th>
-                <th>{{ 'Actions'|trans({}, 'LeoBlogBundle') }}</th>
-            </tr>
+        <tr>
+            <th>{{ 'Id'|trans({}, 'LeoBlogBundle') }}</th>
+            <th>{{ 'Username'|trans({}, 'LeoBlogBundle') }}</th>
+            <th>{{ 'Posts'|trans({}, 'LeoBlogBundle') }}</th>
+            <th>{{ 'Comments'|trans({}, 'LeoBlogBundle') }}</th>
+            <th>{{ 'Actions'|trans({}, 'LeoBlogBundle') }}</th>
+        </tr>
         </thead>
         <tbody>
-            {% for author in authors %}
-                <tr>
-                    <td>{{ author.id }}</td>
-                    <td>{{ author.username }}</td>
-                    <td>{{ author.post.count }}</td>
-                    <td>{{ author.comment.count }}</td>
-                    <td>
-                        <ul>
-                            <li>
-                                <a class="button"href="{{ path('author_show', { 'id': author.id }) }}">{{ 'show'|trans({}, 'LeoBlogBundle') }}</a>
-                            </li>{#
+        {% for author in authors %}
+            <tr>
+                <td>{{ author.id }}</td>
+                <td>{{ author.username }}</td>
+                <td>{{ author.post.count }}</td>
+                <td>{{ author.comment.count }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a class="button"
+                               href="{{ path('author_show', { 'id': author.id }) }}">{{ 'show'|trans({}, 'LeoBlogBundle') }}</a>
+                        </li>{#
                             <li>
                                 <a class="button"href="{{ path('author_edit', { 'id': author.id }) }}">edit</a>
                             </li>#}
-                        </ul>
-                    </td>
-                </tr>
-            {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
         </tbody>
     </table>
 {% endblock %}

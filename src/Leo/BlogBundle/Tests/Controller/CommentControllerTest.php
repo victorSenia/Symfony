@@ -1,5 +1,4 @@
 <?php
-
 namespace Leo\BlogBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;

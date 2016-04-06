@@ -1,12 +1,12 @@
 {% extends 'LeoGameBundle:Default:index.html.twig' %}
 
 {% block body %}
-    {{parent()}}
+    {{ parent() }}
     <h1>{{ 'Game edit'|trans({}, 'LeoGameBundle') }}</h1>
 
     {{ form_start(edit_form) }}
     {{ form_widget(edit_form) }}
-    <input type="submit" value="{{ 'Edit'|trans({}, 'LeoGameBundle') }}" />
+    <input type="submit" value="{{ 'Edit'|trans({}, 'LeoGameBundle') }}"/>
     {{ form_end(edit_form) }}
 
     {{ form_start(delete_form) }}
@@ -14,7 +14,7 @@
     {{ form_end(delete_form) }}
     <ul>
         <li>
-            <a class="button"href="{{ path('game_index') }}">{{ 'Back to the list'|trans({}, 'LeoGameBundle') }}</a>
+            <a class="button" href="{{ path('game_index') }}">{{ 'Back to the list'|trans({}, 'LeoGameBundle') }}</a>
         </li>
     </ul>
 {% endblock %}

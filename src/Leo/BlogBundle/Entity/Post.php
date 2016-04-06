@@ -12,7 +12,8 @@ use Leo\BlogBundle\Entity\Comment;
  * @ORM\Entity(repositoryClass="Leo\BlogBundle\Repository\PostRepository")
  * @ORM\HasLifecycleCallbacks()
  */
-class Post{
+class Post
+{
     /**
      * @var int
      * @ORM\Column(name="id", type="integer")
@@ -76,7 +77,6 @@ class Post{
      * Set name
      *
      * @param string $name
-     *
      * @return Post
      */
     public function setName($name)
@@ -99,7 +99,6 @@ class Post{
      * Set text
      *
      * @param string $text
-     *
      * @return Post
      */
     public function setText($text)
@@ -158,7 +157,6 @@ class Post{
      * Set author
      *
      * @param User $author
-     *
      * @return Post
      */
     public function setAuthor(User $author)
@@ -189,7 +187,6 @@ class Post{
      * Add comments
      *
      * @param \Leo\BlogBundle\Entity\Comment $comments
-     *
      * @return Post
      */
     public function addComment(\Leo\BlogBundle\Entity\Comment $comments)

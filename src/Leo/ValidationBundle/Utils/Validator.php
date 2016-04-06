@@ -87,7 +87,8 @@ class Validator
         $type = ($this->startLetter ? "a-z][" : "");
         if($this->allSymbols) {
             $type .= "\\w" . ($this->specSymbols ? $this->specSymbols : "");
-        } else {
+        }
+        else {
             $type .= ($this->letters ? "a-z" : "") . ($this->numbers ? "0-9" : "") . ($this->specSymbols ? $this->specSymbols : "");
         }
         $pattern = "/^[" . $type . "]{" . $length . "}$/i";

@@ -1,36 +1,39 @@
 {% extends 'LeoGameBundle:Default:index.html.twig' %}
 
 {% block body %}
-    {{parent()}}
+    {{ parent() }}
     <h1>{{ 'TypeGame'|trans({}, 'LeoGameBundle') }}</h1>
 
     <table>
         <tbody>
-            <tr>
-                <th>{{ 'Id'|trans({}, 'LeoGameBundle') }}</th>
-                <td>{{ typeGame.id }}</td>
-            </tr>
-            <tr>
-                <th>{{ 'Name'|trans({}, 'LeoGameBundle') }}</th>
-                <td>{{ typeGame.name }}
-            </tr>
-            <tr>
-                <th>{{ 'Games'|trans({}, 'LeoGameBundle') }}</th>
-                <td> <ol>
-                        {% for game in typeGame.games %}
-                            <li>
-                                {{game.name}}
-                            </li>
-                        {% endfor %}
-                    </ol></td>
-            </tr>
+        <tr>
+            <th>{{ 'Id'|trans({}, 'LeoGameBundle') }}</th>
+            <td>{{ typeGame.id }}</td>
+        </tr>
+        <tr>
+            <th>{{ 'Name'|trans({}, 'LeoGameBundle') }}</th>
+            <td>{{ typeGame.name }}
+        </tr>
+        <tr>
+            <th>{{ 'Games'|trans({}, 'LeoGameBundle') }}</th>
+            <td>
+                <ol>
+                    {% for game in typeGame.games %}
+                        <li>
+                            {{ game.name }}
+                        </li>
+                    {% endfor %}
+                </ol>
+            </td>
+        </tr>
         </tbody>
     </table>
 
     <ul>
         {% if is_granted("ROLE_ADMIN") %}
             <li>
-                <a class="button"href="{{ path('typegame_edit', { 'id': typeGame.id }) }}">{{ 'Edit'|trans({}, 'LeoGameBundle') }}</a>
+                <a class="button"
+                   href="{{ path('typegame_edit', { 'id': typeGame.id }) }}">{{ 'Edit'|trans({}, 'LeoGameBundle') }}</a>
             </li>
             <li>
                 {{ form_start(delete_form) }}
@@ -38,11 +41,12 @@
                 {{ form_end(delete_form) }}
             </li>
             <li>
-                <a class="button"href="{{ path('typegame_new') }}">{{ 'New'|trans({}, 'LeoGameBundle') }}</a>
+                <a class="button" href="{{ path('typegame_new') }}">{{ 'New'|trans({}, 'LeoGameBundle') }}</a>
             </li>
-        {%endif%}
+        {% endif %}
         <li>
-            <a class="button"href="{{ path('typegame_index') }}">{{ 'Back to the list'|trans({}, 'LeoGameBundle') }}</a>
+            <a class="button"
+               href="{{ path('typegame_index') }}">{{ 'Back to the list'|trans({}, 'LeoGameBundle') }}</a>
         </li>
     </ul>
 {% endblock %}

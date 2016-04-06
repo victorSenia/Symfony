@@ -1,60 +1,62 @@
 {% extends 'LeoGameBundle:Default:index.html.twig' %}
 
 {% block body %}
-    {{parent()}}
+    {{ parent() }}
     <h1>{{ 'Player list'|trans({}, 'LeoGameBundle') }}</h1>
 
     <table>
         <thead>
-            <tr>
-                <th>{{ 'Id'|trans({}, 'LeoGameBundle') }}</th>
-                <th>{{ 'Username'|trans({}, 'LeoGameBundle') }}</th>
-                <th>{{ 'Watch'|trans({}, 'LeoGameBundle') }}</th>
-                <th>{{ 'Play'|trans({}, 'LeoGameBundle') }}</th>
-                <th>{{ 'Actions'|trans({}, 'LeoGameBundle') }}</th>
-            </tr>
+        <tr>
+            <th>{{ 'Id'|trans({}, 'LeoGameBundle') }}</th>
+            <th>{{ 'Username'|trans({}, 'LeoGameBundle') }}</th>
+            <th>{{ 'Watch'|trans({}, 'LeoGameBundle') }}</th>
+            <th>{{ 'Play'|trans({}, 'LeoGameBundle') }}</th>
+            <th>{{ 'Actions'|trans({}, 'LeoGameBundle') }}</th>
+        </tr>
         </thead>
         <tbody>
-            {% for player in players %}
-                <tr>
-                    <td>{{ player.id }}</td>
-                    <td>{{ player.username }}</td>
-                    <td>
-                        {%if player.watch.count%}
-                            <ol>
-                                {% for watch in player.watch %}
-                                    <li>
-                                        {{watch.name}}
-                                    </li>
-                                {% endfor %}
-                            </ol>
-                        {%endif%}
-                    </td>
-                    <td>
-                        {%if player.play.count%}
-                            <ol>
-                                {% for play in player.play %}
-                                    <li>
-                                        {{play.name}}
-                                    </li>
-                                {% endfor %}
-                            </ol>
-                        {%endif%}
-                    </td>
-                    <td>
-                        <ul>
-                            <li>
-                                <a class="button"href="{{ path('player_show', { 'id': player.id }) }}">{{ 'show'|trans({}, 'LeoGameBundle') }}</a>
-                            </li>
-                            {% if player.username==app.user or is_granted('ROLE_ADMIN')%}
+        {% for player in players %}
+            <tr>
+                <td>{{ player.id }}</td>
+                <td>{{ player.username }}</td>
+                <td>
+                    {% if player.watch.count %}
+                        <ol>
+                            {% for watch in player.watch %}
                                 <li>
-                                    <a class="button"href="{{ path('player_edit', { 'id': player.id }) }}">{{ 'edit'|trans({}, 'LeoGameBundle') }}</a>
+                                    {{ watch.name }}
                                 </li>
-                            {% endif%}
-                        </ul>
-                    </td>
-                </tr>
-            {% endfor %}
+                            {% endfor %}
+                        </ol>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if player.play.count %}
+                        <ol>
+                            {% for play in player.play %}
+                                <li>
+                                    {{ play.name }}
+                                </li>
+                            {% endfor %}
+                        </ol>
+                    {% endif %}
+                </td>
+                <td>
+                    <ul>
+                        <li>
+                            <a class="button"
+                               href="{{ path('player_show', { 'id': player.id }) }}">{{ 'show'|trans({}, 'LeoGameBundle') }}</a>
+                        </li>
+                        {% if player.username==app.user or is_granted('ROLE_ADMIN') %}
+                            <li>
+                                <a class="button"
+                                   href="{{ path('player_edit', { 'id': player.id }) }}">{{ 'edit'|trans({}, 'LeoGameBundle') }}</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
         </tbody>
     </table>
 

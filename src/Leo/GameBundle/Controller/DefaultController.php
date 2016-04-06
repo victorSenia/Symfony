@@ -1,5 +1,4 @@
 <?php
-
 namespace Leo\GameBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;

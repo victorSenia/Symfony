@@ -1,5 +1,4 @@
 <?php
-
 namespace Leo\UserBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
