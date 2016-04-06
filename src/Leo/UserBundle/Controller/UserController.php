@@ -35,7 +35,7 @@ class UserController extends Controller
         if(!$this->isGranted("ROLE_ADMIN")) {
             $form->remove("role")->remove("isActive");
             $user->setIsActive(TRUE);
-            $role = $this->getDoctrine()->getManager()->find(Role::class, '1');
+            $role = $this->getDoctrine()->getRepository(Role::class)->findOneBy(array("role" => "ROLE_USER"));
             $user->setRole($role);
         }
 //        if (!$this->isGranted("ROLE_SUPER_ADMIN")) {

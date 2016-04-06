@@ -1,10 +1,9 @@
 <?php
 namespace Leo\BlogBundle\Controller;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Leo\BlogBundle\Entity\Post;
-use Leo\BlogBundle\Form\PostType;
 use Leo\UserBundle\Entity\User;
 
 /**
@@ -28,10 +27,10 @@ class AuthorController extends Controller
     /**
      * Finds and displays a Post entity.
      */
-    public function showAction(User $player)
+    public function showAction(User $author)
     {
         return $this->render('LeoBlogBundle:Author:show.html.twig', array(
-            'author' => $player,
+            'author' => $author,
         ));
     }
 
@@ -40,14 +39,26 @@ class AuthorController extends Controller
      */
     public function editAction(Request $request, User $author)
     {
-        $editForm = $this->createFormBuilder($author)
-            ->add("post")
-            ->add("comment")
-            ->getForm();
+        $editForm = $this->createForm('Leo\BlogBundle\Form\AuthorType', $author);
+        $posts = new ArrayCollection();
+        foreach($author->getPost() as $item) {
+            $posts->add($item);
+        }
+        $comments = new ArrayCollection();
+        foreach($author->getComment() as $item) {
+            $comments->add($item);
+        }
         $editForm->handleRequest($request);
         if($editForm->isSubmitted() && $editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
-//            $em->persist($author);
+            foreach($comments as $item) {
+                if($author->getComment()->contains($item) === FALSE)
+                    $em->remove($item);
+            }
+            foreach($posts as $item) {
+                if($author->getPost()->contains($item) === FALSE)
+                    $em->remove($item);
+            }
             $em->flush();
             return $this->redirectToRoute('author_edit', array('id' => $author->getId()));
         }

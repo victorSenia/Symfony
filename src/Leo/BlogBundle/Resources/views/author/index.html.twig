@@ -3,8 +3,6 @@
 {% block body %}
     {{ parent() }}
     <h1>{{ 'Author list'|trans({}, 'LeoBlogBundle') }}</h1>
-
-    {{ '[[21,25]]'|trim('([[|]])') }}
     <table>
         <thead>
         <tr>
@@ -27,10 +25,10 @@
                         <li>
                             <a class="button"
                                href="{{ path('author_show', { 'id': author.id }) }}">{{ 'show'|trans({}, 'LeoBlogBundle') }}</a>
-                        </li>{#
-                            <li>
-                                <a class="button"href="{{ path('author_edit', { 'id': author.id }) }}">edit</a>
-                            </li>#}
+                        </li>
+                        <li>
+                            <a class="button" href="{{ path('author_edit', { 'id': author.id }) }}">edit</a>
+                        </li>
                     </ul>
                 </td>
             </tr>

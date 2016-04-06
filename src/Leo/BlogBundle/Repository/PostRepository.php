@@ -15,14 +15,14 @@ class PostRepository extends EntityRepository
     public function findAll()
     {
         return $this->_em->createQuery("SELECT a, p, c, ac FROM LeoBlogBundle:Post p LEFT JOIN "
-            . "p.author a LEFT JOIN p.comments c LEFT JOIN c.author ac ORDER BY p.id")->getResult();
+            . "p.author a LEFT JOIN p.comments c LEFT JOIN c.author ac")->getResult();
     }
 
     public function find($id, $lockMode = LockMode::NONE, $lockVersion = NULL)
     {
         return $this->_em->createQuery("SELECT a, p, c FROM LeoBlogBundle:Post p LEFT JOIN p.author a "
-            . "LEFT JOIN p.comments c WHERE p.id=?1")
-            ->setParameter(1, $id)->getSingleResult();
+            . "LEFT JOIN p.comments c WHERE p.id=:param")
+            ->setParameter('param', $id)->getSingleResult();
     }
 
 }

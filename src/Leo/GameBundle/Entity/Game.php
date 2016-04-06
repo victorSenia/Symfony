@@ -127,9 +127,7 @@ class Game
      */
     public function addPlayer(User $players)
     {
-//        die("addWatch");
         $this->players[] = $players;
-//        $players->addPlay($this);
         return $this;
     }
 
@@ -140,9 +138,7 @@ class Game
      */
     public function removePlayer(User $players)
     {
-//        die("addWatch");
         $this->players->removeElement($players);
-//        $players->removePlay($this);
     }
 
     /**
@@ -163,9 +159,7 @@ class Game
      */
     public function addWatcher(User $watchers)
     {
-//        die("addWatch");
         $this->watchers[] = $watchers;
-//        $watchers->addPlay($this);
         return $this;
     }
 
@@ -176,9 +170,7 @@ class Game
      */
     public function removeWatcher(User $watchers)
     {
-//        die("addWatch");
         $this->watchers->removeElement($watchers);
-//        $watchers->removeWatch($this);
     }
 
     /**

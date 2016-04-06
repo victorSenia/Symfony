@@ -13,12 +13,12 @@ player_edit:
     defaults: { _controller: "LeoGameBundle:Player:edit" }
     methods:  [GET, POST]
 
-player_delete:
-    path:     /{user_id}/delete/{type}/{game_id}
-    defaults: { _controller: "LeoGameBundle:Player:delete" }
-    methods:  [GET, POST]
-    requirements:
-        type: play|watch
+#player_delete:
+#    path:     /{user_id}/delete/{type}/{game_id}
+#    defaults: { _controller: "LeoGameBundle:Player:delete" }
+#    methods:  [GET, POST]
+#    requirements:
+#        type: play|watch
 
 player_edit:
     path:     /{id}/edit

@@ -21,10 +21,10 @@
                     <ul>
                         {% for play in player.play %}
                             <li> {{ play.name }}
-                                {% if player.username==app.user or is_granted('ROLE_ADMIN') %}
-                                    <a class="button" href="{{ path('player_delete',
-                                    { 'user_id': player.id, 'type': 'play', 'game_id': play.id}) }}">{{ 'Delete'|trans({}, 'LeoGameBundle') }}</a>
-                                {% endif %}
+                                {#{% if player.username==app.user or is_granted('ROLE_ADMIN') %}#}
+                                {#<a class="button" href="{{ path('player_delete',#}
+                                {#{ 'user_id': player.id, 'type': 'play', 'game_id': play.id}) }}">{{ 'Delete'|trans({}, 'LeoGameBundle') }}</a>#}
+                                {#{% endif %}#}
                             </li>
                         {% endfor %}
                     </ul>
@@ -38,10 +38,10 @@
                     <ul>
                         {% for watch in player.watch %}
                             <li> {{ watch.name }}
-                                {% if player.username==app.user or is_granted('ROLE_ADMIN') %}
-                                    <a class="button" href="{{ path('player_delete',
-                                    { 'user_id': player.id, 'type': 'watch', 'game_id': watch.id }) }}">{{ 'Delete'|trans({}, 'LeoGameBundle') }}</a>
-                                {% endif %}
+                                {#{% if player.username==app.user or is_granted('ROLE_ADMIN') %}#}
+                                {#<a class="button" href="{{ path('player_delete',#}
+                                {#{ 'user_id': player.id, 'type': 'watch', 'game_id': watch.id }) }}">{{ 'Delete'|trans({}, 'LeoGameBundle') }}</a>#}
+                                {#{% endif %}#}
                             </li>
                         {% endfor %}
                     </ul>
